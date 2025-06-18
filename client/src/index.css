@@ -256,18 +256,21 @@ button.login-btn-final {
   font-weight: 500 !important;
   background-color: #f3f4f6 !important;
   color: #374151 !important;
+  border: 2px solid transparent !important;
   transition: all 0.2s ease !important;
   box-sizing: border-box !important;
 }
 
 button.login-btn-final:hover {
-  background-color: #facc15 !important;
-  color: white !important;
+  background-color: #f3f4f6 !important;
+  color: #374151 !important;
+  border: 2px solid white !important;
 }
 
 button.login-btn-final:focus {
-  background-color: #facc15 !important;
-  color: white !important;
+  background-color: #f3f4f6 !important;
+  color: #374151 !important;
+  border: 2px solid white !important;
   outline: none !important;
 }
 
