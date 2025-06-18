@@ -208,8 +208,8 @@ export default function Landing() {
                     <div className="w-full h-full bg-gray-300"></div>
                   )}
                   
-                  {/* 그라데이션 오버레이 - 정중앙에 투명 영역 */}
-                  <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-10% via-transparent via-90% to-black/70"></div>
+                  {/* 그라데이션 오버레이 - 완전 대칭으로 중앙에 투명 영역 */}
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-25% via-transparent via-75% to-black/70"></div>
                   
                   {/* 요일 태그 */}
                   <div className="absolute top-2 left-2 z-10">
