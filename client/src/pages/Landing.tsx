@@ -19,7 +19,7 @@ import {
   Bot,
   Plus
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import HonmonoLogo from "@assets/Honmono_Logo_1750227308214.png";
 import HonmonoTextLogo from "@assets/Honmono_Text_Logo_1750227308215.png";
 import testImage from "@assets/image_1750233446528.png";
@@ -27,6 +27,8 @@ import testImage from "@assets/image_1750233446528.png";
 export default function Landing() {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeDay, setActiveDay] = useState("전체");
+  const [displayText, setDisplayText] = useState("Honmono");
+  const [isAnimating, setIsAnimating] = useState(false);
 
   const handleLogin = () => {
     window.location.href = "/api/login";
@@ -40,6 +42,42 @@ export default function Landing() {
   };
 
   const weekdays = ["전체", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일", "일요일"];
+
+  // 타이핑 애니메이션 로직
+  useEffect(() => {
+    const startText = "Honmono";
+    const endText = "Honest Monologue";
+    
+    const animateText = () => {
+      setIsAnimating(true);
+      
+      // 지우는 단계
+      for (let i = startText.length; i >= 0; i--) {
+        setTimeout(() => {
+          setDisplayText(startText.substring(0, i));
+        }, (startText.length - i) * 100);
+      }
+      
+      // 타이핑 단계
+      for (let i = 0; i <= endText.length; i++) {
+        setTimeout(() => {
+          setDisplayText(endText.substring(0, i));
+          if (i === endText.length) {
+            setTimeout(() => {
+              setIsAnimating(false);
+              // 3초 후 다시 시작
+              setTimeout(animateText, 3000);
+            }, 2000);
+          }
+        }, startText.length * 100 + 300 + i * 100);
+      }
+    };
+
+    // 2초 후 애니메이션 시작
+    const timer = setTimeout(animateText, 2000);
+    
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <div className="min-h-screen bg-gray-50" style={{ fontFamily: 'Noto Sans KR, sans-serif' }}>
@@ -126,8 +164,11 @@ export default function Landing() {
         
         <div className="max-w-6xl mx-auto px-4 text-center relative z-10">
           <h1 className="text-4xl font-bold mb-3">순수한 열정이 모이는 곳</h1>
-          <div className="mb-6">
-            <span className="text-2xl font-medium text-white/90 italic">Honest Monologue</span>
+          <div className="mb-6 h-8 flex items-center justify-center">
+            <span className="text-2xl font-medium text-white/90 italic relative">
+              {displayText}
+              {isAnimating && <span className="animate-pulse ml-1">|</span>}
+            </span>
           </div>
           
           {/* Search Bar in Hero */}
