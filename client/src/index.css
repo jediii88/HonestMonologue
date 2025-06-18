@@ -150,7 +150,11 @@ nav a:hover svg {
 
 .anime-card:hover {
   animation: cardHover 0.2s ease-out forwards;
-  box-shadow: 0 10px 25px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -4px rgba(0, 0, 0, 0.2);
+}
+
+.anime-card:hover h3 {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 /* Custom gradient backgrounds */
