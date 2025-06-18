@@ -105,21 +105,8 @@ export default function Header() {
               </div>
             ) : (
               <>
-                <span 
-                  onMouseEnter={(e) => {
-                    console.log('마우스 진입!', isLoginHovered);
-                    setIsLoginHovered(true);
-                    // 강제로 스타일 적용
-                    e.currentTarget.style.backgroundColor = 'rgb(252, 204, 21)';
-                    e.currentTarget.style.color = 'rgb(255, 255, 255)';
-                  }}
-                  onMouseLeave={(e) => {
-                    console.log('마우스 벗어남!', isLoginHovered);
-                    setIsLoginHovered(false);
-                    // 강제로 스타일 적용
-                    e.currentTarget.style.backgroundColor = 'rgb(243, 244, 246)';
-                    e.currentTarget.style.color = 'rgb(55, 65, 81)';
-                  }}
+                <button 
+                  className="login-btn-final"
                   onClick={handleLogin}
                   style={{
                     display: 'inline-block',
@@ -127,18 +114,12 @@ export default function Header() {
                     borderRadius: '20px',
                     cursor: 'pointer',
                     fontWeight: '500',
-                    transition: 'all 0.3s ease',
-                    backgroundColor: isLoginHovered ? 'rgb(252, 204, 21)' : 'rgb(243, 244, 246)',
-                    color: isLoginHovered ? 'rgb(255, 255, 255)' : 'rgb(55, 65, 81)',
-                    border: '1px solid transparent'
+                    border: 'none',
+                    outline: 'none'
                   }}
                 >
-                  로그인 (hover: {isLoginHovered ? 'YES' : 'NO'}) 
-                  {isLoginHovered && <span style={{color: 'red'}}> [ACTIVE]</span>}
-                  <div style={{fontSize: '10px', color: 'blue'}}>
-                    BG: {isLoginHovered ? 'YELLOW' : 'GRAY'}
-                  </div>
-                </span>
+                  로그인
+                </button>
                 <Button 
                   className="bg-gray-800 text-white hover:bg-gray-700 rounded-full px-5"
                   onClick={handleLogin}
