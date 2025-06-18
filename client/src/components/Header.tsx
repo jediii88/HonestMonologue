@@ -108,15 +108,6 @@ export default function Header() {
                 <button 
                   className="login-btn-final"
                   onClick={handleLogin}
-                  style={{
-                    display: 'inline-block',
-                    padding: '8px 20px',
-                    borderRadius: '20px',
-                    cursor: 'pointer',
-                    fontWeight: '500',
-                    border: 'none',
-                    outline: 'none'
-                  }}
                 >
                   로그인
                 </button>

@@ -246,24 +246,29 @@ nav a:hover svg {
   75% { transform: translateY(-8px) rotate(270deg); }
 }
 
-/* 로그인 버튼 최종 스타일 */
-.login-btn-final {
+/* 로그인 버튼 최종 스타일 - 모든 기본 스타일 리셋 */
+button.login-btn-final {
+  all: unset !important;
+  display: inline-block !important;
+  padding: 8px 20px !important;
+  border-radius: 20px !important;
+  cursor: pointer !important;
+  font-weight: 500 !important;
   background-color: #f3f4f6 !important;
   color: #374151 !important;
   transition: all 0.2s ease !important;
+  box-sizing: border-box !important;
 }
 
-.login-btn-final:hover {
+button.login-btn-final:hover {
   background-color: #facc15 !important;
   color: white !important;
-  animation: forceHover 0.1s ease forwards !important;
 }
 
-@keyframes forceHover {
-  to {
-    background-color: #facc15 !important;
-    color: white !important;
-  }
+button.login-btn-final:focus {
+  background-color: #facc15 !important;
+  color: white !important;
+  outline: none !important;
 }
 
 @keyframes bounceFloat {
