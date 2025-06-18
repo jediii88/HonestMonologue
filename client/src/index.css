@@ -4,30 +4,33 @@
 
 :root {
   --background: hsl(0, 0%, 100%);
-  --foreground: hsl(20, 14.3%, 4.1%);
-  --muted: hsl(210, 40%, 98%);
-  --muted-foreground: hsl(215, 13.8%, 34.1%);
+  --foreground: hsl(0, 0%, 20%);
+  --muted: hsl(0, 0%, 97%);
+  --muted-foreground: hsl(0, 0%, 45%);
   --popover: hsl(0, 0%, 100%);
-  --popover-foreground: hsl(20, 14.3%, 4.1%);
+  --popover-foreground: hsl(0, 0%, 20%);
   --card: hsl(0, 0%, 100%);
-  --card-foreground: hsl(20, 14.3%, 4.1%);
-  --border: hsl(214.3, 31.8%, 91.4%);
-  --input: hsl(214.3, 31.8%, 91.4%);
-  --primary: hsl(245.2, 84.1%, 63.1%);
-  --primary-foreground: hsl(211, 100%, 99%);
-  --secondary: hsl(210, 40%, 98%);
-  --secondary-foreground: hsl(222.2, 84%, 4.9%);
-  --accent: hsl(210, 40%, 98%);
-  --accent-foreground: hsl(222.2, 84%, 4.9%);
+  --card-foreground: hsl(0, 0%, 20%);
+  --border: hsl(0, 0%, 93%);
+  --input: hsl(0, 0%, 93%);
+  --primary: hsl(0, 0%, 33%);
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(0, 0%, 97%);
+  --secondary-foreground: hsl(0, 0%, 20%);
+  --accent: hsl(340, 100%, 64%);
+  --accent-foreground: hsl(0, 0%, 100%);
   --destructive: hsl(0, 84.2%, 60.2%);
-  --destructive-foreground: hsl(210, 40%, 98%);
-  --ring: hsl(222.2, 84%, 4.9%);
-  --radius: 0.5rem;
+  --destructive-foreground: hsl(0, 0%, 100%);
+  --ring: hsl(0, 0%, 20%);
+  --radius: 4px;
   
-  /* Custom theme colors matching design */
-  --anime-primary: hsl(245.2, 84.1%, 63.1%);
-  --anime-secondary: hsl(330, 81%, 60%);
-  --anime-accent: hsl(45, 93%, 47%);
+  /* Custom theme colors matching HONMONO design */
+  --honmono-primary: hsl(0, 0%, 33%);
+  --honmono-secondary: hsl(0, 0%, 47%);
+  --honmono-accent: hsl(340, 100%, 64%);
+  --honmono-background: hsl(0, 0%, 100%);
+  --honmono-card: hsl(0, 0%, 100%);
+  --honmono-border: hsl(0, 0%, 93%);
 }
 
 .dark {
