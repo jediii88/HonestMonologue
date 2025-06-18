@@ -294,14 +294,14 @@ button.signup-btn-final {
 button.signup-btn-final:hover {
   background-color: #1f2937 !important;
   color: white !important;
-  border: 2px solid #374151 !important;
+  border: 2px solid #facc15 !important;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15) !important;
 }
 
 button.signup-btn-final:focus {
   background-color: #1f2937 !important;
   color: white !important;
-  border: 2px solid #374151 !important;
+  border: 2px solid #facc15 !important;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15) !important;
   outline: none !important;
 }
