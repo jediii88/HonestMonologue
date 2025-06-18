@@ -1,0 +1,1876 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HONMONO - 서브컬처 애호가들의 진정성 있는 공간</title>
+  <style>
+html  {
+  font-size: calc(12px + 0.3vw);
+}
+    :root {
+      --primary: #555555; /* 다크 그레이 */
+      --primary-dark: #333333;
+      --secondary: #777777; /* 미디움 그레이 */
+      --accent: #FF4081; /* 핑크 컬러 - 로고 점에 사용 */
+      --background: #FFFFFF; /* 배경 흰색 */
+      --header-bg: #FFFFFF; /* 헤더 배경 흰색 */
+      --header-text: #333333; /* 헤더 텍스트 색상 */
+      --dark-bg: #F8F9FA; /* 매우 밝은 회색으로 푸터 배경 */
+      --light-text: #333333; /* 푸터 텍스트 색상 */
+      --dark-text: #333333;
+      --card-bg: #FFFFFF;
+      --border-color: #EEEEEE;
+      --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      --hover-bg: #F5F5F5; /* 호버 배경색 */
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Noto Sans KR', sans-serif;
+    }
+    
+    body {
+      background-color: var(--background);
+      color: var(--dark-text);
+      line-height: 1.6;
+      font-size: 14px;
+      min-height: 100vh; /* 최소 높이를 화면 높이로 설정 */
+    }
+    
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    
+    .container {
+      width: 95%;
+      max-width: 1080px; /* 최대 너비를 1080px로 제한 */
+      margin: 0 auto;
+      padding: 0;
+    }
+    
+    /* 애니메이션 정의 */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    @keyframes zoomIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    
+    @keyframes shine {
+      0% {
+        background-position: -100% 0;
+      }
+      100% {
+        background-position: 200% 0;
+      }
+    }
+    
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    @keyframes verySubtleBreathing {
+      0% { opacity: 0.95; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.01); } /* 크기 변화 매우 미세하게 */
+      100% { opacity: 0.95; transform: scale(1); }
+    }
+    
+    @keyframes floatingCard {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+      100% { transform: translateY(0); }
+    }
+    
+    @keyframes staggerFadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* 헤더 - 건스타 스타일 */
+    header {
+      background-color: var(--header-bg);
+      color: var(--header-text);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 15px 0 0 0;
+    }
+    
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+      flex-wrap: wrap;
+    }
+    
+    .logo {
+      font-size: 26px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      letter-spacing: 1px;
+      color: var(--primary-dark);
+      transition: all 0.3s ease;
+    }
+    
+    .logo:hover {
+      transform: scale(1.05);
+    }
+    
+    .logo span {
+      color: var(--accent); /* 로고의 점만 핑크색 */
+      transition: all 0.3s ease;
+    }
+    
+    .logo:hover span {
+      transform: scale(1.2);
+    }
+    
+    /* 사용자 액션 버튼 */
+    .user-actions {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .login-btn, .signup-btn {
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      min-height: 44px; /* 터치 디바이스 최소 높이 */
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .login-btn {
+      background-color: #f1f1f1;
+      color: #333;
+    }
+    
+    .signup-btn {
+      background-color: #333;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .signup-btn::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+      transform: rotate(45deg);
+      animation: shine 3s infinite;
+    }
+    
+    .login-btn:hover {
+      background-color: #e5e5e5;
+      transform: translateY(-3px);
+    }
+    
+    .signup-btn:hover {
+      background-color: #555555; /* 무채색(진한 회색)으로 변경 */
+      transform: translateY(-3px); /* 약간 위로 이동 */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 그림자 추가 */
+      color: white; /* 텍스트는 흰색 유지 */
+    }
+    
+    /* 네비게이션 바 */
+    .navigation-container {
+      border-top: 1px solid #eee;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .main-nav ul {
+      display: flex;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .main-nav ul li a {
+      display: flex;
+      align-items: center;
+      padding: 15px 20px;
+      font-size: 15px;
+      font-weight: 500;
+      color: #333;
+      transition: all 0.2s ease;
+      position: relative;
+      min-height: 44px; /* 터치 디바이스 최소 높이 */
+    }
+    
+    .main-nav ul li a:hover {
+      color: var(--primary);
+    }
+    
+    .main-nav ul li a.active {
+      color: var(--primary);
+      font-weight: 600;
+    }
+    
+    .main-nav ul li a.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background-color: var(--primary);
+      animation: slideInRight 0.5s ease;
+    }
+    
+    /* 검색창 */
+    .search-container {
+      background: linear-gradient(135deg, #333333, #444444, #555555);
+      background-size: 200% 200%;
+      animation: gradientShift 10s ease infinite;
+      padding: 30px 0;
+      text-align: center;
+      color: white;
+      margin-bottom: 20px;
+    }
+    
+    /* 제목 텍스트에 미세한 숨쉬는 효과와 위치 조정 */
+    .search-container h1 {
+      position: relative;
+      font-size: 28px; /* 글자 크기 키움 */
+      font-weight: 700; /* 더 굵게 */
+      margin-bottom: 5px; /* 여백 줄임 - 아래 줄 글자와 더 가깝게 */
+      padding-top: 5px; /* 위쪽 여백 추가 - 전체 위치 조정 */
+      display: block;
+      width: 100%;
+      text-align: center;
+      color: white;
+      letter-spacing: 1px; /* 자간 늘림 */
+      animation: verySubtleBreathing 5s infinite ease-in-out; /* 더 천천히, 매우 부드럽게 */
+    }
+    
+    /* 아래 문단 텍스트와의 간격 및 스타일 조정 */
+    .search-container p {
+      font-size: 16px;
+      margin-top: 0; /* 위쪽 여백 제거 */
+      margin-bottom: 20px;
+      display: block;
+      width: 100%;
+      text-align: center;
+    }
+    
+.search-box {
+  position: relative;
+  max-width: 600px;
+  margin: 20px auto 0;
+  animation: fadeIn 1s ease-out;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 20px;
+  padding-right: 50px; /* 버튼 공간 충분히 확보 */
+  border: none;
+  border-radius: 30px;
+  font-size: 14px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  min-height: 44px;
+}
+
+.search-btn {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.search-btn:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-50%) rotate(90deg);
+}
+    
+    .search-btn svg {
+      transition: all 0.3s ease;
+    }
+    
+    .search-btn:hover svg {
+      transform: scale(1.2);
+    }
+    
+    .keywords {
+      display: none;
+      margin-top: 15px;
+      text-align: center;
+      animation: fadeIn 0.5s ease-out;
+    }
+    
+    .keyword-badge {
+      display: inline-block;
+      background-color: rgba(255, 255, 255, 0.2);
+      color: white;
+      padding: 4px 10px;
+      margin: 4px;
+      border-radius: 20px;
+      font-size: 12px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      min-height: 30px; /* 터치 디바이스 최소 높이 */
+      display: inline-flex;
+      align-items: center;
+    }
+    
+    .keyword-badge:hover {
+      background-color: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+    }
+    
+    /* 실시간 키워드 트렌드 */
+    .search-input:focus ~ .keywords {
+      display: block;
+    }
+    
+    /* 섹션 공통 스타일 */
+    section {
+      margin: 25px 0;
+      padding: 0;
+      animation: fadeIn 0.8s ease-out;
+    }
+    
+    .section-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: var(--primary-dark);
+      border-left: 4px solid var(--primary);
+      padding-left: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    
+    .view-more {
+      font-size: 13px;
+      color: var(--primary);
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      min-height: 30px; /* 터치 디바이스 최소 높이 */
+    }
+    
+    .view-more:hover {
+      color: var(--primary-dark);
+      transform: translateX(3px);
+    }
+    
+    /* 인기 게시물 */
+    .popular-posts {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    
+    .post-card {
+      background: var(--card-bg);
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+      transition: all 0.3s ease;
+      border: 1px solid var(--border-color);
+      max-width: 100%;
+      position: relative;
+    }
+    
+    /* 카드 플로팅 효과 */
+    .post-card:nth-child(1) {
+      animation: floatingCard 6s infinite ease-in-out;
+    }
+    
+    .post-card:nth-child(2) {
+      animation: floatingCard 7s infinite ease-in-out;
+      animation-delay: 0.5s;
+    }
+    
+    .post-card:nth-child(3) {
+      animation: floatingCard 5s infinite ease-in-out;
+      animation-delay: 1s;
+    }
+    
+    /* 빛 지나가는 효과 */
+    .post-card::before, 
+    .image-item::before, 
+    .topic-item::before, 
+    .event-item::before, 
+    .release-item::before,
+    .feed-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transform: translateX(-100%);
+      transition: all 0.5s ease;
+      z-index: 1;
+      pointer-events: none;
+    }
+    
+    .post-card:hover::before, 
+    .image-item:hover::before, 
+    .topic-item:hover::before, 
+    .event-item:hover::before, 
+    .release-item:hover::before,
+    .feed-item:hover::before {
+      transform: translateX(100%);
+    }
+    
+    .post-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .post-image {
+      height: 0;
+      padding-bottom: 56.25%; /* 16:9 비율 유지 */
+      background-position: center;
+      background-size: cover;
+      background-color: #f5f5f5;
+      transition: all 0.5s ease;
+      position: relative;
+      max-width: 100%;
+    }
+    
+    .post-card:hover .post-image {
+      transform: scale(1.05);
+    }
+    
+    .post-content {
+      padding: 12px;
+    }
+    
+    .post-category {
+      font-size: 11px;
+      color: var(--primary);
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    
+    .post-title {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      word-wrap: break-word;
+    }
+    
+    .post-meta {
+      font-size: 11px;
+      color: #777;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    
+    .post-meta span {
+      margin-bottom: 4px;
+    }
+    
+    /* 분기 애니메이션 섹션 */
+    .anime-filter {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 15px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    
+    .anime-filter::-webkit-scrollbar {
+      display: none;
+    }
+    
+    .filter-btn {
+      padding: 6px 12px;
+      background-color: #f5f5f5;
+      border: 1px solid #eee;
+      border-radius: 4px;
+      font-size: 12px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.3s ease;
+      color: #666;
+      min-height: 36px; /* 터치 디바이스 최소 높이 */
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .filter-btn:hover {
+      background-color: #ededed;
+      transform: translateY(-2px);
+    }
+    
+    .filter-btn.active {
+      background-color: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+    
+    /* 분기별 애니메이션 그리드 조정 - 8개 아이템 표시 */
+    .anime-list {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr); /* 4열로 고정 */
+      gap: 15px; /* 간격 약간 줄임 */
+    }
+    
+    /* 애니메이션 아이템 제한 */
+    .anime-list .post-card:nth-child(n+9) {
+      display: none; /* 9번째 이후 아이템은 숨김 (8개만 표시) */
+    }
+    
+    /* 커뮤니티 이미지 */
+    .community-images {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 12px;
+    }
+    
+    .image-item {
+      position: relative;
+      border-radius: 4px;
+      overflow: hidden;
+      aspect-ratio: 1/1;
+      box-shadow: var(--card-shadow);
+      border: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+    }
+    
+    .image-item:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      z-index: 1;
+    }
+    
+    .image-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: all 0.5s ease;
+      max-width: 100%;
+    }
+    
+    .image-item:hover img {
+      transform: scale(1.1);
+    }
+    
+    .image-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+      color: white;
+      padding: 8px;
+      font-size: 11px;
+      transform: translateY(100%);
+      transition: all 0.3s ease;
+      opacity: 0;
+    }
+    
+    .image-item:hover .image-info {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    
+    /* 커뮤니티 활동 피드 */
+    .activity-feed {
+      background-color: var(--card-bg);
+      border-radius: 4px;
+      box-shadow: var(--card-shadow);
+      padding: 15px;
+      border: 1px solid var(--border-color);
+    }
+    
+    .feed-item {
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .feed-item:hover {
+      background-color: var(--hover-bg);
+      transform: translateX(3px);
+      padding-left: 8px;
+    }
+    
+    .feed-item:last-child {
+      border-bottom: none;
+    }
+    
+    .feed-title {
+      font-weight: 500;
+      margin-bottom: 4px;
+      font-size: 13px;
+      word-wrap: break-word;
+    }
+    
+    .feed-item:hover .feed-title {
+      color: var(--primary);
+    }
+    
+    .feed-meta {
+      font-size: 11px;
+      color: #777;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+    
+    /* 행사 캘린더 */
+    .event-calendar {
+      background-color: var(--card-bg);
+      border-radius: 4px;
+      box-shadow: var(--card-shadow);
+      padding: 15px;
+      border: 1px solid var(--border-color);
+      margin-bottom: 20px;
+    }
+    
+    .event-item {
+      display: flex;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .event-item:hover {
+      background-color: var(--hover-bg);
+      transform: translateX(3px);
+      padding-left: 8px;
+    }
+    
+    .event-item:last-child {
+      border-bottom: none;
+    }
+    
+    .event-date {
+      background-color: var(--primary);
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 6px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-right: 12px;
+      flex-shrink: 0;
+      transition: all 0.3s ease;
+    }
+    
+    .event-item:hover .event-date {
+      transform: scale(1.1) rotate(3deg);
+    }
+    
+    .event-day {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1;
+    }
+    
+    .event-month {
+      font-size: 11px;
+      text-transform: uppercase;
+    }
+    
+    .event-info {
+      flex: 1;
+      min-width: 0; /* 텍스트 오버플로우 방지 */
+    }
+    
+    .event-title {
+      font-weight: 500;
+      margin-bottom: 3px;
+      font-size: 13px;
+      word-wrap: break-word;
+      white-space: normal;
+    }
+    
+    .event-item:hover .event-title {
+      color: var(--primary);
+    }
+    
+    .event-location {
+      font-size: 11px;
+      color: #777;
+      word-wrap: break-word;
+    }
+    
+    /* 오늘의 인기 토픽 섹션 */
+    .hot-topics {
+      background-color: var(--card-bg);
+      border-radius: 4px;
+      box-shadow: var(--card-shadow);
+      padding: 15px;
+      border: 1px solid var(--border-color);
+      margin-bottom: 20px;
+    }
+    
+    .topic-item {
+      display: flex;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .topic-item:hover {
+      background-color: var(--hover-bg);
+      transform: translateX(3px);
+      padding-left: 8px;
+    }
+    
+    .topic-item:last-child {
+      border-bottom: none;
+    }
+    
+    .topic-rank {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-right: 12px;
+      min-width: 25px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    
+    .topic-item:hover .topic-rank {
+      transform: scale(1.2);
+    }
+    
+    .topic-info {
+      flex: 1;
+      min-width: 0; /* 텍스트 오버플로우 방지 */
+    }
+    
+    .topic-title {
+      font-weight: 500;
+      font-size: 13px;
+      margin-bottom: 2px;
+      word-wrap: break-word;
+      white-space: normal;
+    }
+    
+    .topic-item:hover .topic-title {
+      color: var(--primary);
+    }
+    
+    .topic-meta {
+      font-size: 11px;
+      color: #777;
+      word-wrap: break-word;
+    }
+    
+    .topic-heat {
+      font-size: 12px;
+      font-weight: 600;
+      color: #FF5252;
+      display: flex;
+      align-items: center;
+      margin-left: 8px;
+      white-space: nowrap;
+    }
+    
+    .topic-heat .icon {
+      font-size: 14px;
+      margin-right: 2px;
+    }
+    
+    /* 신간 발매 일정 섹션 */
+    .new-releases {
+      background-color: var(--card-bg);
+      border-radius: 4px;
+      box-shadow: var(--card-shadow);
+      padding: 15px;
+      border: 1px solid var(--border-color);
+      margin-bottom: 20px;
+    }
+    
+    .release-item {
+      display: flex;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .release-item:hover {
+      background-color: var(--hover-bg);
+      transform: translateX(3px);
+      padding-left: 8px;
+    }
+    
+    .release-item:last-child {
+      border-bottom: none;
+    }
+    
+    .release-cover {
+      width: 40px;
+      height: 55px;
+      background-color: #eee;
+      margin-right: 10px;
+      flex-shrink: 0;
+      border-radius: 2px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .release-item:hover .release-cover {
+      transform: scale(1.05);
+    }
+    
+    .release-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      max-width: 100%;
+    }
+    
+    .release-info {
+      flex: 1;
+      min-width: 0; /* 텍스트 오버플로우 방지 */
+    }
+    
+    .release-title {
+      font-weight: 500;
+      font-size: 13px;
+      margin-bottom: 2px;
+      word-wrap: break-word;
+    }
+    
+    .release-item:hover .release-title {
+      color: var(--primary);
+    }
+    
+    .release-meta {
+      font-size: 11px;
+      color: #777;
+      margin-bottom: 2px;
+      word-wrap: break-word;
+    }
+    
+    .release-date {
+      font-size: 11px;
+      color: var(--primary);
+      font-weight: 600;
+    }
+    
+    /* 푸터 */
+    footer {
+      background-color: var(--dark-bg);
+      color: var(--light-text);
+      padding: 30px 0;
+      margin-top: 40px;
+      font-size: 13px;
+      border-top: 1px solid #E0E0E0;
+      position: relative;
+      overflow: hidden;
+    }
+    /* 푸터 */
+    footer {
+      background-color: var(--dark-bg);
+      color: var(--light-text);
+      padding: 30px 0;
+      margin-top: 40px;
+      font-size: 13px;
+      border-top: 1px solid #E0E0E0;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--accent), var(--primary));
+      background-size: 200% 100%;
+      animation: gradientShift 10s ease infinite;
+    }
+    
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 25px;
+    }
+    
+   .footer-section h3 {
+  margin-bottom: 12px;
+  color: var(--primary-dark);
+  font-size: 16px;
+  position: relative;
+  display: inline-block; /* 텍스트 너비만큼만 차지하도록 설정 */
+}
+
+.footer-section h3::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 40px; /* 초기 너비 */
+  height: 2px;
+  background-color: var(--accent);
+  transition: all 0.3s ease;
+}
+    
+    .footer-section:hover h3::after {
+      width: 100%;
+    }
+    
+    .footer-section ul {
+      list-style: none;
+    }
+    
+    .footer-section ul li {
+      margin-bottom: 6px;
+    }
+    
+    .footer-section ul li a {
+      opacity: 0.8;
+      transition: all 0.3s ease;
+      display: inline-block;
+      min-height: 30px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .footer-section ul li a:hover {
+      opacity: 1;
+      color: var(--primary);
+      transform: translateX(3px);
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: 25px;
+      margin-top: 25px;
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+      font-size: 12px;
+      opacity: 0.6;
+    }
+    
+    /* 그리드 레이아웃 */
+    .grid-layout {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 20px;
+      margin-top: 20px;
+    }
+    
+    /* 반응형 설계 */
+    @media (max-width: 900px) {
+      .anime-list {
+        grid-template-columns: repeat(3, 1fr); /* 중간 화면에서 3열 */
+      }
+      
+      .popular-posts {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .logo {
+        margin-bottom: 10px;
+      }
+      
+      .user-actions {
+        margin-top: 10px;
+      }
+      
+      .main-nav ul {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      
+      .main-nav ul::-webkit-scrollbar {
+        display: none;
+      }
+      
+      .main-nav ul li a {
+        padding: 12px 15px;
+        white-space: nowrap;
+      }
+      
+      .grid-layout {
+        grid-template-columns: 1fr;
+      }
+      
+      .popular-posts,
+      .anime-list,
+      .community-images {
+        grid-template-columns: repeat(auto-fill, minmax(45%, 1fr));
+      }
+      
+      .search-container h1 {
+        font-size: 22px;
+      }
+      
+      .search-container p {
+        font-size: 14px;
+      }
+      
+      .filter-btn, .keyword-badge {
+        padding: 4px 10px;
+        font-size: 11px;
+      }
+      
+      .topic-heat {
+        display: none; /* 모바일에서는 히트 표시 숨김 */
+      }
+      
+      .footer-content {
+        grid-template-columns: repeat(2, 1fr); /* 모바일에서는 2열로 */
+      }
+    }
+    
+    @media (max-width: 600px) {
+      .anime-list {
+        grid-template-columns: repeat(2, 1fr); /* 작은 화면에서 2열 */
+      }
+      
+      .popular-posts {
+        grid-template-columns: 1fr; /* 모바일에서는 한 열로 */
+        gap: 15px;
+      }
+      
+      .community-images {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .section-title {
+        font-size: 16px;
+      }
+      
+      .post-title, .anime-title {
+        font-size: 14px;
+      }
+      
+      .footer-content {
+        grid-template-columns: 1fr; /* 초소형 화면에서는 1열로 */
+      }
+      
+      .event-date {
+        width: 35px;
+        height: 35px;
+        margin-right: 8px;
+      }
+      
+      .event-day {
+        font-size: 14px;
+      }
+      
+      .event-month {
+        font-size: 10px;
+      }
+      
+      .search-input {
+        padding: 10px 15px;
+      }
+      
+      .search-btn {
+  position: absolute;
+  right: 5px; /* 오른쪽 여백 유지 */
+  top: 50%; /* 중앙 배치 */
+  transform: translateY(-50%); /* 수직 중앙 정렬 */
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 34px; /* 크기 조정 (44px → 34px) */
+  height: 34px; /* 크기 조정 (44px → 34px) */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 5;
+}
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- 헤더 -->
+  <header>
+    <div class="container header-container">
+      <div class="logo">
+        <a href="index.html">HONMONO<span>.</span></a>
+      </div>
+      <div class="user-actions">
+        <a href="#" class="login-btn">로그인</a>
+        <a href="#" class="signup-btn">신규 등록</a>
+      </div>
+    </div>
+    <div class="navigation-container">
+      <div class="container">
+        <nav class="main-nav">
+          <ul>
+            <li><a href="index.html" class="active">홈</a></li>
+            <li><a href="anime.html">애니메이션</a></li>
+            <li><a href="gundam.html">건담</a></li>
+            <li><a href="vrchat.html">VRChat</a></li>
+            <li><a href="travel.html">일본여행</a></li>
+            <li><a href="events.html">행사정보</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+  
+  <!-- 검색창 -->
+  <div class="search-container">
+    <div class="container">
+      <h1>진짜 이야기가 살아숨쉬는 공간</h1>
+      <p>당신의 Honest Monologue를 시작하세요</p>
+      <div class="search-box" onsubmit="event.preventDefault(); alert('검색 기능은 아직 준비 중입니다!');">
+  <input type="text" class="search-input" placeholder="관심있는 키워드를 검색해보세요">
+  <button type="submit" class="search-btn">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+      <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+    </svg>
+        </button>
+        <div class="keywords">
+          <span class="keyword-badge">짱구는못말려</span>
+          <span class="keyword-badge">스파이패밀리</span>
+          <span class="keyword-badge">원피스</span>
+          <span class="keyword-badge">건담시드</span>
+          <span class="keyword-badge">에반게리온</span>
+          <span class="keyword-badge">VRC아바타</span>
+          <span class="keyword-badge">코믹월드</span>
+          <span class="keyword-badge">선데이GX</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="container">
+    <!-- 인기 게시물 -->
+    <section>
+      <div class="section-title">
+        인기 게시물
+        <a href="#" class="view-more">더보기</a>
+      </div>
+      <div class="popular-posts">
+        <div class="post-card">
+          <div class="post-image" style="background-image: url('https://via.placeholder.com/400x320');"></div>
+          <div class="post-content">
+            <div class="post-category">애니메이션</div>
+            <h3 class="post-title">2025년 봄 애니 중 꼭 봐야할 작품 TOP5</h3>
+            <div class="post-meta">
+              <span>조회 312</span>
+              <span>댓글 47</span>
+            </div>
+          </div>
+        </div>
+        <div class="post-card">
+          <div class="post-image" style="background-image: url('https://via.placeholder.com/400x320');"></div>
+          <div class="post-content">
+            <div class="post-category">건담</div>
+            <h3 class="post-title">RG 유니콘 건담 퍼펙티빌리티 개조기</h3>
+            <div class="post-meta">
+              <span>조회 284</span>
+              <span>댓글 35</span>
+            </div>
+          </div>
+        </div>
+        <div class="post-card">
+          <div class="post-image" style="background-image: url('https://via.placeholder.com/400x320');"></div>
+          <div class="post-content">
+            <div class="post-category">VRChat</div>
+            <h3 class="post-title">VRC 신규 아바타 시스템 가이드 2025</h3>
+            <div class="post-meta">
+              <span>조회 227</span>
+              <span>댓글 29</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- 분기 애니메이션 섹션 -->
+    <section>
+      <div class="section-title">
+        분기별 애니메이션
+        <a href="#" class="view-more">더보기</a>
+      </div>
+      <div class="anime-filter">
+        <button class="filter-btn active">2025년 2분기</button>
+        <button class="filter-btn">2025년 1분기</button>
+        <button class="filter-btn">2024년 4분기</button>
+        <button class="filter-btn">2024년 3분기</button>
+        <button class="filter-btn">전체보기</button>
+      </div>
+      <div class="anime-list">
+        <div class="post-card">
+          <div class="post-image" style="background-image: url('https://via.placeholder.com/400x320');"></div>
+          <div class="post-content">
+            <h3 class="post-title">하이큐!! 최종시즌</h3>
+            <div class="post-meta">
+              <span>Production I.G</span>
+              <span>금요일 방영</span>
+            </div>
+          </div>
+        </div>
+        <div class="post-card">
+          <div class="post-image" style="background-image: url('https://via.placeholder.com/400x320');"></div>
+          <div class="post-content">
+            <h3 class="post-title">소드 아트 온라인: 유니탈 링</h3>
+            <div class="post-meta">
+              <span>A-1 Pictures</span>
+              <span>수요일 방영</span>
+            </div>
+          </div>
+        </div>
+        <div class="post-card">
+          <div class="post-image" style="background-image: url('https://via.placeholder.com/400x320');"></div>
+          <div class="post-content">
+            <h3 class="post-title">체인소 맨 2부</h3>
+            <div class="post-meta">
+              <span>MAPPA</span>
+              <span>토요일 방영</span>
+            </div>
+          </div>
+        </div>
+        <div class="post-card">
+          <div class="post-image" style="background-image: url('https://via.placeholder.com/400x320');"></div>
+          <div class="post-content">
+            <h3 class="post-title">원피스 리마스터</h3>
+            <div class="post-meta">
+              <span>Toei Animation</span>
+              <span>일요일 방영</span>
+            </div>
+          </div>
+        </div>
+        <!-- 추가된 애니메이션 아이템 (총 8개가 되도록) -->
+        <div class="post-card">
+          <div class="post-image" style="background-image: url('https://via.placeholder.com/400x320');"></div>
+          <div class="post-content">
+            <h3 class="post-title">블루 록 시즌 2</h3>
+            <div class="post-meta">
+              <span>8bit</span>
+              <span>토요일 방영</span>
+            </div>
+          </div>
+        </div>
+        <div class="post-card">
+          <div class="post-image" style="background-image: url('https://via.placeholder.com/400x320');"></div>
+          <div class="post-content">
+            <h3 class="post-title">귀멸의 칼날: 나비저택편</h3>
+            <div class="post-meta">
+              <span>ufotable</span>
+              <span>일요일 방영</span>
+            </div>
+          </div>
+        </div>
+        <div class="post-card">
+          <div class="post-image" style="background-image: url('https://via.placeholder.com/400x320');"></div>
+          <div class="post-content">
+            <h3 class="post-title">나의 히어로 아카데미아 최종시즌</h3>
+            <div class="post-meta">
+              <span>BONES</span>
+              <span>토요일 방영</span>
+            </div>
+          </div>
+        </div>
+        <div class="post-card">
+          <div class="post-image" style="background-image: url('https://via.placeholder.com/400x320');"></div>
+          <div class="post-content">
+            <h3 class="post-title">오버로드 5기</h3>
+            <div class="post-meta">
+              <span>Madhouse</span>
+              <span>화요일 방영</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <div class="grid-layout">
+      <div>
+        <!-- 커뮤니티 최신 이미지 업로드 -->
+        <section>
+          <div class="section-title">
+            최신 업로드 이미지
+            <a href="#" class="view-more">더보기</a>
+          </div>
+          <div class="community-images">
+            <div class="image-item">
+              <img src="https://via.placeholder.com/400x400" alt="커뮤니티 이미지">
+              <div class="image-info">건담 # RX-78-2</div>
+            </div>
+            <div class="image-item">
+              <img src="https://via.placeholder.com/400x400" alt="커뮤니티 이미지">
+              <div class="image-info">애니 # 하이큐</div>
+            </div>
+            <div class="image-item">
+              <img src="https://via.placeholder.com/400x400" alt="커뮤니티 이미지">
+              <div class="image-info">VRC # 아바타</div>
+            </div>
+            <div class="image-item">
+              <img src="https://via.placeholder.com/400x400" alt="커뮤니티 이미지">
+              <div class="image-info">건담 # 프리덤</div>
+            </div>
+            <div class="image-item">
+              <img src="https://via.placeholder.com/400x400" alt="커뮤니티 이미지">
+              <div class="image-info">애니 # 스파이패밀리</div>
+            </div>
+            <div class="image-item">
+              <img src="https://via.placeholder.com/400x400" alt="커뮤니티 이미지">
+              <div class="image-info">VRC # 월드</div>
+            </div>
+          </div>
+        </section>
+        
+        <!-- 커뮤니티 활동 피드 -->
+        <section>
+          <div class="section-title">
+            커뮤니티 활동
+            <a href="#" class="view-more">더보기</a>
+          </div>
+          <div class="activity-feed">
+            <div class="feed-item">
+              <div class="feed-title">애니메이션 OST 모음 - 2025년 1분기 인기곡</div>
+              <div class="feed-meta">
+                <span>오타쿠매니아</span>
+                <span>·</span>
+                <span>10분 전</span>
+              </div>
+            </div>
+            <div class="feed-item">
+              <div class="feed-title">건담 HGUC 뉴건담 개봉기 및 간단 리뷰</div>
+              <div class="feed-meta">
+                <span>건담러버</span>
+                <span>·</span>
+                <span>43분 전</span>
+              </div>
+            </div>
+            <div class="feed-item">
+              <div class="feed-title">VRChat 아바타 제작 중 문제 해결 방법 질문</div>
+              <div class="feed-meta">
+                <span>VRC초보</span>
+                <span>·</span>
+                <span>1시간 전</span>
+              </div>
+            </div>
+            <div class="feed-item">
+              <div class="feed-title">6월 도쿄 여행 시 애니메이션 관련 행사 정보</div>
+              <div class="feed-meta">
+                <span>여행좋아</span>
+                <span>·</span>
+                <span>2시간 전</span>
+              </div>
+            </div>
+            <div class="feed-item">
+              <div class="feed-title">신작 애니메이션 '체인소 맨' 2부 감상문</div>
+              <div class="feed-meta">
+                <span>애니감상러</span>
+                <span>·</span>
+                <span>3시간 전</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      
+      <!-- 우측 사이드바 -->
+      <aside>
+        <!-- 서브컬쳐 행사 일정 -->
+        <section>
+          <div class="section-title">
+            서브컬쳐 행사 일정
+            <a href="#" class="view-more">달력보기</a>
+          </div>
+          <div class="event-calendar">
+            <div class="event-item">
+              <div class="event-date">
+                <div class="event-day">15</div>
+                <div class="event-month">5월</div>
+              </div>
+              <div class="event-info">
+                <div class="event-title">서울 코믹월드</div>
+                <div class="event-location">COEX D홀</div>
+              </div>
+            </div>
+            <div class="event-item">
+              <div class="event-date">
+                <div class="event-day">22</div>
+                <div class="event-month">5월</div>
+              </div>
+              <div class="event-info">
+                <div class="event-title">건담베이스 신상품 발매일</div>
+                <div class="event-location">전국 건담베이스</div>
+              </div>
+            </div>
+            <div class="event-item">
+              <div class="event-date">
+                <div class="event-day">5</div>
+                <div class="event-month">6월</div>
+              </div>
+              <div class="event-info">
+                <div class="event-title">Anime Expo 2025</div>
+                <div class="event-location">도쿄 빅사이트</div>
+              </div>
+            </div>
+            <div class="event-item">
+              <div class="event-date">
+                <div class="event-day">12</div>
+                <div class="event-month">6월</div>
+              </div>
+              <div class="event-info">
+                <div class="event-title">VRChat 크리에이터 밋업</div>
+                <div class="event-location">온라인 이벤트</div>
+              </div>
+            </div>
+            <div class="event-item">
+              <div class="event-date">
+                <div class="event-day">25</div>
+                <div class="event-month">6월</div>
+              </div>
+              <div class="event-info">
+                <div class="event-title">애니송 콘서트</div>
+                <div class="event-location">서울 올림픽홀</div>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        <!-- 오늘의 인기 토픽 섹션 -->
+        <section>
+          <div class="section-title">
+            오늘의 인기 토픽
+            <a href="#" class="view-more">더보기</a>
+          </div>
+          <div class="hot-topics">
+            <div class="topic-item">
+              <div class="topic-rank">1</div>
+              <div class="topic-info">
+                <div class="topic-title">하이큐 최종시즌 11화 감상평</div>
+                <div class="topic-meta">애니메이션 게시판</div>
+              </div>
+              <div class="topic-heat">
+                <span class="icon">🔥</span>
+                <span>125</span>
+              </div>
+            </div>
+            <div class="topic-item">
+              <div class="topic-rank">2</div>
+              <div class="topic-info">
+                <div class="topic-title">RG 퍼펙트 건담 발매 소식</div>
+                <div class="topic-meta">건담 게시판</div>
+              </div>
+              <div class="topic-heat">
+                <span class="icon">🔥</span>
+                <span>98</span>
+              </div>
+            </div>
+            <div class="topic-item">
+              <div class="topic-rank">3</div>
+              <div class="topic-info">
+                <div class="topic-title">이번 주말 코믹월드 부스 정보</div>
+                <div class="topic-meta">행사 게시판</div>
+              </div>
+              <div class="topic-heat">
+                <span class="icon">🔥</span>
+                <span>76</span>
+              </div>
+            </div>
+            <div class="topic-item">
+              <div class="topic-rank">4</div>
+              <div class="topic-info">
+                <div class="topic-title">VRChat 에셋 제작 꿀팁</div>
+                <div class="topic-meta">VRChat 게시판</div>
+              </div>
+              <div class="topic-heat">
+                <span class="icon">🔥</span>
+                <span>63</span>
+              </div>
+            </div>
+            <div class="topic-item">
+              <div class="topic-rank">5</div>
+              <div class="topic-info">
+                <div class="topic-title">도쿄 성지순례 추천 코스</div>
+                <div class="topic-meta">일본여행 게시판</div>
+              </div>
+              <div class="topic-heat">
+                <span class="icon">🔥</span>
+                <span>51</span>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        <!-- 신간 발매 일정 섹션 -->
+        <section>
+          <div class="section-title">
+            신간 발매 일정
+            <a href="#" class="view-more">더보기</a>
+          </div>
+          <div class="new-releases">
+            <div class="release-item">
+              <div class="release-cover">
+                <img src="https://via.placeholder.com/120x160" alt="책 표지">
+              </div>
+              <div class="release-info">
+                <div class="release-title">체인소 맨 12권</div>
+                <div class="release-meta">후지모토 타츠키</div>
+                <div class="release-date">5월 18일 발매</div>
+              </div>
+            </div>
+            <div class="release-item">
+              <div class="release-cover">
+                <img src="https://via.placeholder.com/120x160" alt="책 표지">
+              </div>
+              <div class="release-info">
+                <div class="release-title">하이큐!! 완전판 5권</div>
+                <div class="release-meta">후루다테 하루이치</div>
+                <div class="release-date">5월 25일 발매</div>
+              </div>
+            </div>
+            <div class="release-item">
+              <div class="release-cover">
+                <img src="https://via.placeholder.com/120x160" alt="책 표지">
+              </div>
+              <div class="release-info">
+                <div class="release-title">건담 The Origin 특별판</div>
+                <div class="release-meta">야스히코 요시카즈</div>
+                <div class="release-date">6월 2일 발매</div>
+              </div>
+            </div>
+            <div class="release-item">
+              <div class="release-cover">
+                <img src="https://via.placeholder.com/120x160" alt="책 표지">
+              </div>
+              <div class="release-info">
+                <div class="release-title">스파이 패밀리 11권</div>
+                <div class="release-meta">엔도 타츠야</div>
+                <div class="release-date">6월 10일 발매</div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </aside>
+    </div>
+  </div>
+  
+  <!-- 푸터 -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>HONMONO</h3>
+          <p>어떤 퀄리티든 존중받을 수 있는 공간<br>서브컬처 애호가들의 진정한 커뮤니티</p>
+        </div>
+        <div class="footer-section">
+          <h3>카테고리</h3>
+          <ul>
+            <li><a href="#">애니메이션</a></li>
+            <li><a href="#">건담</a></li>
+            <li><a href="#">VRChat</a></li>
+            <li><a href="#">일본여행</a></li>
+            <li><a href="#">행사정보</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>정보</h3>
+          <ul>
+            <li><a href="#">서비스 소개</a></li>
+            <li><a href="#">이용약관</a></li>
+            <li><a href="#">개인정보처리방침</a></li>
+            <li><a href="#">문의하기</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>소셜 미디어</h3>
+          <ul>
+            <li><a href="#">트위터</a></li>
+            <li><a href="#">인스타그램</a></li>
+            <li><a href="#">디스코드</a></li>
+            <li><a href="#">유튜브</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 HONMONO. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+  <!-- 자바스크립트 - 효과 추가 -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // 애니메이션 카드 및 이미지 아이템에 시차 애니메이션 적용
+      const cards = document.querySelectorAll('.post-card, .image-item');
+      cards.forEach((card, index) => {
+        card.style.setProperty('--card-index', index % 12);
+        setTimeout(() => {
+          card.style.opacity = '1';
+        }, index * 100);
+      });
+      
+      // 피드 아이템, 토픽 아이템, 이벤트 아이템에 시차 애니메이션 적용
+      const listItems = document.querySelectorAll('.feed-item, .topic-item, .event-item, .release-item');
+      listItems.forEach((item, index) => {
+        item.style.setProperty('--item-index', index % 10);
+        setTimeout(() => {
+          item.style.opacity = '1';
+          item.style.transform = 'translateX(0)';
+        }, 500 + index * 50);
+      });
+      
+      // 필터 버튼 활성화 기능
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          
+          // 클릭 효과 추가
+          this.style.transform = 'scale(1.05)';
+          setTimeout(() => {
+            this.style.transform = '';
+          }, 200);
+        });
+      });
+      
+      // 키워드 배지 클릭 효과
+      document.querySelectorAll('.keyword-badge').forEach(badge => {
+        badge.addEventListener('click', function() {
+          const searchInput = document.querySelector('.search-input');
+          if(searchInput) {
+            searchInput.value = this.textContent;
+            searchInput.focus();
+          }
+          
+          // 클릭 효과
+          this.style.transform = 'scale(1.1) translateY(-2px)';
+          setTimeout(() => {
+            this.style.transform = '';
+          }, 200);
+        });
+      });
+      
+      // 검색창 포커스 효과
+      const searchInput = document.querySelector('.search-input');
+      if(searchInput) {
+        searchInput.addEventListener('focus', function() {
+          const searchBox = this.closest('.search-box');
+          if(searchBox) {
+            searchBox.style.transform = 'translateY(-3px)';
+            searchBox.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
+          }
+        });
+        
+        searchInput.addEventListener('blur', function() {
+          const searchBox = this.closest('.search-box');
+          if(searchBox) {
+            searchBox.style.transform = '';
+            searchBox.style.boxShadow = '';
+          }
+        });
+      }
+      
+      // 스크롤 이벤트에 따른 애니메이션 효과
+      const animateOnScroll = () => {
+        const sections = document.querySelectorAll('section');
+        
+        sections.forEach(section => {
+          const sectionTop = section.getBoundingClientRect().top;
+          const sectionBottom = section.getBoundingClientRect().bottom;
+          const isVisible = (sectionTop < window.innerHeight - 100) && (sectionBottom > 0);
+          
+          if (isVisible && !section.classList.contains('animated')) {
+            section.classList.add('animated');
+            
+            // 섹션 내부 요소들 애니메이션
+            const title = section.querySelector('.section-title');
+            if(title) {
+              title.style.opacity = '0';
+              title.style.transform = 'translateX(-20px)';
+              setTimeout(() => {
+                title.style.transition = 'all 0.6s ease';
+                title.style.opacity = '1';
+                title.style.transform = 'translateX(0)';
+              }, 100);
+            }
+            
+            // 섹션 내 카드 요소들 애니메이션
+            const items = section.querySelectorAll('.post-card, .image-item, .feed-item, .topic-item, .event-item, .release-item');
+            items.forEach((item, index) => {
+              item.style.opacity = '0';
+              item.style.transform = 'translateY(20px)';
+              setTimeout(() => {
+                item.style.transition = 'all 0.5s ease';
+                item.style.opacity = '1';
+                item.style.transform = 'translateY(0)';
+              }, 200 + index * 50);
+            });
+          }
+        });
+      };
+      
+      // 초기 로드 시 애니메이션 실행
+      setTimeout(animateOnScroll, 500);
+      
+      // 스크롤 이벤트 리스너 추가
+      window.addEventListener('scroll', animateOnScroll);
+      
+      // 링크 효과
+      document.querySelectorAll('a').forEach(link => {
+        link.addEventListener('mouseenter', function() {
+          if(!this.querySelector('.logo')) { // 로고 링크는 제외
+            this.style.transition = 'all 0.3s ease';
+          }
+        });
+      });
+      
+      // 이미지 지연 로딩
+      const lazyLoadImages = () => {
+        const images = document.querySelectorAll('.post-image, .image-item img, .release-cover img');
+        
+        images.forEach(img => {
+          // 이미지가 뷰포트에 들어왔는지 확인
+          const rect = img.getBoundingClientRect();
+          const isInViewport = (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+          );
+          
+          // 뷰포트에 있으면 배경 이미지나 이미지 소스 로드
+          if(isInViewport) {
+            if(img.classList.contains('post-image')) {
+              img.style.backgroundImage = img.getAttribute('data-src') || img.style.backgroundImage;
+            } else {
+              img.src = img.getAttribute('data-src') || img.src;
+            }
+            
+            // 이미지가 로드되면 애니메이션 적용
+            img.classList.add('loaded');
+          }
+        });
+      };
+      
+      // 초기 이미지 로딩
+      setTimeout(lazyLoadImages, 300);
+      
+      // 스크롤 시 이미지 로딩
+      window.addEventListener('scroll', lazyLoadImages);
+      
+      // 모바일에서 터치 효과 추가
+      const addTouchEffects = () => {
+        const touchableElements = document.querySelectorAll('.post-card, .image-item, .feed-item, .topic-item, .event-item, .release-item, .filter-btn, .keyword-badge, .login-btn, .signup-btn');
+        
+        touchableElements.forEach(el => {
+          el.addEventListener('touchstart', function() {
+            this.style.transition = 'all 0.3s ease';
+            this.style.transform = 'scale(0.98)';
+          });
+          
+          el.addEventListener('touchend', function() {
+            this.style.transform = '';
+          });
+        });
+      };
+      
+      // 모바일 터치 효과 적용
+      if('ontouchstart' in window) {
+        addTouchEffects();
+      }
+      
+      // 푸터 애니메이션
+      const footer = document.querySelector('footer');
+      if(footer) {
+        window.addEventListener('scroll', function() {
+          const footerTop = footer.getBoundingClientRect().top;
+          const isVisible = footerTop < window.innerHeight;
+          
+          if(isVisible && !footer.classList.contains('animated')) {
+            footer.classList.add('animated');
+            
+            // 푸터 내 요소 애니메이션
+            const sections = footer.querySelectorAll('.footer-section');
+            sections.forEach((section, index) => {
+              section.style.opacity = '0';
+              section.style.transform = 'translateY(20px)';
+              setTimeout(() => {
+                section.style.transition = 'all 0.5s ease';
+                section.style.opacity = '1';
+                section.style.transform = 'translateY(0)';
+              }, 100 + index * 100);
+            });
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
+
+   
