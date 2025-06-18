@@ -394,3 +394,7 @@ nav a:hover svg {
   color: white !important;
   border-color: rgb(245, 158, 11) !important;
 }
+
+.login-btn-custom:hover * {
+  color: white !important;
+}
