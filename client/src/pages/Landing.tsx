@@ -51,7 +51,7 @@ export default function Landing() {
               <img 
                 src={HonmonoLogo} 
                 alt="HONMONO Logo" 
-                className="w-8 h-8 mr-3"
+                className="w-8 h-8 mr-1"
               />
               <img 
                 src={HonmonoTextLogo} 
@@ -453,7 +453,7 @@ export default function Landing() {
                 <img 
                   src={HonmonoLogo} 
                   alt="HONMONO Logo" 
-                  className="w-6 h-6 mr-2"
+                  className="w-6 h-6 mr-1"
                 />
                 <img 
                   src={HonmonoTextLogo} 
