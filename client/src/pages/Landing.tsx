@@ -16,7 +16,8 @@ import {
   Tv,
   Zap,
   Info,
-  Bot
+  Bot,
+  Plus
 } from "lucide-react";
 import { useState } from "react";
 import HonmonoLogo from "@assets/Honmono_Logo_1750227308214.png";
@@ -162,7 +163,9 @@ export default function Landing() {
         <section className="mb-6">
           <div className="flex justify-between items-center mb-3">
             <h2 className="text-lg font-bold text-gray-800 border-l-4 border-yellow-500 pl-3">요일별 인기 애니메이션</h2>
-            <a href="#" className="text-yellow-600 hover:text-yellow-700 text-sm">더보기</a>
+            <button className="w-8 h-8 bg-yellow-500 hover:bg-yellow-600 text-white rounded-full flex items-center justify-center transition-colors">
+              <Plus size={16} />
+            </button>
           </div>
           
           {/* Weekday Tabs */}
@@ -217,7 +220,9 @@ export default function Landing() {
             <section className="mb-6">
               <div className="flex justify-between items-center mb-3">
                 <h2 className="text-lg font-bold text-gray-800 border-l-4 border-yellow-500 pl-3">인기 게시글</h2>
-                <a href="#" className="text-yellow-600 hover:text-yellow-700 text-sm">더보기</a>
+                <button className="w-8 h-8 bg-yellow-500 hover:bg-yellow-600 text-white rounded-full flex items-center justify-center transition-colors">
+                  <Plus size={16} />
+                </button>
               </div>
               
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -277,7 +282,9 @@ export default function Landing() {
             <section className="mb-6">
               <div className="flex justify-between items-center mb-3">
                 <h2 className="text-lg font-bold text-gray-800 border-l-4 border-yellow-500 pl-3">최신 리뷰</h2>
-                <a href="#" className="text-yellow-600 hover:text-yellow-700 text-sm">더보기</a>
+                <button className="w-8 h-8 bg-yellow-500 hover:bg-yellow-600 text-white rounded-full flex items-center justify-center transition-colors">
+                  <Plus size={16} />
+                </button>
               </div>
 
               <div className="space-y-3">
@@ -368,7 +375,9 @@ export default function Landing() {
             <section className="mb-6">
               <div className="flex justify-between items-center mb-3">
                 <h2 className="text-lg font-bold text-gray-800 border-l-4 border-yellow-500 pl-3">추천 컬렉션</h2>
-                <a href="#" className="text-yellow-600 hover:text-yellow-700 text-sm">더보기</a>
+                <button className="w-8 h-8 bg-yellow-500 hover:bg-yellow-600 text-white rounded-full flex items-center justify-center transition-colors">
+                  <Plus size={16} />
+                </button>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
