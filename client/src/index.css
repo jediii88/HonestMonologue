@@ -254,23 +254,26 @@ button.login-btn-final {
   border-radius: 20px !important;
   cursor: pointer !important;
   font-weight: 500 !important;
-  background-color: #f3f4f6 !important;
+  background-color: white !important;
   color: #374151 !important;
   border: 2px solid transparent !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
   transition: all 0.2s ease !important;
   box-sizing: border-box !important;
 }
 
 button.login-btn-final:hover {
-  background-color: #f3f4f6 !important;
+  background-color: white !important;
   color: #374151 !important;
   border: 2px solid white !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15) !important;
 }
 
 button.login-btn-final:focus {
-  background-color: #f3f4f6 !important;
+  background-color: white !important;
   color: #374151 !important;
   border: 2px solid white !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15) !important;
   outline: none !important;
 }
 
