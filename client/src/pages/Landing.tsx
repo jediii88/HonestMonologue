@@ -200,14 +200,27 @@ export default function Landing() {
               { title: "진격의 거인 완결편", isNew: true, day: "일" },
             ].map((anime, index) => (
               <div key={index} className="relative group cursor-pointer">
-                <div className="absolute top-1 left-1 bg-yellow-500 text-white text-xs px-2 py-1 rounded-full z-10 font-medium">{anime.day}</div>
-                {anime.isNew && (
-                  <div className="absolute top-1 right-1 bg-red-500 text-white text-xs px-2 py-1 rounded-full z-10 font-medium">NEW</div>
-                )}
                 <div className="aspect-[3/4] rounded-2xl overflow-hidden mb-2 group-hover:shadow-lg transition-all duration-200 group-hover:scale-105 relative">
                   <div className="w-full h-full bg-gray-300"></div>
-                  <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-70 text-white p-2">
-                    <h3 className="text-xs font-medium text-center truncate">{anime.title}</h3>
+                  
+                  {/* 그라데이션 오버레이 - 위아래는 어둡고 중앙은 투명 */}
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent via-50% to-black/60"></div>
+                  
+                  {/* 요일 태그 */}
+                  <div className="absolute top-2 left-2 z-10">
+                    <span className="text-white text-xs font-bold px-2 py-1 rounded-full bg-yellow-500">{anime.day}</span>
+                  </div>
+                  
+                  {/* NEW 태그 */}
+                  {anime.isNew && (
+                    <div className="absolute top-2 right-2 z-10">
+                      <span className="text-white text-xs font-bold px-2 py-1 rounded-full bg-red-500">NEW</span>
+                    </div>
+                  )}
+                  
+                  {/* 제목 */}
+                  <div className="absolute bottom-2 left-2 right-2 z-10">
+                    <h3 className="text-white text-xs font-bold text-center">{anime.title}</h3>
                   </div>
                 </div>
               </div>
