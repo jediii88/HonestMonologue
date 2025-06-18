@@ -104,13 +104,12 @@ export default function Header() {
               </div>
             ) : (
               <>
-                <Button 
-                  variant="ghost" 
-                  className="login-btn-custom bg-gray-100 text-gray-700 rounded-full px-5 transition-all duration-300"
+                <button 
+                  className="bg-gray-100 text-gray-700 hover:bg-yellow-400 hover:text-white border border-transparent rounded-full px-5 py-2 transition-all duration-300 font-medium"
                   onClick={handleLogin}
                 >
                   로그인
-                </Button>
+                </button>
                 <Button 
                   className="bg-gray-800 text-white hover:bg-gray-700 rounded-full px-5"
                   onClick={handleLogin}
