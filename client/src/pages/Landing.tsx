@@ -289,28 +289,81 @@ export default function Landing() {
         {/* 배경 그라데이션 */}
         <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/10 to-transparent"></div>
         
-        {/* 파티클 효과 */}
-        <div className="absolute inset-0 opacity-20">
+        {/* 멋진 파티클 효과 */}
+        <div className="absolute inset-0 opacity-25">
+          {/* 큰 파티클들 */}
+          {[...Array(6)].map((_, i) => (
+            <div
+              key={`large-${i}`}
+              className="absolute w-2 h-2 bg-white rounded-full"
+              style={{
+                left: `${15 + (i * 15)}%`,
+                top: `${20 + (i % 4) * 20}%`,
+                animation: `floatRotate ${8 + i * 2}s ease-in-out infinite`,
+                animationDelay: `${i * 1.2}s`,
+                boxShadow: '0 0 10px rgba(255,255,255,0.5)'
+              }}
+            />
+          ))}
+          
+          {/* 중간 파티클들 */}
           {[...Array(8)].map((_, i) => (
             <div
-              key={i}
+              key={`medium-${i}`}
+              className="absolute w-1.5 h-1.5 bg-white rounded-full"
+              style={{
+                left: `${10 + (i * 11)}%`,
+                top: `${15 + (i % 5) * 15}%`,
+                animation: `fastFloat ${5 + i}s ease-in-out infinite`,
+                animationDelay: `${i * 0.7}s`,
+                boxShadow: '0 0 6px rgba(255,255,255,0.4)'
+              }}
+            />
+          ))}
+          
+          {/* 작은 파티클들 */}
+          {[...Array(12)].map((_, i) => (
+            <div
+              key={`small-${i}`}
               className="absolute w-1 h-1 bg-white rounded-full"
               style={{
-                left: `${20 + (i * 10)}%`,
-                top: `${30 + (i % 3) * 20}%`,
-                animation: `float ${3 + i}s ease-in-out infinite`,
-                animationDelay: `${i * 0.5}s`
+                left: `${5 + (i * 8)}%`,
+                top: `${10 + (i % 6) * 12}%`,
+                animation: `pulseFloat ${3 + i * 0.5}s ease-in-out infinite`,
+                animationDelay: `${i * 0.3}s`,
+                boxShadow: '0 0 4px rgba(255,255,255,0.3)'
               }}
             />
           ))}
         </div>
         
-        {/* 떠다니는 도형들 - 부드러운 애니메이션 */}
-        <div className="absolute inset-0 opacity-15">
-          <div className="absolute w-32 h-32 rounded-full border border-white -top-16 -left-16" style={{animation: 'slowSpin 30s linear infinite'}}></div>
-          <div className="absolute w-24 h-24 rounded-full border border-white top-1/2 -right-12" style={{animation: 'slowFloat 25s ease-in-out infinite'}}></div>
-          <div className="absolute w-16 h-16 rounded-full border border-white bottom-10 left-1/4" style={{animation: 'slowFloat 20s ease-in-out infinite', animationDelay: '5s'}}></div>
-          <div className="absolute w-20 h-20 border border-white transform rotate-45 top-20 right-1/4" style={{animation: 'slowFloat 22s ease-in-out infinite', animationDelay: '2s'}}></div>
+        {/* 떠다니는 도형들 - 멋진 애니메이션 */}
+        <div className="absolute inset-0 opacity-20">
+          {/* 큰 회전하는 원 */}
+          <div className="absolute w-40 h-40 rounded-full border-2 border-white/30 -top-20 -left-20" style={{animation: 'slowSpin 40s linear infinite'}}></div>
+          <div className="absolute w-32 h-32 rounded-full border border-white/40 -top-16 -left-16" style={{animation: 'slowSpin 35s linear infinite reverse'}}></div>
+          
+          {/* 오른쪽 상단 도형들 */}
+          <div className="absolute w-28 h-28 rounded-full border-2 border-white/25 top-10 -right-14" style={{animation: 'floatRotate 30s ease-in-out infinite'}}></div>
+          <div className="absolute w-20 h-20 border border-white/35 transform rotate-45 top-20 right-10" style={{animation: 'slowFloat 25s ease-in-out infinite', animationDelay: '3s'}}></div>
+          
+          {/* 하단 도형들 */}
+          <div className="absolute w-24 h-24 rounded-full border border-white/30 bottom-20 left-1/3" style={{animation: 'bounceFloat 28s ease-in-out infinite', animationDelay: '5s'}}></div>
+          <div className="absolute w-16 h-16 border-2 border-white/40 transform rotate-12 bottom-32 right-1/4" style={{animation: 'floatRotate 22s ease-in-out infinite', animationDelay: '7s'}}></div>
+          
+          {/* 중간 영역 도형들 */}
+          <div className="absolute w-12 h-12 rounded-full border border-white/45 top-1/3 left-1/5" style={{animation: 'slowFloat 18s ease-in-out infinite', animationDelay: '2s'}}></div>
+          <div className="absolute w-18 h-18 border border-white/35 transform rotate-45 top-2/3 right-1/3" style={{animation: 'pulseFloat 20s ease-in-out infinite', animationDelay: '4s'}}></div>
+          
+          {/* 작은 떠다니는 원들 */}
+          <div className="absolute w-8 h-8 rounded-full border border-white/50 top-1/4 right-1/5" style={{animation: 'fastFloat 15s ease-in-out infinite', animationDelay: '1s'}}></div>
+          <div className="absolute w-6 h-6 rounded-full border border-white/60 bottom-1/3 left-1/2" style={{animation: 'fastFloat 12s ease-in-out infinite', animationDelay: '6s'}}></div>
+        </div>
+        
+        {/* 추가 시각 효과 */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute w-60 h-60 rounded-full bg-gradient-to-r from-white/20 to-transparent top-0 left-0" style={{animation: 'slowFloat 45s ease-in-out infinite'}}></div>
+          <div className="absolute w-80 h-80 rounded-full bg-gradient-to-l from-white/15 to-transparent bottom-0 right-0" style={{animation: 'slowFloat 50s ease-in-out infinite', animationDelay: '10s'}}></div>
         </div>
         
         {/* 부드러운 웨이브 */}
