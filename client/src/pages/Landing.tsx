@@ -66,7 +66,7 @@ export default function Landing() {
             <div className="flex items-center gap-3">
               <Button 
                 variant="ghost" 
-                className="text-gray-600 hover:text-gray-800 text-sm"
+                className="text-gray-600 hover:text-gray-800 text-sm rounded-full focus:ring-2 focus:ring-yellow-500/50 focus:ring-offset-2"
                 onClick={handleLogin}
               >
                 로그인
@@ -333,6 +333,69 @@ export default function Landing() {
                       </div>
                     </div>
                   </div>
+                </Card>
+
+                <Card className="p-4 card-hover cursor-pointer rounded-2xl">
+                  <div className="flex gap-4">
+                    <div className="w-16 h-20 bg-gradient-to-br from-purple-400 to-purple-600 rounded-xl flex-shrink-0 flex items-center justify-center">
+                      <span className="text-white text-xs font-medium text-center">VR</span>
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full font-medium">VRChat</span>
+                        <div className="flex items-center">
+                          {[...Array(5)].map((_, i) => (
+                            <Star key={i} size={12} className={`${i < 3 ? 'text-yellow-400 fill-current' : 'text-gray-300'}`} />
+                          ))}
+                          <span className="text-sm text-gray-600 ml-1 font-medium">3.8/5</span>
+                        </div>
+                      </div>
+                      <h3 className="font-semibold text-gray-800 mb-1">새로운 애니메이션 월드 체험기</h3>
+                      <p className="text-sm text-gray-600 mb-2">최근 출시된 스튜디오 지브리 테마 월드를 직접 체험해봤습니다...</p>
+                      <div className="flex justify-between items-center text-xs text-gray-500">
+                        <span className="font-medium">VR매니아</span>
+                        <div className="flex gap-3">
+                          <span>6시간 전</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </Card>
+              </div>
+            </section>
+
+            {/* 추천 컬렉션 */}
+            <section className="mb-6">
+              <div className="flex justify-between items-center mb-3">
+                <h2 className="text-lg font-bold text-gray-800 border-l-4 border-yellow-500 pl-3">추천 컬렉션</h2>
+                <a href="#" className="text-yellow-600 hover:text-yellow-700 text-sm">더보기</a>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <Card className="p-4 card-hover cursor-pointer rounded-2xl bg-gradient-to-br from-blue-50 to-blue-100">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 bg-blue-500 rounded-xl flex items-center justify-center">
+                      <Tv size={20} className="text-white" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-blue-800">2025년 겨울 신작</h3>
+                      <p className="text-xs text-blue-600">15개 작품</p>
+                    </div>
+                  </div>
+                  <p className="text-sm text-blue-700">이번 시즌 놓치면 안 될 화제작들을 모았습니다</p>
+                </Card>
+
+                <Card className="p-4 card-hover cursor-pointer rounded-2xl bg-gradient-to-br from-red-50 to-red-100">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 bg-red-500 rounded-xl flex items-center justify-center">
+                      <Bot size={20} className="text-white" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-red-800">초보자 건담 가이드</h3>
+                      <p className="text-xs text-red-600">8개 모델</p>
+                    </div>
+                  </div>
+                  <p className="text-sm text-red-700">건담 조립 입문자를 위한 추천 키트</p>
                 </Card>
               </div>
             </section>
