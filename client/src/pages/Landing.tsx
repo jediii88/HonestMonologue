@@ -315,7 +315,7 @@ export default function Landing() {
         
         {/* 부드러운 웨이브 */}
         <div className="absolute bottom-0 left-0 w-full overflow-hidden">
-          <svg className="w-full h-16" viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <svg className="w-[120%] h-16 -ml-[10%]" viewBox="0 0 1400 120" preserveAspectRatio="none">
             <defs>
               <linearGradient id="wave-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="rgba(255,255,255,0.1)" />
@@ -323,7 +323,7 @@ export default function Landing() {
                 <stop offset="100%" stopColor="rgba(255,255,255,0.1)" />
               </linearGradient>
             </defs>
-            <path d="M0,60 Q300,120 600,60 T1200,60 L1200,120 L0,120 Z" fill="url(#wave-gradient)">
+            <path d="M0,60 Q350,120 700,60 T1400,60 L1400,120 L0,120 Z" fill="url(#wave-gradient)">
               <animateTransform
                 attributeName="transform"
                 type="translate"
