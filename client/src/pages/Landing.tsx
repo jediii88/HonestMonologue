@@ -31,6 +31,28 @@ export default function Landing() {
   const [isAnimating, setIsAnimating] = useState(false);
   const [animationStyle, setAnimationStyle] = useState(3);
 
+  const getAnimationClass = () => {
+    switch(animationStyle) {
+      case 1: return 'animate-bounce';
+      case 2: return 'animate-pulse';
+      case 3: return '';
+      case 4: return 'animate-pulse';
+      case 5: return '';
+      default: return '';
+    }
+  };
+
+  const getAnimationStyle = () => {
+    switch(animationStyle) {
+      case 1: return 'slideUp 0.6s ease-out';
+      case 2: return 'flipText 0.8s ease-in-out';
+      case 3: return 'glitch 0.5s ease-in-out infinite';
+      case 4: return 'typewriter 2s steps(20) infinite';
+      case 5: return 'morphText 1s ease-in-out';
+      default: return 'none';
+    }
+  };
+
   const handleLogin = () => {
     window.location.href = "/api/login";
   };
@@ -349,23 +371,26 @@ export default function Landing() {
             </span>
           </div>
           
-          {/* 애니메이션 스타일 인디케이터 */}
+          {/* 애니메이션 스타일 선택 */}
           <div className="mb-4 flex justify-center gap-2">
-            {[1, 2, 3].map((style) => (
+            {[
+              { id: 1, name: '페이드' },
+              { id: 2, name: '순차' },
+              { id: 3, name: '글리치' },
+              { id: 4, name: '타이핑' },
+              { id: 5, name: '모프' }
+            ].map((style) => (
               <button
-                key={style}
-                onClick={() => setAnimationStyle(style)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  animationStyle === style 
-                    ? 'bg-white shadow-lg scale-125' 
-                    : 'bg-white/40 hover:bg-white/60'
+                key={style.id}
+                onClick={() => setAnimationStyle(style.id)}
+                className={`px-3 py-1 text-xs rounded-full transition-all duration-300 transform hover:scale-105 ${
+                  animationStyle === style.id
+                    ? 'bg-yellow-400 text-black font-medium' 
+                    : 'bg-white/20 text-white/80 hover:bg-white/30'
                 }`}
-                title={
-                  style === 1 ? '기본 타이핑' : 
-                  style === 2 ? '페이드 효과' : 
-                  '해킹 효과'
-                }
-              />
+              >
+                {style.name}
+              </button>
             ))}
           </div>
           
