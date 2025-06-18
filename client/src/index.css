@@ -17,20 +17,21 @@
   --primary-foreground: hsl(0, 0%, 100%);
   --secondary: hsl(0, 0%, 97%);
   --secondary-foreground: hsl(0, 0%, 20%);
-  --accent: hsl(340, 100%, 64%);
-  --accent-foreground: hsl(0, 0%, 100%);
+  --accent: hsl(45, 93%, 47%);
+  --accent-foreground: hsl(0, 0%, 10%);
   --destructive: hsl(0, 84.2%, 60.2%);
   --destructive-foreground: hsl(0, 0%, 100%);
   --ring: hsl(0, 0%, 20%);
   --radius: 4px;
   
-  /* Custom theme colors matching HONMONO design */
-  --honmono-primary: hsl(0, 0%, 33%);
-  --honmono-secondary: hsl(0, 0%, 47%);
-  --honmono-accent: hsl(340, 100%, 64%);
-  --honmono-background: hsl(0, 0%, 100%);
-  --honmono-card: hsl(0, 0%, 100%);
-  --honmono-border: hsl(0, 0%, 93%);
+  /* HONMONO theme colors - 노란색 포인트 + 무채색 */
+  --honmono-primary: hsl(0, 0%, 33%);        /* 다크 그레이 */
+  --honmono-secondary: hsl(0, 0%, 47%);      /* 미디움 그레이 */
+  --honmono-accent: hsl(45, 93%, 47%);       /* 노란색 포인트 */
+  --honmono-background: hsl(0, 0%, 100%);    /* 흰색 */
+  --honmono-card: hsl(0, 0%, 100%);          /* 흰색 */
+  --honmono-border: hsl(0, 0%, 93%);         /* 연한 그레이 */
+  --honmono-hover: hsl(0, 0%, 95%);          /* 호버 배경 */
 }
 
 .dark {
