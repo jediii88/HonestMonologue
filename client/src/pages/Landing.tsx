@@ -32,25 +32,11 @@ export default function Landing() {
   const [animationStyle, setAnimationStyle] = useState(3);
 
   const getAnimationClass = () => {
-    switch(animationStyle) {
-      case 1: return 'animate-bounce';
-      case 2: return 'animate-pulse';
-      case 3: return '';
-      case 4: return 'animate-pulse';
-      case 5: return '';
-      default: return '';
-    }
+    return '';
   };
 
   const getAnimationStyle = () => {
-    switch(animationStyle) {
-      case 1: return 'slideUp 0.6s ease-out';
-      case 2: return 'flipText 0.8s ease-in-out';
-      case 3: return 'none';
-      case 4: return 'typewriter 2s steps(20) infinite';
-      case 5: return 'morphText 1s ease-in-out';
-      default: return 'none';
-    }
+    return 'none';
   };
 
   const handleLogin = () => {
@@ -364,7 +350,6 @@ export default function Landing() {
               animation: isAnimating ? getAnimationStyle() : 'none'
             }}>
               {displayText}
-              {isAnimating && <span className="animate-pulse ml-1 text-yellow-200">|</span>}
             </span>
           </div>
           
