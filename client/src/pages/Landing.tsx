@@ -169,7 +169,7 @@ export default function Landing() {
         <section className="mb-6">
           <div className="flex justify-between items-center mb-3">
             <h2 className="text-lg font-bold text-gray-800 border-l-4 border-yellow-500 pl-3">요일별 인기 애니메이션</h2>
-            <Plus size={20} className="text-yellow-500 hover:text-yellow-600 cursor-pointer transition-colors" />
+            <Plus size={20} className="text-yellow-500 hover:text-yellow-600 cursor-pointer transition-all duration-300 transform hover:scale-125 hover:rotate-90 active:scale-110" />
           </div>
           
           {/* Weekday Tabs */}
@@ -177,10 +177,10 @@ export default function Landing() {
             {weekdays.map((day) => (
               <button 
                 key={day}
-                className={`px-3 py-1 rounded-full text-sm transition-colors ${
+                className={`px-3 py-1 rounded-full text-sm transition-all duration-300 transform hover:scale-105 active:scale-95 hover:-translate-y-1 ${
                   activeDay === day 
-                    ? 'bg-yellow-500 text-white font-medium' 
-                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                    ? 'bg-yellow-500 text-white font-medium shadow-lg shadow-yellow-500/30 scale-105' 
+                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200 hover:shadow-md'
                 }`}
                 onClick={() => setActiveDay(day)}
               >
@@ -200,12 +200,12 @@ export default function Landing() {
               { title: "체인소 맨 2부", isNew: false, day: "토" },
               { title: "진격의 거인 완결편", isNew: true, day: "일" },
             ].map((anime, index) => (
-              <div key={index} className="relative group cursor-pointer">
-                <div className="aspect-[3/4] rounded-2xl overflow-hidden mb-2 group-hover:shadow-lg transition-all duration-200 group-hover:scale-105 relative">
+              <div key={index} className="relative group cursor-pointer transform transition-all duration-300 hover:scale-105 hover:-translate-y-2 active:scale-95">
+                <div className="aspect-[3/4] rounded-2xl overflow-hidden mb-2 shadow-lg group-hover:shadow-2xl transition-all duration-500 relative ring-0 group-hover:ring-4 group-hover:ring-yellow-500/30">
                   {index === 0 ? (
-                    <img src={testImage} alt="테스트 이미지" className="w-full h-full object-cover" />
+                    <img src={testImage} alt="테스트 이미지" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                   ) : (
-                    <div className="w-full h-full bg-gray-300"></div>
+                    <div className="w-full h-full bg-gray-300 transition-all duration-500 group-hover:bg-gray-200"></div>
                   )}
                   
                   {/* 그라데이션 오버레이 - 위아래만 어둡게 */}
@@ -213,20 +213,20 @@ export default function Landing() {
                   <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-black/60 to-transparent"></div>
                   
                   {/* 요일 태그 */}
-                  <div className="absolute top-3 left-4 z-10">
-                    <span className="text-white text-xs font-bold">{anime.day}</span>
+                  <div className="absolute top-3 left-4 z-10 transform transition-all duration-300 group-hover:scale-110 group-hover:text-yellow-500">
+                    <span className="text-white text-xs font-bold drop-shadow-lg">{anime.day}</span>
                   </div>
                   
                   {/* NEW 태그 */}
                   {anime.isNew && (
-                    <div className="absolute top-2 right-2 z-10">
-                      <span className="text-white text-xs font-bold px-2 py-1 rounded-full bg-red-500">NEW</span>
+                    <div className="absolute top-2 right-2 z-10 transform transition-all duration-300 group-hover:scale-110 group-hover:rotate-12 animate-pulse">
+                      <span className="text-white text-xs font-bold px-2 py-1 rounded-full bg-red-500 shadow-lg">NEW</span>
                     </div>
                   )}
                   
                   {/* 제목 */}
-                  <div className="absolute bottom-2 left-2 right-2 z-10">
-                    <h3 className="text-white text-xs font-bold text-center">{anime.title}</h3>
+                  <div className="absolute bottom-2 left-2 right-2 z-10 transform transition-all duration-300 group-hover:scale-105">
+                    <h3 className="text-white text-xs font-bold text-center drop-shadow-lg group-hover:text-yellow-200">{anime.title}</h3>
                   </div>
                 </div>
               </div>
