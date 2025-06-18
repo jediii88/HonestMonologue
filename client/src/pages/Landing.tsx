@@ -214,7 +214,7 @@ export default function Landing() {
                   
                   {/* 요일 태그 */}
                   <div className="absolute top-2 left-2 z-10">
-                    <span className="text-white text-xs font-bold px-2 py-1 rounded-full bg-yellow-500">{anime.day}</span>
+                    <span className="text-white text-xs font-bold">{anime.day}</span>
                   </div>
                   
                   {/* NEW 태그 */}
