@@ -46,7 +46,7 @@ export default function Landing() {
     switch(animationStyle) {
       case 1: return 'slideUp 0.6s ease-out';
       case 2: return 'flipText 0.8s ease-in-out';
-      case 3: return 'glitch 0.5s ease-in-out infinite';
+      case 3: return 'none';
       case 4: return 'typewriter 2s steps(20) infinite';
       case 5: return 'morphText 1s ease-in-out';
       default: return 'none';
@@ -128,44 +128,41 @@ export default function Landing() {
     };
 
     const animateStyle3 = () => {
-      // 글리치 변환 스타일
+      // 부드러운 변환 스타일
       setIsAnimating(true);
       setDisplayText(startText);
       
-      // 글리치 효과 시작
+      // 간단하고 우아한 변환
       setTimeout(() => {
-        let glitchCount = 0;
-        const glitchChars = '!@#$%^&*()_+-=[]{}|;:,.<>?';
-        
-        const glitchInterval = setInterval(() => {
-          if (glitchCount < 8) {
-            // 랜덤한 글리치 텍스트 생성
-            const glitchText = startText.split('').map(() => 
-              glitchChars[Math.floor(Math.random() * glitchChars.length)]
-            ).join('');
-            setDisplayText(glitchText);
-            glitchCount++;
+        // 한 글자씩 페이드 아웃
+        let fadeIndex = startText.length;
+        const fadeOut = setInterval(() => {
+          if (fadeIndex > 0) {
+            setDisplayText(startText.substring(0, fadeIndex - 1));
+            fadeIndex--;
           } else {
-            clearInterval(glitchInterval);
+            clearInterval(fadeOut);
             
-            // 최종 텍스트로 변환
-            let revealIndex = 0;
-            const revealInterval = setInterval(() => {
-              if (revealIndex <= endText.length) {
-                setDisplayText(endText.substring(0, revealIndex));
-                revealIndex++;
-              } else {
-                clearInterval(revealInterval);
-                setTimeout(() => {
-                  setIsAnimating(false);
+            // 새 텍스트 페이드 인
+            setTimeout(() => {
+              let typeIndex = 0;
+              const typeIn = setInterval(() => {
+                if (typeIndex <= endText.length) {
+                  setDisplayText(endText.substring(0, typeIndex));
+                  typeIndex++;
+                } else {
+                  clearInterval(typeIn);
                   setTimeout(() => {
-                    animateStyle3();
-                  }, 3000);
-                }, 2000);
-              }
-            }, 120);
+                    setIsAnimating(false);
+                    setTimeout(() => {
+                      animateStyle3();
+                    }, 3000);
+                  }, 2000);
+                }
+              }, 100);
+            }, 300);
           }
-        }, 150);
+        }, 120);
       }, 500);
     };
 
@@ -375,8 +372,8 @@ export default function Landing() {
           <div className="mb-4 flex justify-center gap-2">
             {[
               { id: 1, name: '페이드' },
-              { id: 2, name: '순차' },
-              { id: 3, name: '글리치' },
+              { id: 2, name: '플립' },
+              { id: 3, name: '부드러운' },
               { id: 4, name: '타이핑' },
               { id: 5, name: '모프' }
             ].map((style) => (
