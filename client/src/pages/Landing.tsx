@@ -22,6 +22,7 @@ import {
 import { useState } from "react";
 import HonmonoLogo from "@assets/Honmono_Logo_1750227308214.png";
 import HonmonoTextLogo from "@assets/Honmono_Text_Logo_1750227308215.png";
+import testImage from "@assets/image_1750233446528.png";
 
 export default function Landing() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -201,10 +202,14 @@ export default function Landing() {
             ].map((anime, index) => (
               <div key={index} className="relative group cursor-pointer">
                 <div className="aspect-[3/4] rounded-2xl overflow-hidden mb-2 group-hover:shadow-lg transition-all duration-200 group-hover:scale-105 relative">
-                  <div className="w-full h-full bg-gray-300"></div>
+                  {index === 0 ? (
+                    <img src={testImage} alt="테스트 이미지" className="w-full h-full object-cover" />
+                  ) : (
+                    <div className="w-full h-full bg-gray-300"></div>
+                  )}
                   
-                  {/* 그라데이션 오버레이 - 위아래는 어둡고 중앙은 투명 */}
-                  <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-20% via-transparent via-80% to-black/70"></div>
+                  {/* 그라데이션 오버레이 - 정중앙에 투명 영역 */}
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-25% via-transparent via-75% to-black/70"></div>
                   
                   {/* 요일 태그 */}
                   <div className="absolute top-2 left-2 z-10">
