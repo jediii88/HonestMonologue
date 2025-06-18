@@ -238,13 +238,12 @@ export default function Landing() {
 
             {/* User Actions */}
             <div className="flex items-center gap-3">
-              <Button 
-                variant="ghost" 
-                className="text-gray-600 hover:text-gray-800 text-sm rounded-full focus:ring-2 focus:ring-yellow-500/50 focus:ring-offset-2"
+              <button 
+                className="login-btn-final"
                 onClick={handleLogin}
               >
                 로그인
-              </Button>
+              </button>
               <Button 
                 className="bg-gray-800 text-white hover:bg-gray-700 rounded-full px-4 py-2 text-sm"
                 onClick={handleLogin}
