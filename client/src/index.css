@@ -285,7 +285,7 @@ button.signup-btn-final {
   cursor: pointer !important;
   font-weight: 500 !important;
   background-color: #facc15 !important;
-  color: #374151 !important;
+  color: white !important;
   border: 2px solid transparent !important;
   transition: all 0.2s ease !important;
   box-sizing: border-box !important;
@@ -293,14 +293,14 @@ button.signup-btn-final {
 
 button.signup-btn-final:hover {
   background-color: #eab308 !important;
-  color: #374151 !important;
+  color: white !important;
   border: 2px solid #facc15 !important;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15) !important;
 }
 
 button.signup-btn-final:focus {
   background-color: #eab308 !important;
-  color: #374151 !important;
+  color: white !important;
   border: 2px solid #facc15 !important;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15) !important;
   outline: none !important;
