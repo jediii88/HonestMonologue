@@ -124,7 +124,11 @@ export default function Landing() {
         </div>
         
         <div className="max-w-6xl mx-auto px-4 text-center relative z-10">
-          <h1 className="text-4xl font-bold mb-4">서브컬처의 진정성을 찾아서</h1>
+          <h1 className="text-4xl font-bold mb-2">서브컬처의 진정성을 찾아서</h1>
+          <div className="mb-4">
+            <span className="text-lg font-medium text-white/80">HONMONO</span>
+            <span className="text-sm text-white/60 ml-2">- Honest Monologue</span>
+          </div>
           <p className="text-xl mb-8 opacity-90">애니메이션, 건담, VRChat까지 - 모든 덕후의 성지</p>
           
           {/* Search Bar in Hero */}
@@ -280,7 +284,10 @@ export default function Landing() {
             {/* 최신 리뷰 */}
             <section className="mb-6">
               <div className="flex justify-between items-center mb-3">
-                <h2 className="text-lg font-bold text-gray-800 border-l-4 border-yellow-500 pl-3">최신 리뷰</h2>
+                <h2 className="text-lg font-bold text-gray-800 border-l-4 border-yellow-500 pl-3">
+                  최신 리뷰 
+                  <span className="text-sm font-normal text-yellow-600 ml-2">진솔한 후기</span>
+                </h2>
                 <Plus size={20} className="text-yellow-500 hover:text-yellow-600 cursor-pointer transition-colors" />
               </div>
 
@@ -543,6 +550,9 @@ export default function Landing() {
                   className="h-4"
                 />
               </div>
+              <p className="text-xs text-yellow-600 font-medium mb-1">
+                Honest Monologue
+              </p>
               <p className="text-sm text-gray-600">
                 서브컬처 애호가들의 진정성 있는 공간
               </p>
@@ -554,7 +564,7 @@ export default function Landing() {
                 <li><a href="#" className="hover:text-yellow-600 transition-colors">애니메이션</a></li>
                 <li><a href="#" className="hover:text-yellow-600 transition-colors">건담</a></li>
                 <li><a href="#" className="hover:text-yellow-600 transition-colors">VRChat</a></li>
-                <li><a href="#" className="hover:text-yellow-600 transition-colors">일본여행</a></li>
+                <li><a href="#" className="hover:text-yellow-600 transition-colors">성지순례</a></li>
               </ul>
             </div>
             
