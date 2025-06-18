@@ -246,23 +246,7 @@ nav a:hover svg {
   75% { transform: translateY(-8px) rotate(270deg); }
 }
 
-/* Force login button hover effect */
-button:hover.bg-gray-100 {
-  background-color: #facc15 !important;
-  color: white !important;
-}
-
-.login-button-custom {
-  background-color: #f3f4f6 !important;
-  color: #374151 !important;
-  transition: all 0.3s ease !important;
-}
-
-.login-button-custom:hover {
-  background-color: #facc15 !important;
-  color: white !important;
-}
-
+/* 로그인 버튼 최종 스타일 */
 .login-hover-normal {
   background-color: #f3f4f6 !important;
   color: #374151 !important;
@@ -423,13 +407,4 @@ button:hover.bg-gray-100 {
   }
 }
 
-/* 로그인 버튼 hover 스타일 강제 적용 */
-.login-btn-custom:hover {
-  background-color: rgb(245, 158, 11) !important;
-  color: white !important;
-  border-color: rgb(245, 158, 11) !important;
-}
-
-.login-btn-custom:hover * {
-  color: white !important;
-}
+/* 로그인 버튼 관련 CSS 통합 */
