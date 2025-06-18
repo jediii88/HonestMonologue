@@ -286,13 +286,52 @@ export default function Landing() {
 
       {/* Hero Banner - 멋진 애니메이션 효과 */}
       <div className="bg-gradient-to-r from-yellow-400 via-orange-500 to-yellow-500 text-white py-16 relative overflow-hidden">
-        {/* 정적 배경 오버레이 */}
-        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/5 to-transparent"></div>
+        {/* 배경 그라데이션 */}
+        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/10 to-transparent"></div>
         
-        {/* 정적 웨이브 */}
-        <div className="absolute bottom-0 left-0 w-full">
+        {/* 파티클 효과 */}
+        <div className="absolute inset-0 opacity-20">
+          {[...Array(8)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-1 h-1 bg-white rounded-full"
+              style={{
+                left: `${20 + (i * 10)}%`,
+                top: `${30 + (i % 3) * 20}%`,
+                animation: `float ${3 + i}s ease-in-out infinite`,
+                animationDelay: `${i * 0.5}s`
+              }}
+            />
+          ))}
+        </div>
+        
+        {/* 떠다니는 도형들 - 부드러운 애니메이션 */}
+        <div className="absolute inset-0 opacity-15">
+          <div className="absolute w-32 h-32 rounded-full border border-white -top-16 -left-16" style={{animation: 'slowSpin 30s linear infinite'}}></div>
+          <div className="absolute w-24 h-24 rounded-full border border-white top-1/2 -right-12" style={{animation: 'slowFloat 25s ease-in-out infinite'}}></div>
+          <div className="absolute w-16 h-16 rounded-full border border-white bottom-10 left-1/4" style={{animation: 'slowFloat 20s ease-in-out infinite', animationDelay: '5s'}}></div>
+          <div className="absolute w-20 h-20 border border-white transform rotate-45 top-20 right-1/4" style={{animation: 'slowFloat 22s ease-in-out infinite', animationDelay: '2s'}}></div>
+        </div>
+        
+        {/* 부드러운 웨이브 */}
+        <div className="absolute bottom-0 left-0 w-full overflow-hidden">
           <svg className="w-full h-16" viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path d="M0,60 Q300,100 600,60 T1200,60 L1200,120 L0,120 Z" fill="rgba(255,255,255,0.2)" />
+            <defs>
+              <linearGradient id="wave-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="rgba(255,255,255,0.1)" />
+                <stop offset="50%" stopColor="rgba(255,255,255,0.3)" />
+                <stop offset="100%" stopColor="rgba(255,255,255,0.1)" />
+              </linearGradient>
+            </defs>
+            <path d="M0,60 Q300,120 600,60 T1200,60 L1200,120 L0,120 Z" fill="url(#wave-gradient)">
+              <animateTransform
+                attributeName="transform"
+                type="translate"
+                values="-100 0;100 0;-100 0"
+                dur="15s"
+                repeatCount="indefinite"
+              />
+            </path>
           </svg>
         </div>
         

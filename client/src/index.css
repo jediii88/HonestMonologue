@@ -213,3 +213,20 @@ nav a:hover svg {
   75% { transform: scale(0.9) rotateX(135deg); filter: blur(2px); }
   100% { transform: scale(1) rotateX(180deg); filter: blur(0px); }
 }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes slowSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes slowFloat {
+  0%, 100% { transform: translateY(0px) translateX(0px); }
+  25% { transform: translateY(-5px) translateX(3px); }
+  50% { transform: translateY(-10px) translateX(0px); }
+  75% { transform: translateY(-5px) translateX(-3px); }
+}
