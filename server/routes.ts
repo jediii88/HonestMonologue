@@ -245,6 +245,172 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Forum routes
+  app.get('/api/forums', async (req: any, res) => {
+    try {
+      const userId = req.user?.claims?.sub;
+      const forums = await storage.getAllForums(userId);
+      res.json(forums);
+    } catch (error) {
+      console.error("Error fetching forums:", error);
+      res.status(500).json({ message: "Failed to fetch forums" });
+    }
+  });
+
+  app.get('/api/forums/:id', async (req: any, res) => {
+    try {
+      const userId = req.user?.claims?.sub;
+      const forumId = parseInt(req.params.id);
+      const forum = await storage.getForum(forumId, userId);
+      
+      if (!forum) {
+        return res.status(404).json({ message: "Forum not found" });
+      }
+      
+      res.json(forum);
+    } catch (error) {
+      console.error("Error fetching forum:", error);
+      res.status(500).json({ message: "Failed to fetch forum" });
+    }
+  });
+
+  app.post('/api/forums', isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      const validation = insertForumSchema.safeParse(req.body);
+      
+      if (!validation.success) {
+        return res.status(400).json({ message: "Invalid input", errors: validation.error.errors });
+      }
+
+      const forum = await storage.createForum(validation.data, userId);
+      res.status(201).json(forum);
+    } catch (error) {
+      console.error("Error creating forum:", error);
+      res.status(500).json({ message: "Failed to create forum" });
+    }
+  });
+
+  app.get('/api/forums/:id/posts', async (req, res) => {
+    try {
+      const forumId = parseInt(req.params.id);
+      const limit = parseInt(req.query.limit as string) || 20;
+      const offset = parseInt(req.query.offset as string) || 0;
+      
+      const posts = await storage.getForumPosts(forumId, limit, offset);
+      res.json(posts);
+    } catch (error) {
+      console.error("Error fetching forum posts:", error);
+      res.status(500).json({ message: "Failed to fetch forum posts" });
+    }
+  });
+
+  app.post('/api/forums/:id/posts', isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      const forumId = parseInt(req.params.id);
+      const validation = insertForumPostSchema.safeParse(req.body);
+      
+      if (!validation.success) {
+        return res.status(400).json({ message: "Invalid input", errors: validation.error.errors });
+      }
+
+      const postData = { ...validation.data, forumId };
+      const post = await storage.createForumPost(postData, userId);
+      res.status(201).json(post);
+    } catch (error) {
+      console.error("Error creating forum post:", error);
+      res.status(500).json({ message: "Failed to create forum post" });
+    }
+  });
+
+  app.get('/api/posts/:id/replies', async (req, res) => {
+    try {
+      const postId = parseInt(req.params.id);
+      const replies = await storage.getForumReplies(postId);
+      res.json(replies);
+    } catch (error) {
+      console.error("Error fetching forum replies:", error);
+      res.status(500).json({ message: "Failed to fetch forum replies" });
+    }
+  });
+
+  app.post('/api/posts/:id/replies', isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      const postId = parseInt(req.params.id);
+      const validation = insertForumReplySchema.safeParse(req.body);
+      
+      if (!validation.success) {
+        return res.status(400).json({ message: "Invalid input", errors: validation.error.errors });
+      }
+
+      const replyData = { ...validation.data, postId };
+      const reply = await storage.createForumReply(replyData, userId);
+      res.status(201).json(reply);
+    } catch (error) {
+      console.error("Error creating forum reply:", error);
+      res.status(500).json({ message: "Failed to create forum reply" });
+    }
+  });
+
+  // Message routes
+  app.get('/api/messages/conversations', isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      const conversations = await storage.getUserConversations(userId);
+      res.json(conversations);
+    } catch (error) {
+      console.error("Error fetching conversations:", error);
+      res.status(500).json({ message: "Failed to fetch conversations" });
+    }
+  });
+
+  app.get('/api/messages/conversation/:userId', isAuthenticated, async (req: any, res) => {
+    try {
+      const currentUserId = req.user.claims.sub;
+      const otherUserId = req.params.userId;
+      const limit = parseInt(req.query.limit as string) || 50;
+      const offset = parseInt(req.query.offset as string) || 0;
+      
+      const messages = await storage.getConversation(currentUserId, otherUserId, limit, offset);
+      res.json(messages);
+    } catch (error) {
+      console.error("Error fetching conversation:", error);
+      res.status(500).json({ message: "Failed to fetch conversation" });
+    }
+  });
+
+  app.post('/api/messages', isAuthenticated, async (req: any, res) => {
+    try {
+      const senderId = req.user.claims.sub;
+      const validation = insertMessageSchema.safeParse(req.body);
+      
+      if (!validation.success) {
+        return res.status(400).json({ message: "Invalid input", errors: validation.error.errors });
+      }
+
+      const message = await storage.sendMessage(validation.data, senderId);
+      res.status(201).json(message);
+    } catch (error) {
+      console.error("Error sending message:", error);
+      res.status(500).json({ message: "Failed to send message" });
+    }
+  });
+
+  app.post('/api/messages/read/:senderId', isAuthenticated, async (req: any, res) => {
+    try {
+      const receiverId = req.user.claims.sub;
+      const senderId = req.params.senderId;
+      
+      await storage.markMessagesAsRead(senderId, receiverId);
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Error marking messages as read:", error);
+      res.status(500).json({ message: "Failed to mark messages as read" });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }

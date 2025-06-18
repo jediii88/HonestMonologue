@@ -8,7 +8,8 @@ import {
   DropdownMenuTrigger 
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Home, Search, Plus, Settings, LogOut, Shield } from "lucide-react";
+import { Home, Search, Plus, Settings, LogOut, Shield, MessageCircle, Mail } from "lucide-react";
+import { Link } from "wouter";
 import { useState } from "react";
 
 export default function Header() {

@@ -10,6 +10,8 @@ import Home from "@/pages/Home";
 import AnimeDetail from "@/pages/AnimeDetail";
 import CreateAnime from "@/pages/CreateAnime";
 import AdminPanel from "@/pages/AdminPanel";
+import Forums from "@/pages/Forums";
+import Messages from "@/pages/Messages";
 
 function Router() {
   const { isAuthenticated, isLoading } = useAuth();
@@ -24,6 +26,8 @@ function Router() {
           <Route path="/anime/:id" component={AnimeDetail} />
           <Route path="/create" component={CreateAnime} />
           <Route path="/admin" component={AdminPanel} />
+          <Route path="/forums" component={Forums} />
+          <Route path="/messages" component={Messages} />
         </>
       )}
       <Route component={NotFound} />
