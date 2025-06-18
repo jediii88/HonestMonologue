@@ -289,49 +289,62 @@ export default function Landing() {
         {/* 배경 그라데이션 */}
         <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/10 to-transparent"></div>
         
-        {/* 멋진 파티클 효과 */}
-        <div className="absolute inset-0 opacity-25">
-          {/* 큰 파티클들 */}
-          {[...Array(6)].map((_, i) => (
+        {/* 별같은 파티클 효과 */}
+        <div className="absolute inset-0 opacity-30">
+          {/* 큰 별들 */}
+          {[...Array(5)].map((_, i) => (
             <div
-              key={`large-${i}`}
-              className="absolute w-2 h-2 bg-white rounded-full"
+              key={`star-large-${i}`}
+              className="absolute star-large"
               style={{
-                left: `${15 + (i * 15)}%`,
-                top: `${20 + (i % 4) * 20}%`,
-                animation: `floatRotate ${8 + i * 2}s ease-in-out infinite`,
-                animationDelay: `${i * 1.2}s`,
-                boxShadow: '0 0 10px rgba(255,255,255,0.5)'
+                left: `${20 + (i * 18)}%`,
+                top: `${25 + (i % 3) * 25}%`,
+                animation: `starTwinkle ${4 + i}s ease-in-out infinite`,
+                animationDelay: `${i * 1.5}s`
               }}
             />
           ))}
           
-          {/* 중간 파티클들 */}
+          {/* 중간 별들 */}
           {[...Array(8)].map((_, i) => (
             <div
-              key={`medium-${i}`}
-              className="absolute w-1.5 h-1.5 bg-white rounded-full"
+              key={`star-medium-${i}`}
+              className="absolute star-medium"
               style={{
-                left: `${10 + (i * 11)}%`,
-                top: `${15 + (i % 5) * 15}%`,
-                animation: `fastFloat ${5 + i}s ease-in-out infinite`,
-                animationDelay: `${i * 0.7}s`,
-                boxShadow: '0 0 6px rgba(255,255,255,0.4)'
+                left: `${15 + (i * 12)}%`,
+                top: `${20 + (i % 4) * 20}%`,
+                animation: `starFloat ${3 + i * 0.5}s ease-in-out infinite`,
+                animationDelay: `${i * 0.8}s`
               }}
             />
           ))}
           
-          {/* 작은 파티클들 */}
+          {/* 작은 별들 */}
           {[...Array(12)].map((_, i) => (
             <div
-              key={`small-${i}`}
-              className="absolute w-1 h-1 bg-white rounded-full"
+              key={`star-small-${i}`}
+              className="absolute star-small"
               style={{
-                left: `${5 + (i * 8)}%`,
-                top: `${10 + (i % 6) * 12}%`,
-                animation: `pulseFloat ${3 + i * 0.5}s ease-in-out infinite`,
-                animationDelay: `${i * 0.3}s`,
-                boxShadow: '0 0 4px rgba(255,255,255,0.3)'
+                left: `${10 + (i * 8)}%`,
+                top: `${15 + (i % 5) * 15}%`,
+                animation: `starSparkle ${2 + i * 0.3}s ease-in-out infinite`,
+                animationDelay: `${i * 0.4}s`
+              }}
+            />
+          ))}
+          
+          {/* 반짝이는 점들 */}
+          {[...Array(15)].map((_, i) => (
+            <div
+              key={`sparkle-${i}`}
+              className="absolute w-0.5 h-0.5 bg-white"
+              style={{
+                left: `${5 + (i * 6.5)}%`,
+                top: `${10 + (i % 7) * 12}%`,
+                animation: `sparkle ${1.5 + i * 0.2}s ease-in-out infinite`,
+                animationDelay: `${i * 0.2}s`,
+                borderRadius: '50%',
+                boxShadow: '0 0 3px rgba(255,255,255,0.8)'
               }}
             />
           ))}
