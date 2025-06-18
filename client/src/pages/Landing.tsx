@@ -500,7 +500,7 @@ export default function Landing() {
                   
                   {/* 요일 태그 */}
                   <div className="absolute top-3 left-4 z-10 transform transition-all duration-300 group-hover:scale-110">
-                    <span className="text-white text-xs font-bold drop-shadow-lg group-hover:drop-shadow-[0_0_8px_rgba(245,158,11,0.8)]">{anime.day}</span>
+                    <span className="text-white text-xs font-bold drop-shadow-lg group-hover:drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]">{anime.day}</span>
                   </div>
                   
                   {/* NEW 태그 */}
@@ -512,7 +512,7 @@ export default function Landing() {
                   
                   {/* 제목 */}
                   <div className="absolute bottom-2 left-2 right-2 z-10 transform transition-all duration-300 group-hover:scale-105">
-                    <h3 className="text-white text-xs font-bold text-center drop-shadow-lg group-hover:drop-shadow-[0_0_8px_rgba(245,158,11,0.8)]">{anime.title}</h3>
+                    <h3 className="text-white text-xs font-bold text-center drop-shadow-lg group-hover:drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]">{anime.title}</h3>
                   </div>
                 </div>
               </div>
