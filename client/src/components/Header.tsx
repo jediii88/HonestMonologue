@@ -106,14 +106,16 @@ export default function Header() {
             ) : (
               <>
                 <button 
-                  className="border border-transparent rounded-full px-5 py-2 transition-all duration-300 font-medium"
-                  style={{
-                    backgroundColor: isLoginHovered ? '#facc15' : '#f3f4f6',
-                    color: isLoginHovered ? 'white' : '#374151'
-                  }}
+                  className="login-button-custom border border-transparent rounded-full px-5 py-2 transition-all duration-300 font-medium"
                   onMouseEnter={() => setIsLoginHovered(true)}
                   onMouseLeave={() => setIsLoginHovered(false)}
                   onClick={handleLogin}
+                  style={{
+                    backgroundColor: isLoginHovered ? '#facc15' : '#f3f4f6',
+                    color: isLoginHovered ? 'white' : '#374151',
+                    border: 'none',
+                    outline: 'none'
+                  }}
                 >
                   로그인
                 </button>

@@ -252,6 +252,17 @@ button:hover.bg-gray-100 {
   color: white !important;
 }
 
+.login-button-custom {
+  background-color: #f3f4f6 !important;
+  color: #374151 !important;
+  transition: all 0.3s ease !important;
+}
+
+.login-button-custom:hover {
+  background-color: #facc15 !important;
+  color: white !important;
+}
+
 @keyframes bounceFloat {
   0%, 100% { transform: translateY(0px) scale(1); }
   25% { transform: translateY(-12px) scale(1.05); }
