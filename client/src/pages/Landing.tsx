@@ -29,7 +29,7 @@ export default function Landing() {
   const [activeDay, setActiveDay] = useState("전체");
   const [displayText, setDisplayText] = useState("Honmono");
   const [isAnimating, setIsAnimating] = useState(false);
-  const [animationStyle, setAnimationStyle] = useState(1);
+  const [animationStyle, setAnimationStyle] = useState(3);
 
   const handleLogin = () => {
     window.location.href = "/api/login";
@@ -66,7 +66,7 @@ export default function Landing() {
             setTimeout(() => {
               setIsAnimating(false);
               setTimeout(() => {
-                setAnimationStyle(prev => prev === 3 ? 1 : prev + 1);
+                animateStyle3();
               }, 3000);
             }, 2000);
           }
@@ -96,7 +96,7 @@ export default function Landing() {
               setTimeout(() => {
                 setIsAnimating(false);
                 setTimeout(() => {
-                  setAnimationStyle(prev => prev === 3 ? 1 : prev + 1);
+                  animateStyle3();
                 }, 3000);
               }, 2000);
             }
@@ -127,7 +127,7 @@ export default function Landing() {
           setTimeout(() => {
             setIsAnimating(false);
             setTimeout(() => {
-              setAnimationStyle(prev => prev === 3 ? 1 : prev + 1);
+              animateStyle3();
             }, 3000);
           }, 2000);
         }
