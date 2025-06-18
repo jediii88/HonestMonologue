@@ -44,11 +44,13 @@ export default function Landing() {
         <div className="max-w-6xl mx-auto px-4">
           {/* Main header */}
           <div className="flex justify-between items-center py-3">
-            {/* Logo - 노란색 원형 */}
+            {/* Logo */}
             <div className="flex items-center">
-              <div className="w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center mr-3">
-                <span className="text-white font-bold text-sm">H</span>
-              </div>
+              <img 
+                src="/attached_assets/Honmono_Logo_1750227308214.png" 
+                alt="HONMONO Logo" 
+                className="w-8 h-8 mr-3 invert"
+              />
               <span className="text-lg font-bold text-gray-800">HONMONO</span>
             </div>
 
@@ -120,17 +122,24 @@ export default function Landing() {
       </header>
 
       {/* Hero Banner - 노란색 그라데이션 */}
-      <div className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-white py-12">
-        <div className="max-w-6xl mx-auto px-4 text-center">
-          <h1 className="text-3xl font-bold mb-3">서브컬처의 진정성을 찾아서</h1>
-          <p className="text-lg mb-6 opacity-90">애니메이션, 건담, VRChat, 일본여행까지 - 모든 덕후의 성지</p>
+      <div className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-white py-16 relative overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute w-32 h-32 rounded-full border-2 border-white -top-16 -left-16 animate-pulse"></div>
+          <div className="absolute w-24 h-24 rounded-full border border-white top-1/2 -right-12 animate-pulse" style={{animationDelay: '1s'}}></div>
+          <div className="absolute w-16 h-16 rounded-full border border-white bottom-10 left-1/4 animate-pulse" style={{animationDelay: '2s'}}></div>
+        </div>
+        
+        <div className="max-w-6xl mx-auto px-4 text-center relative z-10">
+          <h1 className="text-4xl font-bold mb-4">서브컬처의 진정성을 찾아서</h1>
+          <p className="text-xl mb-8 opacity-90">애니메이션, 건담, VRChat, 일본여행까지 - 모든 덕후의 성지</p>
           
           {/* Popular Keywords */}
-          <div className="flex flex-wrap justify-center gap-2">
+          <div className="flex flex-wrap justify-center gap-3">
             {['하이큐', '체인소맨', '원피스', '귀멸의칼날', '건담'].map((keyword) => (
               <button
                 key={keyword}
-                className="px-3 py-1 bg-white/20 text-white rounded-full text-sm hover:bg-white/30 transition-colors backdrop-blur-sm"
+                className="px-4 py-2 bg-white/20 text-white rounded-full text-sm hover:bg-white/30 transition-all duration-200 backdrop-blur-sm border border-white/20 hover:scale-105"
                 onClick={() => setSearchQuery(keyword)}
               >
                 {keyword}
@@ -168,26 +177,26 @@ export default function Landing() {
                 ))}
               </div>
 
-              {/* Anime Grid - 6열 그리드로 수정 */}
-              <div className="grid grid-cols-6 gap-3">
+              {/* Anime Grid - 반응형 그리드 */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
                 {[
                   { title: "마법소녀 카피캣", isNew: true },
                   { title: "빌런 입학하기", isNew: true },
                   { title: "소드 아트 온라인", isNew: true },
                   { title: "블루 록 2기", isNew: false },
                   { title: "하이큐!! 최종시즌", isNew: true },
-                  { title: "재인스 맨 2부", isNew: false },
+                  { title: "체인소 맨 2부", isNew: false },
                 ].map((anime, index) => (
                   <div key={index} className="relative group cursor-pointer">
                     {anime.isNew && (
                       <div className="absolute top-1 left-1 bg-red-500 text-white text-xs px-1 py-0.5 rounded z-10 font-medium">신</div>
                     )}
-                    <div className="aspect-[3/4] rounded overflow-hidden mb-2 group-hover:shadow-md transition-all duration-200">
+                    <div className="aspect-[3/4] rounded-lg overflow-hidden mb-2 group-hover:shadow-lg transition-all duration-200 group-hover:scale-105">
                       <div className="w-full h-full bg-gray-300 flex items-center justify-center">
                         <span className="text-gray-700 text-xs font-medium text-center px-1">{anime.title}</span>
                       </div>
                     </div>
-                    <h3 className="text-xs text-gray-800 font-medium text-center">{anime.title}</h3>
+                    <h3 className="text-xs text-gray-800 font-medium text-center truncate">{anime.title}</h3>
                   </div>
                 ))}
               </div>
@@ -435,9 +444,11 @@ export default function Landing() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             <div>
               <div className="flex items-center mb-3">
-                <div className="w-6 h-6 bg-yellow-500 rounded-full flex items-center justify-center mr-2">
-                  <span className="text-white font-bold text-xs">H</span>
-                </div>
+                <img 
+                  src="/attached_assets/Honmono_Logo_1750227308214.png" 
+                  alt="HONMONO Logo" 
+                  className="w-6 h-6 mr-2 invert"
+                />
                 <span className="font-bold text-gray-800">HONMONO</span>
               </div>
               <p className="text-sm text-gray-600">
