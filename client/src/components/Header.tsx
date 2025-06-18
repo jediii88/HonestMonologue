@@ -127,7 +127,11 @@ export default function Header() {
                     border: '1px solid transparent'
                   }}
                 >
-                  로그인 (hover: {isLoginHovered ? 'YES' : 'NO'})
+                  로그인 (hover: {isLoginHovered ? 'YES' : 'NO'}) 
+                  {isLoginHovered && <span style={{color: 'red'}}> [ACTIVE]</span>}
+                  <div style={{fontSize: '10px', color: 'blue'}}>
+                    BG: {isLoginHovered ? 'YELLOW' : 'GRAY'}
+                  </div>
                 </span>
                 <Button 
                   className="bg-gray-800 text-white hover:bg-gray-700 rounded-full px-5"
