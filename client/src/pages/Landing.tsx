@@ -124,12 +124,10 @@ export default function Landing() {
         </div>
         
         <div className="max-w-6xl mx-auto px-4 text-center relative z-10">
-          <h1 className="text-4xl font-bold mb-3">진심이 만드는 특별한 순간들</h1>
-          <div className="mb-4">
+          <h1 className="text-4xl font-bold mb-3">진솔한 덕후들의 공간</h1>
+          <div className="mb-6">
             <span className="text-2xl font-medium text-white/90 italic">Honest Monologue</span>
           </div>
-          <p className="text-lg mb-2 opacity-95 leading-relaxed">가식 없는 솔직함으로 나누는 이야기</p>
-          <p className="text-lg mb-8 opacity-90 leading-relaxed">애니메이션부터 건담, VRChat까지 우리가 사랑하는 모든 것에 대한 진솔한 대화</p>
           
           {/* Search Bar in Hero */}
           <div className="max-w-lg mx-auto mb-6">
