@@ -105,12 +105,8 @@ export default function Header() {
               </div>
             ) : (
               <>
-                <div 
-                  className={`inline-block rounded-full px-5 py-2 cursor-pointer font-medium transition-all duration-300 ${
-                    isLoginHovered 
-                      ? 'login-hover-active' 
-                      : 'login-hover-normal'
-                  }`}
+                <span 
+                  className="inline-block rounded-full px-5 py-2 cursor-pointer font-medium transition-all duration-300"
                   onMouseEnter={() => {
                     console.log('마우스 진입!');
                     setIsLoginHovered(true);
@@ -120,9 +116,16 @@ export default function Header() {
                     setIsLoginHovered(false);
                   }}
                   onClick={handleLogin}
+                  style={{
+                    backgroundColor: isLoginHovered ? '#facc15' : '#f3f4f6',
+                    color: isLoginHovered ? '#ffffff' : '#374151',
+                    border: 'none',
+                    outline: 'none',
+                    display: 'inline-block'
+                  }}
                 >
                   로그인 (hover: {isLoginHovered ? 'YES' : 'NO'})
-                </div>
+                </span>
                 <Button 
                   className="bg-gray-800 text-white hover:bg-gray-700 rounded-full px-5"
                   onClick={handleLogin}
