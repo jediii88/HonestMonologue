@@ -126,8 +126,7 @@ export default function Landing() {
         <div className="max-w-6xl mx-auto px-4 text-center relative z-10">
           <h1 className="text-4xl font-bold mb-2">서브컬처의 진정성을 찾아서</h1>
           <div className="mb-4">
-            <span className="text-lg font-medium text-white/80">HONMONO</span>
-            <span className="text-sm text-white/60 ml-2">- Honest Monologue</span>
+            <span className="text-2xl font-medium text-white/90 italic">Honest Monologue</span>
           </div>
           <p className="text-xl mb-8 opacity-90">애니메이션, 건담, VRChat까지 - 모든 덕후의 성지</p>
           
