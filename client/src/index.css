@@ -254,10 +254,9 @@ button.login-btn-final {
   border-radius: 20px !important;
   cursor: pointer !important;
   font-weight: 500 !important;
-  background-color: white !important;
+  background-color: transparent !important;
   color: #374151 !important;
   border: 2px solid transparent !important;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
   transition: all 0.2s ease !important;
   box-sizing: border-box !important;
 }
