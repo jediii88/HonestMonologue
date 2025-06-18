@@ -212,13 +212,13 @@ export default function Landing() {
                   <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-10% via-transparent via-90% to-black/70"></div>
                   
                   {/* 요일 태그 */}
-                  <div className="absolute top-2 right-2 z-10">
-                    <span className="text-white text-xs font-bold">{anime.day}</span>
+                  <div className="absolute top-2 left-2 z-10">
+                    <span className="text-white text-xs font-bold px-2 py-1 rounded-full bg-yellow-500">{anime.day}</span>
                   </div>
                   
                   {/* NEW 태그 */}
                   {anime.isNew && (
-                    <div className="absolute top-2 left-2 z-10">
+                    <div className="absolute top-2 right-2 z-10">
                       <span className="text-white text-xs font-bold px-2 py-1 rounded-full bg-red-500">NEW</span>
                     </div>
                   )}
