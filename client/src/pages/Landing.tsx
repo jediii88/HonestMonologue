@@ -153,37 +153,84 @@ export default function Landing() {
         </div>
       </header>
 
-      {/* Hero Banner - 노란색 그라데이션 */}
-      <div className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-white py-16 relative overflow-hidden">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute w-32 h-32 rounded-full border-2 border-white -top-16 -left-16 animate-pulse"></div>
+      {/* Hero Banner - 멋진 애니메이션 효과 */}
+      <div className="bg-gradient-to-r from-yellow-400 via-orange-500 to-yellow-500 text-white py-16 relative overflow-hidden">
+        {/* 애니메이션 배경 그라데이션 */}
+        <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 via-orange-500 to-yellow-500 animate-pulse"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/10 to-transparent animate-pulse" style={{animationDelay: '1.5s'}}></div>
+        
+        {/* 파티클 효과 */}
+        <div className="absolute inset-0 opacity-20">
+          {[...Array(12)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-1.5 h-1.5 bg-white rounded-full animate-bounce"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 3}s`,
+                animationDuration: `${2 + Math.random() * 2}s`
+              }}
+            />
+          ))}
+        </div>
+        
+        {/* 떠다니는 도형들 */}
+        <div className="absolute inset-0 opacity-15">
+          <div className="absolute w-32 h-32 rounded-full border-2 border-white -top-16 -left-16 animate-spin" style={{animationDuration: '20s'}}></div>
           <div className="absolute w-24 h-24 rounded-full border border-white top-1/2 -right-12 animate-pulse" style={{animationDelay: '1s'}}></div>
-          <div className="absolute w-16 h-16 rounded-full border border-white bottom-10 left-1/4 animate-pulse" style={{animationDelay: '2s'}}></div>
+          <div className="absolute w-16 h-16 rounded-full border border-white bottom-10 left-1/4 animate-bounce" style={{animationDelay: '2s'}}></div>
+          <div className="absolute w-20 h-20 border border-white transform rotate-45 top-20 right-1/4 animate-pulse" style={{animationDelay: '0.5s'}}></div>
+          <div className="absolute w-12 h-12 rounded-full border-2 border-white bottom-1/4 right-10 animate-spin" style={{animationDuration: '15s', animationDelay: '1.5s'}}></div>
+          <div className="absolute w-8 h-8 border border-white top-1/3 left-1/3 animate-ping" style={{animationDelay: '3s'}}></div>
+        </div>
+        
+        {/* 움직이는 웨이브 */}
+        <div className="absolute bottom-0 left-0 w-full overflow-hidden">
+          <svg className="w-full h-16" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="wave-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="rgba(255,255,255,0.1)" />
+                <stop offset="50%" stopColor="rgba(255,255,255,0.3)" />
+                <stop offset="100%" stopColor="rgba(255,255,255,0.1)" />
+              </linearGradient>
+            </defs>
+            <path d="M0,60 Q300,120 600,60 T1200,60 L1200,120 L0,120 Z" fill="url(#wave-gradient)" className="animate-pulse">
+              <animateTransform
+                attributeName="transform"
+                type="translate"
+                values="-200 0;200 0;-200 0"
+                dur="8s"
+                repeatCount="indefinite"
+              />
+            </path>
+          </svg>
         </div>
         
         <div className="max-w-6xl mx-auto px-4 text-center relative z-10">
-          <h1 className="text-4xl font-bold mb-3">순수한 열정이 모이는 곳</h1>
+          <h1 className="text-4xl font-bold mb-3 transform transition-all duration-1000 hover:scale-105 animate-fade-in-up">
+            순수한 열정이 모이는 곳
+          </h1>
           <div className="mb-6 h-8 flex items-center justify-center">
-            <span className="text-2xl font-medium text-white/90 italic relative">
+            <span className="text-2xl font-medium text-white/90 italic relative transform transition-all duration-500 hover:scale-110">
               {displayText}
-              {isAnimating && <span className="animate-pulse ml-1">|</span>}
+              {isAnimating && <span className="animate-pulse ml-1 text-yellow-200">|</span>}
             </span>
           </div>
           
           {/* Search Bar in Hero */}
-          <div className="max-w-lg mx-auto mb-6">
+          <div className="max-w-lg mx-auto mb-6 transform transition-all duration-700 hover:scale-105">
             <div className="relative">
               <Input 
                 type="text" 
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="작품명, 캐릭터명, 성우 등으로 검색" 
-                className="w-full pl-4 pr-12 py-3 bg-white/90 backdrop-blur-sm border-white/50 rounded-full text-gray-700 placeholder-gray-500 focus:bg-white focus:border-white text-lg shadow-lg"
+                className="w-full pl-4 pr-12 py-3 bg-white/90 backdrop-blur-sm border-white/50 rounded-full text-gray-700 placeholder-gray-500 focus:bg-white focus:border-white text-lg shadow-lg transition-all duration-300 focus:shadow-2xl focus:scale-105"
               />
               <button 
                 type="submit"
-                className="absolute right-3 top-1/2 transform -translate-y-1/2 p-2 bg-yellow-500 hover:bg-yellow-600 rounded-full transition-colors"
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 p-2 bg-yellow-500 hover:bg-yellow-600 rounded-full transition-all duration-300 hover:scale-110 hover:rotate-12 active:scale-95"
               >
                 <Search size={20} className="text-white" />
               </button>
@@ -192,11 +239,14 @@ export default function Landing() {
           
           {/* Popular Keywords */}
           <div className="flex flex-wrap justify-center gap-3">
-            {['하이큐', '체인소맨', '원피스', '귀멸의칼날', '건담'].map((keyword) => (
+            {['하이큐', '체인소맨', '원피스', '귀멸의칼날', '건담'].map((keyword, index) => (
               <button
                 key={keyword}
-                className="px-4 py-2 bg-white/20 text-white rounded-full text-sm hover:bg-white/30 transition-all duration-200 backdrop-blur-sm border border-white/20 hover:scale-105"
+                className="px-4 py-2 bg-white/20 text-white rounded-full text-sm hover:bg-white/30 transition-all duration-300 backdrop-blur-sm border border-white/20 hover:scale-110 hover:-translate-y-1 active:scale-95 transform hover:shadow-lg"
                 onClick={() => setSearchQuery(keyword)}
+                style={{
+                  animationDelay: `${index * 0.1}s`
+                }}
               >
                 {keyword}
               </button>
