@@ -124,7 +124,7 @@ export default function Landing() {
         </div>
         
         <div className="max-w-6xl mx-auto px-4 text-center relative z-10">
-          <h1 className="text-4xl font-bold mb-3">진솔한 덕후들의 공간</h1>
+          <h1 className="text-4xl font-bold mb-3">진솔한 애호가들의 공간</h1>
           <div className="mb-6">
             <span className="text-2xl font-medium text-white/90 italic">Honest Monologue</span>
           </div>
