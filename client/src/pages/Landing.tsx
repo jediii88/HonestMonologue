@@ -208,9 +208,9 @@ export default function Landing() {
                     <div className="w-full h-full bg-gray-300 transition-all duration-500 group-hover:bg-gray-200"></div>
                   )}
                   
-                  {/* 그라데이션 오버레이 - 위아래만 어둡게 */}
-                  <div className="absolute top-0 left-0 right-0 h-12 bg-gradient-to-b from-black/60 to-transparent"></div>
-                  <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-black/60 to-transparent"></div>
+                  {/* 그라데이션 오버레이 - 위아래만 어둡게 (임시 숨김) */}
+                  {/* <div className="absolute top-0 left-0 right-0 h-12 bg-gradient-to-b from-black/60 to-transparent"></div>
+                  <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-black/60 to-transparent"></div> */}
                   
                   {/* 요일 태그 */}
                   <div className="absolute top-3 left-4 z-10 transform transition-all duration-300 group-hover:scale-110 group-hover:text-yellow-500">
@@ -219,7 +219,7 @@ export default function Landing() {
                   
                   {/* NEW 태그 */}
                   {anime.isNew && (
-                    <div className="absolute top-2 right-2 z-10 transform transition-all duration-300 group-hover:scale-110 group-hover:rotate-12 animate-pulse">
+                    <div className="absolute top-2 right-2 z-10 transform transition-all duration-300 group-hover:scale-110 group-hover:rotate-12">
                       <span className="text-white text-xs font-bold px-2 py-1 rounded-full bg-red-500 shadow-lg">NEW</span>
                     </div>
                   )}
