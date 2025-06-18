@@ -48,18 +48,21 @@ export default function Landing() {
           {/* Main header */}
           <div className="flex justify-between items-center py-3">
             {/* Logo */}
-            <div className="flex items-center">
+            <button 
+              onClick={() => window.location.href = '/'}
+              className="flex items-center hover:opacity-80 transition-opacity"
+            >
               <img 
                 src={HonmonoLogo} 
                 alt="HONMONO Logo" 
-                className="w-8 h-8 mr-1"
+                className="w-16 h-16 mr-2"
               />
               <img 
                 src={HonmonoTextLogo} 
                 alt="HONMONO" 
-                className="h-6"
+                className="h-12"
               />
-            </div>
+            </button>
 
 
 
