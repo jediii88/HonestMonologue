@@ -339,50 +339,53 @@ export default function Landing() {
           {/* Sidebar - 1/3 width */}
           <div className="lg:col-span-1">
             {/* 실시간 트렌드 */}
-            <Card className="mb-4">
+            <Card className="mb-4 rounded-2xl">
               <CardContent className="p-4">
                 <h3 className="font-semibold text-gray-800 mb-3 border-l-4 border-yellow-500 pl-3">실시간 트렌드</h3>
-                <div className="space-y-3">
-                  <div className="flex items-center gap-3 p-2 hover:bg-gray-50 rounded transition-colors cursor-pointer">
-                    <div className="w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center text-white text-xs font-bold">1</div>
+                <div className="space-y-2">
+                  <div className="flex items-center gap-3 p-3 hover:bg-gray-50 rounded-xl transition-colors cursor-pointer">
+                    <div className="w-7 h-7 bg-orange-500 rounded-full flex items-center justify-center text-white text-xs font-bold">1</div>
                     <div className="flex-1">
                       <h4 className="font-medium text-sm text-gray-800">하이큐 최종시즌</h4>
-                      <div className="flex items-center gap-1 text-xs text-orange-500">
-                        <span>🔥</span>
-                        <span className="font-medium">HOT</span>
+                      <div className="flex items-center gap-1 text-xs">
+                        <span className="bg-orange-100 text-orange-600 px-2 py-0.5 rounded-full font-medium">HOT</span>
                       </div>
                     </div>
                   </div>
-                  <div className="flex items-center gap-3 p-2 hover:bg-gray-50 rounded transition-colors cursor-pointer">
-                    <div className="w-6 h-6 bg-gray-400 rounded-full flex items-center justify-center text-white text-xs font-bold">2</div>
+                  <div className="flex items-center gap-3 p-3 hover:bg-gray-50 rounded-xl transition-colors cursor-pointer">
+                    <div className="w-7 h-7 bg-blue-500 rounded-full flex items-center justify-center text-white text-xs font-bold">2</div>
                     <div className="flex-1">
                       <h4 className="font-medium text-sm text-gray-800">체인소맨 2부</h4>
-                      <div className="flex items-center gap-1 text-xs text-blue-500">
-                        <span>⬆️</span>
-                        <span className="font-medium">UP</span>
+                      <div className="flex items-center gap-1 text-xs">
+                        <span className="bg-blue-100 text-blue-600 px-2 py-0.5 rounded-full font-medium">UP</span>
                       </div>
                     </div>
                   </div>
-                  <div className="flex items-center gap-3 p-2 hover:bg-gray-50 rounded transition-colors cursor-pointer">
-                    <div className="w-6 h-6 bg-gray-400 rounded-full flex items-center justify-center text-white text-xs font-bold">3</div>
+                  <div className="flex items-center gap-3 p-3 hover:bg-gray-50 rounded-xl transition-colors cursor-pointer">
+                    <div className="w-7 h-7 bg-green-500 rounded-full flex items-center justify-center text-white text-xs font-bold">3</div>
                     <div className="flex-1">
                       <h4 className="font-medium text-sm text-gray-800">RG 뉴건담</h4>
-                      <div className="flex items-center gap-1 text-xs text-yellow-500">
-                        <span>✨</span>
-                        <span className="font-medium">NEW</span>
+                      <div className="flex items-center gap-1 text-xs">
+                        <span className="bg-green-100 text-green-600 px-2 py-0.5 rounded-full font-medium">NEW</span>
                       </div>
                     </div>
                   </div>
-                  <div className="flex items-center gap-3 p-2 hover:bg-gray-50 rounded transition-colors cursor-pointer">
-                    <div className="w-6 h-6 bg-gray-400 rounded-full flex items-center justify-center text-white text-xs font-bold">4</div>
+                  <div className="flex items-center gap-3 p-3 hover:bg-gray-50 rounded-xl transition-colors cursor-pointer">
+                    <div className="w-7 h-7 bg-purple-500 rounded-full flex items-center justify-center text-white text-xs font-bold">4</div>
                     <div className="flex-1">
                       <h4 className="font-medium text-sm text-gray-800">VRChat 신월드</h4>
+                      <div className="flex items-center gap-1 text-xs">
+                        <span className="bg-purple-100 text-purple-600 px-2 py-0.5 rounded-full font-medium">TREND</span>
+                      </div>
                     </div>
                   </div>
-                  <div className="flex items-center gap-3 p-2 hover:bg-gray-50 rounded transition-colors cursor-pointer">
-                    <div className="w-6 h-6 bg-gray-400 rounded-full flex items-center justify-center text-white text-xs font-bold">5</div>
+                  <div className="flex items-center gap-3 p-3 hover:bg-gray-50 rounded-xl transition-colors cursor-pointer">
+                    <div className="w-7 h-7 bg-pink-500 rounded-full flex items-center justify-center text-white text-xs font-bold">5</div>
                     <div className="flex-1">
                       <h4 className="font-medium text-sm text-gray-800">도쿄 애니 투어</h4>
+                      <div className="flex items-center gap-1 text-xs">
+                        <span className="bg-pink-100 text-pink-600 px-2 py-0.5 rounded-full font-medium">TRAVEL</span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -390,33 +393,33 @@ export default function Landing() {
             </Card>
 
             {/* 다가오는 행사 */}
-            <Card className="mb-4">
+            <Card className="mb-4 rounded-2xl">
               <CardContent className="p-4">
                 <h3 className="font-semibold text-gray-800 mb-3 border-l-4 border-yellow-500 pl-3">다가오는 행사</h3>
                 <div className="space-y-3">
-                  <div className="border-l-4 border-blue-400 pl-3">
-                    <h4 className="font-medium text-sm">코믹마켓 102</h4>
-                    <p className="text-xs text-gray-600">2025년 8월 12-14일</p>
-                    <p className="text-xs text-gray-500">도쿄 빅사이트</p>
+                  <div className="bg-gradient-to-r from-blue-50 to-blue-100 p-3 rounded-xl border-l-4 border-blue-400">
+                    <h4 className="font-medium text-sm text-blue-800">코믹마켓 102</h4>
+                    <p className="text-xs text-blue-600">2025년 8월 12-14일</p>
+                    <p className="text-xs text-blue-500">도쿄 빅사이트</p>
                   </div>
-                  <div className="border-l-4 border-green-400 pl-3">
-                    <h4 className="font-medium text-sm">AnimeJapan 2025</h4>
-                    <p className="text-xs text-gray-600">2025년 3월 23-26일</p>
-                    <p className="text-xs text-gray-500">도쿄 빅사이트</p>
+                  <div className="bg-gradient-to-r from-green-50 to-green-100 p-3 rounded-xl border-l-4 border-green-400">
+                    <h4 className="font-medium text-sm text-green-800">AnimeJapan 2025</h4>
+                    <p className="text-xs text-green-600">2025년 3월 23-26일</p>
+                    <p className="text-xs text-green-500">도쿄 빅사이트</p>
                   </div>
-                  <div className="border-l-4 border-red-400 pl-3">
-                    <h4 className="font-medium text-sm">건프라 EXPO</h4>
-                    <p className="text-xs text-gray-600">2025년 7월 15-17일</p>
-                    <p className="text-xs text-gray-500">오다이바</p>
+                  <div className="bg-gradient-to-r from-red-50 to-red-100 p-3 rounded-xl border-l-4 border-red-400">
+                    <h4 className="font-medium text-sm text-red-800">건프라 EXPO</h4>
+                    <p className="text-xs text-red-600">2025년 7월 15-17일</p>
+                    <p className="text-xs text-red-500">오다이바</p>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
             {/* 커뮤니티 현황 */}
-            <Card>
+            <Card className="rounded-2xl">
               <CardContent className="p-0">
-                <div className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-white p-4 rounded-t-lg">
+                <div className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-white p-4 rounded-t-2xl">
                   <h3 className="font-semibold mb-3">커뮤니티 현황</h3>
                   <div className="grid grid-cols-2 gap-3">
                     <div className="text-center">
