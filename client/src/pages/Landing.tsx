@@ -55,12 +55,12 @@ export default function Landing() {
               <img 
                 src={HonmonoLogo} 
                 alt="HONMONO Logo" 
-                className="w-16 h-16 mr-2"
+                className="w-12 h-12 mr-2"
               />
               <img 
                 src={HonmonoTextLogo} 
                 alt="HONMONO" 
-                className="h-12"
+                className="h-8"
               />
             </button>
 
