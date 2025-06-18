@@ -3,7 +3,20 @@ import { QueryClient, QueryFunction } from "@tanstack/react-query";
 async function throwIfResNotOk(res: Response) {
   if (!res.ok) {
     const text = (await res.text()) || res.statusText;
-    throw new Error(`${res.status}: ${text}`);
+    
+    // Korean error messages
+    let koreanMessage = text;
+    if (res.status === 401) {
+      koreanMessage = "로그인이 필요합니다";
+    } else if (res.status === 403) {
+      koreanMessage = "접근 권한이 없습니다";
+    } else if (res.status === 404) {
+      koreanMessage = "페이지를 찾을 수 없습니다";
+    } else if (res.status === 500) {
+      koreanMessage = "서버 오류가 발생했습니다";
+    }
+    
+    throw new Error(`${res.status}: ${koreanMessage}`);
   }
 }
 
