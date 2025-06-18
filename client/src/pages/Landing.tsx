@@ -163,9 +163,7 @@ export default function Landing() {
         <section className="mb-6">
           <div className="flex justify-between items-center mb-3">
             <h2 className="text-lg font-bold text-gray-800 border-l-4 border-yellow-500 pl-3">요일별 인기 애니메이션</h2>
-            <button className="w-8 h-8 bg-yellow-500 hover:bg-yellow-600 text-white rounded-full flex items-center justify-center transition-colors">
-              <Plus size={16} />
-            </button>
+            <Plus size={20} className="text-yellow-500 hover:text-yellow-600 cursor-pointer transition-colors" />
           </div>
           
           {/* Weekday Tabs */}
@@ -220,9 +218,7 @@ export default function Landing() {
             <section className="mb-6">
               <div className="flex justify-between items-center mb-3">
                 <h2 className="text-lg font-bold text-gray-800 border-l-4 border-yellow-500 pl-3">인기 게시글</h2>
-                <button className="w-8 h-8 bg-yellow-500 hover:bg-yellow-600 text-white rounded-full flex items-center justify-center transition-colors">
-                  <Plus size={16} />
-                </button>
+                <Plus size={20} className="text-yellow-500 hover:text-yellow-600 cursor-pointer transition-colors" />
               </div>
               
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -282,9 +278,7 @@ export default function Landing() {
             <section className="mb-6">
               <div className="flex justify-between items-center mb-3">
                 <h2 className="text-lg font-bold text-gray-800 border-l-4 border-yellow-500 pl-3">최신 리뷰</h2>
-                <button className="w-8 h-8 bg-yellow-500 hover:bg-yellow-600 text-white rounded-full flex items-center justify-center transition-colors">
-                  <Plus size={16} />
-                </button>
+                <Plus size={20} className="text-yellow-500 hover:text-yellow-600 cursor-pointer transition-colors" />
               </div>
 
               <div className="space-y-3">
@@ -375,9 +369,7 @@ export default function Landing() {
             <section className="mb-6">
               <div className="flex justify-between items-center mb-3">
                 <h2 className="text-lg font-bold text-gray-800 border-l-4 border-yellow-500 pl-3">추천 컬렉션</h2>
-                <button className="w-8 h-8 bg-yellow-500 hover:bg-yellow-600 text-white rounded-full flex items-center justify-center transition-colors">
-                  <Plus size={16} />
-                </button>
+                <Plus size={20} className="text-yellow-500 hover:text-yellow-600 cursor-pointer transition-colors" />
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -417,9 +409,7 @@ export default function Landing() {
               <CardContent className="p-4">
                 <div className="flex justify-between items-center mb-3">
                   <h3 className="font-semibold text-gray-800 border-l-4 border-yellow-500 pl-3">실시간 트렌드</h3>
-                  <button className="w-6 h-6 bg-yellow-500 hover:bg-yellow-600 text-white rounded-full flex items-center justify-center transition-colors">
-                    <Plus size={12} />
-                  </button>
+                  <Plus size={16} className="text-yellow-500 hover:text-yellow-600 cursor-pointer transition-colors" />
                 </div>
                 <div className="space-y-2">
                   <div className="flex items-center gap-3 p-3 hover:bg-gray-50 rounded-xl transition-colors cursor-pointer">
@@ -478,9 +468,7 @@ export default function Landing() {
               <CardContent className="p-4">
                 <div className="flex justify-between items-center mb-3">
                   <h3 className="font-semibold text-gray-800 border-l-4 border-yellow-500 pl-3">다가오는 행사</h3>
-                  <button className="w-6 h-6 bg-yellow-500 hover:bg-yellow-600 text-white rounded-full flex items-center justify-center transition-colors">
-                    <Plus size={12} />
-                  </button>
+                  <Plus size={16} className="text-yellow-500 hover:text-yellow-600 cursor-pointer transition-colors" />
                 </div>
                 <div className="space-y-3">
                   <div className="bg-gradient-to-r from-blue-50 to-blue-100 p-3 rounded-xl border-l-4 border-blue-400">
@@ -510,9 +498,7 @@ export default function Landing() {
             <div className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-white p-6">
               <div className="flex justify-between items-center mb-6">
                 <h3 className="text-xl font-bold">커뮤니티 현황</h3>
-                <button className="w-8 h-8 bg-white/20 hover:bg-white/30 text-white rounded-full flex items-center justify-center transition-colors">
-                  <Plus size={16} />
-                </button>
+                <Plus size={24} className="text-white/80 hover:text-white cursor-pointer transition-colors" />
               </div>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                 <div className="text-center">
