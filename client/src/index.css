@@ -154,7 +154,11 @@ nav a:hover svg {
 }
 
 .anime-card:hover h3 {
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3) !important;
+}
+
+.anime-card:hover .font-semibold {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3) !important;
 }
 
 /* Custom gradient backgrounds */
