@@ -417,9 +417,9 @@ export default function Landing() {
             </Card>
 
             {/* 커뮤니티 현황 */}
-            <Card className="rounded-2xl">
+            <Card className="rounded-2xl overflow-hidden">
               <CardContent className="p-0">
-                <div className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-white p-4 rounded-t-2xl">
+                <div className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-white p-4">
                   <h3 className="font-semibold mb-3">커뮤니티 현황</h3>
                   <div className="grid grid-cols-2 gap-3">
                     <div className="text-center">
