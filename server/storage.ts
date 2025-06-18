@@ -5,6 +5,11 @@ import {
   animePostTags,
   reviews,
   favorites,
+  forums,
+  forumPosts,
+  forumReplies,
+  messages,
+  forumMemberships,
   type User,
   type UpsertUser,
   type AnimePost,
@@ -13,8 +18,22 @@ import {
   type InsertTag,
   type Review,
   type InsertReview,
+  type Forum,
+  type InsertForum,
+  type ForumPost,
+  type InsertForumPost,
+  type ForumReply,
+  type InsertForumReply,
+  type Message,
+  type InsertMessage,
+  type ForumMembership,
   type AnimePostWithDetails,
   type ReviewWithAuthor,
+  type ForumWithDetails,
+  type ForumPostWithDetails,
+  type ForumReplyWithDetails,
+  type MessageWithUsers,
+  type Conversation,
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, desc, asc, and, sql, ilike, inArray } from "drizzle-orm";
@@ -52,6 +71,38 @@ export interface IStorage {
   
   // Admin operations
   getPendingAnimePosts(): Promise<AnimePostWithDetails[]>;
+  
+  // Forum operations
+  getAllForums(userId?: string): Promise<ForumWithDetails[]>;
+  getForum(id: number, userId?: string): Promise<ForumWithDetails | undefined>;
+  createForum(forum: InsertForum, creatorId: string): Promise<Forum>;
+  updateForum(id: number, forum: Partial<InsertForum>): Promise<Forum | undefined>;
+  deleteForum(id: number): Promise<boolean>;
+  joinForum(forumId: number, userId: string, role?: string): Promise<boolean>;
+  leaveForum(forumId: number, userId: string): Promise<boolean>;
+  
+  // Forum post operations
+  getForumPosts(forumId: number, limit?: number, offset?: number): Promise<ForumPostWithDetails[]>;
+  getForumPost(id: number): Promise<ForumPostWithDetails | undefined>;
+  createForumPost(post: InsertForumPost, authorId: string): Promise<ForumPost>;
+  updateForumPost(id: number, post: Partial<InsertForumPost>): Promise<ForumPost | undefined>;
+  deleteForumPost(id: number): Promise<boolean>;
+  pinForumPost(id: number): Promise<boolean>;
+  lockForumPost(id: number): Promise<boolean>;
+  incrementForumPostViews(id: number): Promise<void>;
+  
+  // Forum reply operations
+  getForumReplies(postId: number): Promise<ForumReplyWithDetails[]>;
+  createForumReply(reply: InsertForumReply, authorId: string): Promise<ForumReply>;
+  updateForumReply(id: number, reply: Partial<InsertForumReply>): Promise<ForumReply | undefined>;
+  deleteForumReply(id: number): Promise<boolean>;
+  
+  // Message operations
+  getUserConversations(userId: string): Promise<Conversation[]>;
+  getConversation(userId: string, otherUserId: string, limit?: number, offset?: number): Promise<MessageWithUsers[]>;
+  sendMessage(message: InsertMessage, senderId: string): Promise<Message>;
+  markMessagesAsRead(senderId: string, receiverId: string): Promise<void>;
+  getUnreadMessageCount(userId: string): Promise<number>;
 }
 
 export class DatabaseStorage implements IStorage {
