@@ -471,37 +471,7 @@ export default function Landing() {
               </CardContent>
             </Card>
 
-            {/* 커뮤니티 현황 */}
-            <Card className="mb-4 rounded-2xl overflow-hidden">
-              <CardContent className="p-0">
-                <div className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-white p-4">
-                  <div className="flex justify-between items-center mb-3">
-                    <h3 className="font-semibold">커뮤니티 현황</h3>
-                    <button className="w-6 h-6 bg-white/20 hover:bg-white/30 text-white rounded-full flex items-center justify-center transition-colors">
-                      <Plus size={12} />
-                    </button>
-                  </div>
-                  <div className="grid grid-cols-2 gap-3">
-                    <div className="text-center">
-                      <div className="text-xl font-bold">12,458</div>
-                      <div className="text-xs opacity-90">총 회원</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-xl font-bold">1,892</div>
-                      <div className="text-xs opacity-90">오늘 활동</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-xl font-bold">45,612</div>
-                      <div className="text-xs opacity-90">총 게시글</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-xl font-bold">156</div>
-                      <div className="text-xs opacity-90">신규 리뷰</div>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+
 
             {/* 다가오는 행사 */}
             <Card className="rounded-2xl">
@@ -533,6 +503,38 @@ export default function Landing() {
             </Card>
           </div>
         </div>
+
+        {/* 커뮤니티 현황 - 전체 폭 */}
+        <Card className="mt-8 rounded-2xl overflow-hidden">
+          <CardContent className="p-0">
+            <div className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-white p-6">
+              <div className="flex justify-between items-center mb-6">
+                <h3 className="text-xl font-bold">커뮤니티 현황</h3>
+                <button className="w-8 h-8 bg-white/20 hover:bg-white/30 text-white rounded-full flex items-center justify-center transition-colors">
+                  <Plus size={16} />
+                </button>
+              </div>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div className="text-center">
+                  <div className="text-3xl font-bold">12,458</div>
+                  <div className="text-sm opacity-90">총 회원</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold">1,892</div>
+                  <div className="text-sm opacity-90">오늘 활동</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold">45,612</div>
+                  <div className="text-sm opacity-90">총 게시글</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold">156</div>
+                  <div className="text-sm opacity-90">신규 리뷰</div>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
       </main>
 
       {/* Footer */}
