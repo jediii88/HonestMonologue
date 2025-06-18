@@ -286,98 +286,30 @@ export default function Landing() {
 
       {/* Hero Banner - 멋진 애니메이션 효과 */}
       <div className="bg-gradient-to-r from-yellow-400 via-orange-500 to-yellow-500 text-white py-16 relative overflow-hidden">
-        {/* 애니메이션 배경 그라데이션 */}
-        <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 via-orange-500 to-yellow-500 animate-pulse"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/10 to-transparent animate-pulse" style={{animationDelay: '1.5s'}}></div>
+        {/* 정적 배경 오버레이 */}
+        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/5 to-transparent"></div>
         
-        {/* 파티클 효과 */}
-        <div className="absolute inset-0 opacity-20">
-          {[...Array(12)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-1.5 h-1.5 bg-white rounded-full animate-bounce"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 3}s`,
-                animationDuration: `${2 + Math.random() * 2}s`
-              }}
-            />
-          ))}
-        </div>
-        
-        {/* 떠다니는 도형들 */}
-        <div className="absolute inset-0 opacity-15">
-          <div className="absolute w-32 h-32 rounded-full border-2 border-white -top-16 -left-16 animate-spin" style={{animationDuration: '20s'}}></div>
-          <div className="absolute w-24 h-24 rounded-full border border-white top-1/2 -right-12 animate-pulse" style={{animationDelay: '1s'}}></div>
-          <div className="absolute w-16 h-16 rounded-full border border-white bottom-10 left-1/4 animate-bounce" style={{animationDelay: '2s'}}></div>
-          <div className="absolute w-20 h-20 border border-white transform rotate-45 top-20 right-1/4 animate-pulse" style={{animationDelay: '0.5s'}}></div>
-          <div className="absolute w-12 h-12 rounded-full border-2 border-white bottom-1/4 right-10 animate-spin" style={{animationDuration: '15s', animationDelay: '1.5s'}}></div>
-          <div className="absolute w-8 h-8 border border-white top-1/3 left-1/3 animate-ping" style={{animationDelay: '3s'}}></div>
-        </div>
-        
-        {/* 움직이는 웨이브 */}
-        <div className="absolute bottom-0 left-0 w-full overflow-hidden">
+        {/* 정적 웨이브 */}
+        <div className="absolute bottom-0 left-0 w-full">
           <svg className="w-full h-16" viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <defs>
-              <linearGradient id="wave-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="rgba(255,255,255,0.1)" />
-                <stop offset="50%" stopColor="rgba(255,255,255,0.3)" />
-                <stop offset="100%" stopColor="rgba(255,255,255,0.1)" />
-              </linearGradient>
-            </defs>
-            <path d="M0,60 Q300,120 600,60 T1200,60 L1200,120 L0,120 Z" fill="url(#wave-gradient)" className="animate-pulse">
-              <animateTransform
-                attributeName="transform"
-                type="translate"
-                values="-200 0;200 0;-200 0"
-                dur="8s"
-                repeatCount="indefinite"
-              />
-            </path>
+            <path d="M0,60 Q300,100 600,60 T1200,60 L1200,120 L0,120 Z" fill="rgba(255,255,255,0.2)" />
           </svg>
         </div>
         
         <div className="max-w-6xl mx-auto px-4 text-center relative z-10">
-          <h1 className="text-4xl font-bold mb-3 transform transition-all duration-1000 hover:scale-105 animate-fade-in-up">
+          <h1 className="text-4xl font-bold mb-3">
             순수한 열정이 모이는 곳
           </h1>
           <div className="mb-6 h-8 flex items-center justify-center">
-            <span className={`text-2xl font-medium text-white/90 italic relative transform transition-all duration-800 hover:scale-110 ${
-              isAnimating ? getAnimationClass() : ''
-            }`} style={{
-              transformStyle: 'preserve-3d',
-              animation: isAnimating ? getAnimationStyle() : 'none'
-            }}>
+            <span className="text-2xl font-medium text-white/90 italic">
               {displayText}
             </span>
           </div>
           
-          {/* 애니메이션 스타일 선택 */}
-          <div className="mb-4 flex justify-center gap-2">
-            {[
-              { id: 1, name: '페이드' },
-              { id: 2, name: '플립' },
-              { id: 3, name: '부드러운' },
-              { id: 4, name: '타이핑' },
-              { id: 5, name: '모프' }
-            ].map((style) => (
-              <button
-                key={style.id}
-                onClick={() => setAnimationStyle(style.id)}
-                className={`px-3 py-1 text-xs rounded-full transition-all duration-300 transform hover:scale-105 ${
-                  animationStyle === style.id
-                    ? 'bg-yellow-400 text-black font-medium' 
-                    : 'bg-white/20 text-white/80 hover:bg-white/30'
-                }`}
-              >
-                {style.name}
-              </button>
-            ))}
-          </div>
+
           
           {/* Search Bar in Hero */}
-          <div className="max-w-lg mx-auto mb-6 transform transition-all duration-700 hover:scale-105">
+          <div className="max-w-lg mx-auto mb-6">
             <div className="relative">
               <Input 
                 type="text" 
