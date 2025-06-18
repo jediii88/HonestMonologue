@@ -211,14 +211,15 @@ export default function Landing() {
           {/* Main Content - 2/3 width */}
           <div className="lg:col-span-2">
 
-            {/* 2열 레이아웃 - 인기 게시글과 실시간 트렌드 */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-              {/* 인기 게시글 */}
-              <section>
-                <div className="flex justify-between items-center mb-3">
-                  <h2 className="text-lg font-bold text-gray-800 border-l-4 border-yellow-500 pl-3">인기 게시글</h2>
-                  <a href="#" className="text-yellow-600 hover:text-yellow-700 text-sm">더보기</a>
-                </div>
+            {/* 인기 게시글 - 2개 게시글 */}
+            <section className="mb-6">
+              <div className="flex justify-between items-center mb-3">
+                <h2 className="text-lg font-bold text-gray-800 border-l-4 border-yellow-500 pl-3">인기 게시글</h2>
+                <a href="#" className="text-yellow-600 hover:text-yellow-700 text-sm">더보기</a>
+              </div>
+              
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                {/* 첫 번째 게시글 */}
                 <Card className="p-4 card-hover cursor-pointer bg-black">
                   <div className="aspect-video bg-black rounded flex items-center justify-center mb-3">
                     <span className="text-white text-sm">2025년 겨울 신작 애니메이션 완전 정리</span>
@@ -242,21 +243,16 @@ export default function Landing() {
                     </div>
                   </div>
                 </Card>
-              </section>
 
-              {/* 실시간 트렌드 */}
-              <section>
-                <div className="flex justify-between items-center mb-3">
-                  <h2 className="text-lg font-bold text-gray-800 border-l-4 border-yellow-500 pl-3">실시간 트렌드</h2>
-                </div>
-                <Card className="p-4 card-hover cursor-pointer">
-                  <div className="aspect-video bg-gray-200 rounded flex items-center justify-center mb-3">
-                    <span className="text-gray-600 text-sm">VR 헤드셋</span>
+                {/* 두 번째 게시글 */}
+                <Card className="p-4 card-hover cursor-pointer bg-black">
+                  <div className="aspect-video bg-black rounded flex items-center justify-center mb-3">
+                    <span className="text-white text-sm">최신 건담 프라모델 리뷰</span>
                   </div>
-                  <div>
-                    <span className="bg-purple-100 text-purple-800 text-xs px-2 py-0.5 rounded font-medium">VRCHAT</span>
-                    <h3 className="font-semibold text-gray-800 text-sm mt-2 mb-1">신규 월드 '아니메 카페' 체험기</h3>
-                    <p className="text-xs text-gray-600 mb-2">애니메이션 테마의 새로운 소셜 월드를 미리 체험해볼 수 있습니다...</p>
+                  <div className="bg-white p-3 rounded">
+                    <span className="bg-red-100 text-red-800 text-xs px-2 py-0.5 rounded font-medium">건담</span>
+                    <h3 className="font-semibold text-gray-800 text-sm mt-2 mb-1">RG 뉴건담 조립 완전 가이드</h3>
+                    <p className="text-xs text-gray-600 mb-2">초보자도 쉽게 따라할 수 있는 상세한 조립 과정을 소개합니다...</p>
                     <div className="flex justify-between items-center text-xs text-gray-500">
                       <span>5시간 전</span>
                       <div className="flex gap-2">
@@ -272,8 +268,8 @@ export default function Landing() {
                     </div>
                   </div>
                 </Card>
-              </section>
-            </div>
+              </div>
+            </section>
 
             {/* 최신 리뷰 */}
             <section className="mb-6">
