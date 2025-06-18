@@ -244,12 +244,12 @@ export default function Landing() {
               >
                 로그인
               </button>
-              <Button 
-                className="bg-gray-800 text-white hover:bg-gray-700 rounded-full px-4 py-2 text-sm"
+              <button 
+                className="signup-btn-final"
                 onClick={handleLogin}
               >
                 신규 등록
-              </Button>
+              </button>
             </div>
           </div>
 

@@ -276,6 +276,36 @@ button.login-btn-final:focus {
   outline: none !important;
 }
 
+/* 신규등록 버튼 스타일 - 로그인 버튼과 동일한 크기 */
+button.signup-btn-final {
+  all: unset !important;
+  display: inline-block !important;
+  padding: 8px 20px !important;
+  border-radius: 20px !important;
+  cursor: pointer !important;
+  font-weight: 500 !important;
+  background-color: #374151 !important;
+  color: white !important;
+  border: 2px solid transparent !important;
+  transition: all 0.2s ease !important;
+  box-sizing: border-box !important;
+}
+
+button.signup-btn-final:hover {
+  background-color: #1f2937 !important;
+  color: white !important;
+  border: 2px solid #374151 !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15) !important;
+}
+
+button.signup-btn-final:focus {
+  background-color: #1f2937 !important;
+  color: white !important;
+  border: 2px solid #374151 !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15) !important;
+  outline: none !important;
+}
+
 @keyframes bounceFloat {
   0%, 100% { transform: translateY(0px) scale(1); }
   25% { transform: translateY(-12px) scale(1.05); }
