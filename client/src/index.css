@@ -387,3 +387,10 @@ nav a:hover svg {
     transform: scale(1.5);
   }
 }
+
+/* 로그인 버튼 hover 스타일 강제 적용 */
+.login-btn-custom:hover {
+  background-color: rgb(245, 158, 11) !important;
+  color: white !important;
+  border-color: rgb(245, 158, 11) !important;
+}

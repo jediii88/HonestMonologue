@@ -106,7 +106,7 @@ export default function Header() {
               <>
                 <Button 
                   variant="ghost" 
-                  className="bg-gray-100 text-gray-700 hover:bg-yellow-400 hover:text-white hover:border-yellow-400 rounded-full px-5 transition-all duration-300"
+                  className="login-btn-custom bg-gray-100 text-gray-700 rounded-full px-5 transition-all duration-300"
                   onClick={handleLogin}
                 >
                   로그인
