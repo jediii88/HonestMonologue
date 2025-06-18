@@ -196,12 +196,12 @@ export default function Landing() {
                 {anime.isNew && (
                   <div className="absolute top-1 right-1 bg-red-500 text-white text-xs px-2 py-1 rounded-full z-10 font-medium">NEW</div>
                 )}
-                <div className="aspect-[3/4] rounded-lg overflow-hidden mb-2 group-hover:shadow-lg transition-all duration-200 group-hover:scale-105">
-                  <div className="w-full h-full bg-gray-300 flex items-center justify-center">
-                    <span className="text-gray-700 text-xs font-medium text-center px-1">{anime.title}</span>
+                <div className="aspect-[3/4] rounded-lg overflow-hidden mb-2 group-hover:shadow-lg transition-all duration-200 group-hover:scale-105 relative">
+                  <div className="w-full h-full bg-gray-300"></div>
+                  <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-70 text-white p-2">
+                    <h3 className="text-xs font-medium text-center truncate">{anime.title}</h3>
                   </div>
                 </div>
-                <h3 className="text-xs text-gray-800 font-medium text-center truncate">{anime.title}</h3>
               </div>
             ))}
           </div>
