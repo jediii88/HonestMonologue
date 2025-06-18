@@ -196,7 +196,7 @@ export default function Landing() {
                 {anime.isNew && (
                   <div className="absolute top-1 right-1 bg-red-500 text-white text-xs px-2 py-1 rounded-full z-10 font-medium">NEW</div>
                 )}
-                <div className="aspect-[3/4] rounded-lg overflow-hidden mb-2 group-hover:shadow-lg transition-all duration-200 group-hover:scale-105 relative">
+                <div className="aspect-[3/4] rounded-2xl overflow-hidden mb-2 group-hover:shadow-lg transition-all duration-200 group-hover:scale-105 relative">
                   <div className="w-full h-full bg-gray-300"></div>
                   <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-70 text-white p-2">
                     <h3 className="text-xs font-medium text-center truncate">{anime.title}</h3>
@@ -220,12 +220,12 @@ export default function Landing() {
               
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 {/* 첫 번째 게시글 */}
-                <Card className="p-4 card-hover cursor-pointer bg-black">
-                  <div className="aspect-video bg-black rounded flex items-center justify-center mb-3">
+                <Card className="p-4 card-hover cursor-pointer bg-black rounded-2xl">
+                  <div className="aspect-video bg-black rounded-xl flex items-center justify-center mb-3">
                     <span className="text-white text-sm">2025년 겨울 신작 애니메이션 완전 정리</span>
                   </div>
-                  <div className="bg-white p-3 rounded">
-                    <span className="bg-yellow-100 text-yellow-800 text-xs px-2 py-0.5 rounded font-medium">애니메이션</span>
+                  <div className="bg-white p-3 rounded-xl">
+                    <span className="bg-yellow-100 text-yellow-800 text-xs px-2 py-0.5 rounded-full font-medium">애니메이션</span>
                     <h3 className="font-semibold text-gray-800 text-sm mt-2 mb-1">2025년 겨울 신작 애니메이션 완전 정리</h3>
                     <p className="text-xs text-gray-600 mb-2">이번 시즌 주목해야 할 신작들을 가격대별로 정리해봤습니다...</p>
                     <div className="flex justify-between items-center text-xs text-gray-500">
@@ -245,12 +245,12 @@ export default function Landing() {
                 </Card>
 
                 {/* 두 번째 게시글 */}
-                <Card className="p-4 card-hover cursor-pointer bg-black">
-                  <div className="aspect-video bg-black rounded flex items-center justify-center mb-3">
+                <Card className="p-4 card-hover cursor-pointer bg-black rounded-2xl">
+                  <div className="aspect-video bg-black rounded-xl flex items-center justify-center mb-3">
                     <span className="text-white text-sm">최신 건담 프라모델 리뷰</span>
                   </div>
-                  <div className="bg-white p-3 rounded">
-                    <span className="bg-red-100 text-red-800 text-xs px-2 py-0.5 rounded font-medium">건담</span>
+                  <div className="bg-white p-3 rounded-xl">
+                    <span className="bg-red-100 text-red-800 text-xs px-2 py-0.5 rounded-full font-medium">건담</span>
                     <h3 className="font-semibold text-gray-800 text-sm mt-2 mb-1">RG 뉴건담 조립 완전 가이드</h3>
                     <p className="text-xs text-gray-600 mb-2">초보자도 쉽게 따라할 수 있는 상세한 조립 과정을 소개합니다...</p>
                     <div className="flex justify-between items-center text-xs text-gray-500">
@@ -279,14 +279,14 @@ export default function Landing() {
               </div>
 
               <div className="space-y-3">
-                <Card className="p-4 card-hover cursor-pointer">
+                <Card className="p-4 card-hover cursor-pointer rounded-2xl">
                   <div className="flex gap-4">
-                    <div className="w-16 h-20 bg-gradient-to-br from-blue-400 to-blue-600 rounded flex-shrink-0 flex items-center justify-center">
+                    <div className="w-16 h-20 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex-shrink-0 flex items-center justify-center">
                       <span className="text-white text-xs font-medium text-center">하이큐</span>
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
-                        <span className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded font-medium">리뷰</span>
+                        <span className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full font-medium">리뷰</span>
                         <div className="flex items-center">
                           {[...Array(5)].map((_, i) => (
                             <Star key={i} size={12} className={`${i < 4 ? 'text-yellow-400 fill-current' : 'text-gray-300'}`} />
@@ -306,14 +306,14 @@ export default function Landing() {
                   </div>
                 </Card>
 
-                <Card className="p-4 card-hover cursor-pointer">
+                <Card className="p-4 card-hover cursor-pointer rounded-2xl">
                   <div className="flex gap-4">
-                    <div className="w-16 h-20 bg-gradient-to-br from-red-400 to-red-600 rounded flex-shrink-0 flex items-center justify-center">
+                    <div className="w-16 h-20 bg-gradient-to-br from-red-400 to-red-600 rounded-xl flex-shrink-0 flex items-center justify-center">
                       <span className="text-white text-xs font-medium text-center">건담</span>
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
-                        <span className="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded font-medium">건담</span>
+                        <span className="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full font-medium">건담</span>
                         <div className="flex items-center">
                           {[...Array(5)].map((_, i) => (
                             <Star key={i} size={12} className={`${i < 4 ? 'text-yellow-400 fill-current' : 'text-gray-300'}`} />
