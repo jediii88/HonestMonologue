@@ -105,20 +105,18 @@ export default function Header() {
               </div>
             ) : (
               <>
-                <button 
-                  className="login-button-custom border border-transparent rounded-full px-5 py-2 transition-all duration-300 font-medium"
+                <div 
+                  className="inline-block rounded-full px-5 py-2 cursor-pointer font-medium transition-all duration-300"
                   onMouseEnter={() => setIsLoginHovered(true)}
                   onMouseLeave={() => setIsLoginHovered(false)}
                   onClick={handleLogin}
                   style={{
                     backgroundColor: isLoginHovered ? '#facc15' : '#f3f4f6',
-                    color: isLoginHovered ? 'white' : '#374151',
-                    border: 'none',
-                    outline: 'none'
+                    color: isLoginHovered ? 'white' : '#374151'
                   }}
                 >
                   로그인
-                </button>
+                </div>
                 <Button 
                   className="bg-gray-800 text-white hover:bg-gray-700 rounded-full px-5"
                   onClick={handleLogin}
