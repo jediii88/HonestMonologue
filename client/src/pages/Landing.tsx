@@ -100,7 +100,7 @@ export default function Landing() {
             </a>
             <a href="#" className="px-4 py-3 text-gray-800 hover:text-gray-900 font-medium flex items-center gap-2 text-sm border-b-2 border-transparent hover:border-pink-500 transition-colors">
               <Plane size={16} className="text-pink-600" />
-              일본여행
+              성지순례
             </a>
             <a href="#" className="px-4 py-3 text-gray-800 hover:text-gray-900 font-medium flex items-center gap-2 text-sm border-b-2 border-transparent hover:border-green-500 transition-colors">
               <Info size={16} className="text-green-600" />
@@ -121,7 +121,7 @@ export default function Landing() {
         
         <div className="max-w-6xl mx-auto px-4 text-center relative z-10">
           <h1 className="text-4xl font-bold mb-4">서브컬처의 진정성을 찾아서</h1>
-          <p className="text-xl mb-8 opacity-90">애니메이션, 건담, VRChat, 일본여행까지 - 모든 덕후의 성지</p>
+          <p className="text-xl mb-8 opacity-90">애니메이션, 건담, VRChat까지 - 모든 덕후의 성지</p>
           
           {/* Search Bar in Hero */}
           <div className="max-w-lg mx-auto mb-6">
