@@ -19,6 +19,7 @@ import {
   Bot
 } from "lucide-react";
 import { useState } from "react";
+import HonmonoLogo from "@assets/Honmono_Logo_1750227308214.png";
 
 export default function Landing() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -47,9 +48,9 @@ export default function Landing() {
             {/* Logo */}
             <div className="flex items-center">
               <img 
-                src="/attached_assets/Honmono_Logo_1750227308214.png" 
+                src={HonmonoLogo} 
                 alt="HONMONO Logo" 
-                className="w-8 h-8 mr-3 invert"
+                className="w-8 h-8 mr-3"
               />
               <span className="text-lg font-bold text-gray-800">HONMONO</span>
             </div>
@@ -445,9 +446,9 @@ export default function Landing() {
             <div>
               <div className="flex items-center mb-3">
                 <img 
-                  src="/attached_assets/Honmono_Logo_1750227308214.png" 
+                  src={HonmonoLogo} 
                   alt="HONMONO Logo" 
-                  className="w-6 h-6 mr-2 invert"
+                  className="w-6 h-6 mr-2"
                 />
                 <span className="font-bold text-gray-800">HONMONO</span>
               </div>
