@@ -106,37 +106,98 @@ export default function Landing() {
     };
 
     const animateStyle3 = () => {
-      // 랜덤 글자 변환 스타일
+      // 글리치 변환 스타일
       setIsAnimating(true);
-      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-      let iterations = 0;
+      setDisplayText(startText);
       
-      const randomize = setInterval(() => {
-        setDisplayText(prev => 
-          endText.split('').map((char, index) => {
-            if (index < iterations) {
-              return endText[index];
-            }
-            return chars[Math.floor(Math.random() * chars.length)];
-          }).join('')
-        );
+      // 글리치 효과 시작
+      setTimeout(() => {
+        let glitchCount = 0;
+        const glitchChars = '!@#$%^&*()_+-=[]{}|;:,.<>?';
         
-        if (iterations >= endText.length) {
-          clearInterval(randomize);
-          setDisplayText(endText);
-          setTimeout(() => {
-            setIsAnimating(false);
-            setTimeout(() => {
-              animateStyle3();
-            }, 3000);
-          }, 2000);
-        }
-        
-        iterations += 1/3;
-      }, 100);
+        const glitchInterval = setInterval(() => {
+          if (glitchCount < 8) {
+            // 랜덤한 글리치 텍스트 생성
+            const glitchText = startText.split('').map(() => 
+              glitchChars[Math.floor(Math.random() * glitchChars.length)]
+            ).join('');
+            setDisplayText(glitchText);
+            glitchCount++;
+          } else {
+            clearInterval(glitchInterval);
+            
+            // 최종 텍스트로 변환
+            let revealIndex = 0;
+            const revealInterval = setInterval(() => {
+              if (revealIndex <= endText.length) {
+                setDisplayText(endText.substring(0, revealIndex));
+                revealIndex++;
+              } else {
+                clearInterval(revealInterval);
+                setTimeout(() => {
+                  setIsAnimating(false);
+                  setTimeout(() => {
+                    animateStyle3();
+                  }, 3000);
+                }, 2000);
+              }
+            }, 120);
+          }
+        }, 150);
+      }, 500);
     };
 
-    const animationFunctions = [animateStyle1, animateStyle2, animateStyle3];
+    const animateStyle4 = () => {
+      // 타이핑 머신 스타일
+      setIsAnimating(true);
+      setDisplayText('');
+      
+      // 먼저 지우기
+      let deleteIndex = startText.length;
+      const deleteInterval = setInterval(() => {
+        if (deleteIndex > 0) {
+          setDisplayText(startText.substring(0, deleteIndex));
+          deleteIndex--;
+        } else {
+          clearInterval(deleteInterval);
+          
+          // 새로운 텍스트 타이핑
+          let typeIndex = 0;
+          const typeInterval = setInterval(() => {
+            if (typeIndex <= endText.length) {
+              setDisplayText(endText.substring(0, typeIndex));
+              typeIndex++;
+            } else {
+              clearInterval(typeInterval);
+              setTimeout(() => {
+                setIsAnimating(false);
+                setTimeout(() => {
+                  animateStyle4();
+                }, 3000);
+              }, 2000);
+            }
+          }, 100);
+        }
+      }, 80);
+    };
+
+    const animateStyle5 = () => {
+      // 3D 모프 변환 스타일
+      setIsAnimating(true);
+      setDisplayText(startText);
+      
+      setTimeout(() => {
+        setDisplayText(endText);
+        setTimeout(() => {
+          setIsAnimating(false);
+          setTimeout(() => {
+            animateStyle5();
+          }, 3000);
+        }, 2000);
+      }, 1000);
+    };
+
+    const animationFunctions = [animateStyle1, animateStyle2, animateStyle3, animateStyle4, animateStyle5];
     const timer = setTimeout(() => {
       animationFunctions[animationStyle - 1]();
     }, 2000);
@@ -277,7 +338,12 @@ export default function Landing() {
             순수한 열정이 모이는 곳
           </h1>
           <div className="mb-6 h-8 flex items-center justify-center">
-            <span className="text-2xl font-medium text-white/90 italic relative transform transition-all duration-500 hover:scale-110">
+            <span className={`text-2xl font-medium text-white/90 italic relative transform transition-all duration-800 hover:scale-110 ${
+              isAnimating ? getAnimationClass() : ''
+            }`} style={{
+              transformStyle: 'preserve-3d',
+              animation: isAnimating ? getAnimationStyle() : 'none'
+            }}>
               {displayText}
               {isAnimating && <span className="animate-pulse ml-1 text-yellow-200">|</span>}
             </span>
