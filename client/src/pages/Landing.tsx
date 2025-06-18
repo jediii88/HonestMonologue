@@ -209,11 +209,11 @@ export default function Landing() {
                   )}
                   
                   {/* 그라데이션 오버레이 - 정중앙에 투명 영역 */}
-                  <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-25% via-transparent via-75% to-black/70"></div>
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-15% via-transparent via-85% to-black/70"></div>
                   
                   {/* 요일 태그 */}
                   <div className="absolute top-2 left-2 z-10">
-                    <span className="text-white text-xs font-bold px-2 py-1 rounded-full bg-yellow-500">{anime.day}</span>
+                    <span className="text-yellow-500 text-xs font-bold">{anime.day}</span>
                   </div>
                   
                   {/* NEW 태그 */}
