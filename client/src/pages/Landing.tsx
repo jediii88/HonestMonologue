@@ -12,7 +12,10 @@ import {
   Users,
   Gamepad2,
   Plane,
-  Calendar
+  Calendar,
+  Tv,
+  Zap,
+  Info
 } from "lucide-react";
 import { useState } from "react";
 
@@ -85,30 +88,30 @@ export default function Landing() {
             </div>
           </div>
 
-          {/* Navigation - 카테고리별 컬러 적용 */}
+          {/* Navigation - 스크린샷과 동일한 아이콘과 컬러 */}
           <nav className="flex border-t border-gray-200">
-            <a href="/" className="px-3 py-3 text-gray-600 hover:text-yellow-600 font-medium flex items-center gap-2 text-sm border-b-2 border-transparent hover:border-yellow-500 transition-colors">
-              <Home size={14} />
+            <a href="/" className="px-4 py-3 text-orange-500 hover:text-orange-600 font-medium flex items-center gap-2 text-sm border-b-2 border-transparent hover:border-orange-500 transition-colors">
+              <Home size={16} />
               홈
             </a>
-            <a href="#" className="px-3 py-3 text-blue-600 font-medium flex items-center gap-2 text-sm border-b-2 border-blue-600">
-              <Play size={14} />
+            <a href="#" className="px-4 py-3 text-blue-600 font-medium flex items-center gap-2 text-sm border-b-2 border-blue-600">
+              <Tv size={16} />
               애니메이션
             </a>
-            <a href="#" className="px-3 py-3 text-red-600 hover:text-red-700 font-medium flex items-center gap-2 text-sm border-b-2 border-transparent hover:border-red-500 transition-colors">
-              <Users size={14} />
+            <a href="#" className="px-4 py-3 text-red-600 hover:text-red-700 font-medium flex items-center gap-2 text-sm border-b-2 border-transparent hover:border-red-500 transition-colors">
+              <Zap size={16} />
               건담
             </a>
-            <a href="#" className="px-3 py-3 text-purple-600 hover:text-purple-700 font-medium flex items-center gap-2 text-sm border-b-2 border-transparent hover:border-purple-500 transition-colors">
-              <Gamepad2 size={14} />
+            <a href="#" className="px-4 py-3 text-purple-600 hover:text-purple-700 font-medium flex items-center gap-2 text-sm border-b-2 border-transparent hover:border-purple-500 transition-colors">
+              <Gamepad2 size={16} />
               VRChat
             </a>
-            <a href="#" className="px-3 py-3 text-pink-600 hover:text-pink-700 font-medium flex items-center gap-2 text-sm border-b-2 border-transparent hover:border-pink-500 transition-colors">
-              <Plane size={14} />
+            <a href="#" className="px-4 py-3 text-pink-600 hover:text-pink-700 font-medium flex items-center gap-2 text-sm border-b-2 border-transparent hover:border-pink-500 transition-colors">
+              <Plane size={16} />
               일본여행
             </a>
-            <a href="#" className="px-3 py-3 text-green-600 hover:text-green-700 font-medium flex items-center gap-2 text-sm border-b-2 border-transparent hover:border-green-500 transition-colors">
-              <Calendar size={14} />
+            <a href="#" className="px-4 py-3 text-green-600 hover:text-green-700 font-medium flex items-center gap-2 text-sm border-b-2 border-transparent hover:border-green-500 transition-colors">
+              <Info size={16} />
               행사정보
             </a>
           </nav>
@@ -196,7 +199,7 @@ export default function Landing() {
               </div>
 
               <div className="space-y-3">
-                <Card className="p-3 hover:shadow-md transition-shadow cursor-pointer">
+                <Card className="p-3 card-hover cursor-pointer">
                   <div className="flex gap-3">
                     <div className="w-12 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded flex-shrink-0 flex items-center justify-center">
                       <span className="text-white text-xs font-medium text-center">하이큐</span>
@@ -231,14 +234,14 @@ export default function Landing() {
                   </div>
                 </Card>
 
-                <Card className="p-3 hover:shadow-md transition-shadow cursor-pointer">
+                <Card className="p-3 card-hover cursor-pointer">
                   <div className="flex gap-3">
                     <div className="w-12 h-16 bg-gradient-to-br from-red-400 to-red-600 rounded flex-shrink-0 flex items-center justify-center">
                       <span className="text-white text-xs font-medium text-center">건담</span>
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-1">
-                        <span className="bg-yellow-100 text-yellow-800 text-xs px-2 py-0.5 rounded font-medium">건담</span>
+                        <span className="bg-red-100 text-red-800 text-xs px-2 py-0.5 rounded font-medium">건담</span>
                         <div className="flex items-center">
                           {[...Array(5)].map((_, i) => (
                             <Star key={i} size={10} className={`${i < 4 ? 'text-yellow-400 fill-current' : 'text-gray-300'}`} />

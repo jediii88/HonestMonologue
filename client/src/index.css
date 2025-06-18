@@ -57,6 +57,34 @@ body {
   overflow: hidden;
 }
 
+/* Navigation icons hover effects */
+nav a {
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+nav a:hover {
+  transform: translateY(-1px);
+}
+
+nav a svg {
+  transition: all 0.2s ease;
+}
+
+nav a:hover svg {
+  transform: scale(1.1);
+}
+
+/* Smooth hover animations for cards */
+.card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
 .dark {
   --background: hsl(222.2, 84%, 4.9%);
   --foreground: hsl(210, 40%, 98%);
