@@ -60,24 +60,7 @@ export default function Landing() {
               />
             </div>
 
-            {/* Search Bar - 스크린샷과 동일한 스타일 */}
-            <div className="flex-1 max-w-md mx-8">
-              <div className="relative">
-                <Input 
-                  type="text" 
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="작품명, 캐릭터명, 성우 등으로 검색" 
-                  className="w-full pl-4 pr-10 py-2 bg-gray-100 border-gray-200 rounded-full text-sm focus:bg-white focus:border-yellow-500"
-                />
-                <button 
-                  type="submit"
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 p-1"
-                >
-                  <Search size={16} className="text-gray-400" />
-                </button>
-              </div>
-            </div>
+
 
             {/* User Actions */}
             <div className="flex items-center gap-3">
@@ -139,6 +122,25 @@ export default function Landing() {
         <div className="max-w-6xl mx-auto px-4 text-center relative z-10">
           <h1 className="text-4xl font-bold mb-4">서브컬처의 진정성을 찾아서</h1>
           <p className="text-xl mb-8 opacity-90">애니메이션, 건담, VRChat, 일본여행까지 - 모든 덕후의 성지</p>
+          
+          {/* Search Bar in Hero */}
+          <div className="max-w-lg mx-auto mb-6">
+            <div className="relative">
+              <Input 
+                type="text" 
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="작품명, 캐릭터명, 성우 등으로 검색" 
+                className="w-full pl-4 pr-12 py-3 bg-white/90 backdrop-blur-sm border-white/50 rounded-full text-gray-700 placeholder-gray-500 focus:bg-white focus:border-white text-lg shadow-lg"
+              />
+              <button 
+                type="submit"
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 p-2 bg-yellow-500 hover:bg-yellow-600 rounded-full transition-colors"
+              >
+                <Search size={20} className="text-white" />
+              </button>
+            </div>
+          </div>
           
           {/* Popular Keywords */}
           <div className="flex flex-wrap justify-center gap-3">
