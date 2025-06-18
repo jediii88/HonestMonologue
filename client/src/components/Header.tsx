@@ -14,6 +14,7 @@ import { useState } from "react";
 export default function Header() {
   const { user, isAuthenticated } = useAuth();
   const [searchQuery, setSearchQuery] = useState("");
+  const [isLoginHovered, setIsLoginHovered] = useState(false);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -107,17 +108,11 @@ export default function Header() {
                 <button 
                   className="border border-transparent rounded-full px-5 py-2 transition-all duration-300 font-medium"
                   style={{
-                    backgroundColor: '#f3f4f6',
-                    color: '#374151'
+                    backgroundColor: isLoginHovered ? '#facc15' : '#f3f4f6',
+                    color: isLoginHovered ? 'white' : '#374151'
                   }}
-                  onMouseEnter={(e) => {
-                    e.target.style.backgroundColor = '#facc15';
-                    e.target.style.color = 'white';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.target.style.backgroundColor = '#f3f4f6';
-                    e.target.style.color = '#374151';
-                  }}
+                  onMouseEnter={() => setIsLoginHovered(true)}
+                  onMouseLeave={() => setIsLoginHovered(false)}
                   onClick={handleLogin}
                 >
                   로그인
