@@ -105,7 +105,19 @@ export default function Header() {
             ) : (
               <>
                 <button 
-                  className="bg-gray-100 text-gray-700 border border-transparent rounded-full px-5 py-2 transition-all duration-300 font-medium hover:!bg-yellow-400 hover:!text-white"
+                  className="border border-transparent rounded-full px-5 py-2 transition-all duration-300 font-medium"
+                  style={{
+                    backgroundColor: '#f3f4f6',
+                    color: '#374151'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.backgroundColor = '#facc15';
+                    e.target.style.color = 'white';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.backgroundColor = '#f3f4f6';
+                    e.target.style.color = '#374151';
+                  }}
                   onClick={handleLogin}
                 >
                   로그인
