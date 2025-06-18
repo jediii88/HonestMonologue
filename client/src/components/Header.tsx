@@ -105,7 +105,7 @@ export default function Header() {
             ) : (
               <>
                 <button 
-                  className="bg-gray-100 text-gray-700 hover:bg-yellow-400 hover:text-white border border-transparent rounded-full px-5 py-2 transition-all duration-300 font-medium"
+                  className="bg-gray-100 text-gray-700 border border-transparent rounded-full px-5 py-2 transition-all duration-300 font-medium hover:!bg-yellow-400 hover:!text-white"
                   onClick={handleLogin}
                 >
                   로그인

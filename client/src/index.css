@@ -238,6 +238,12 @@ nav a:hover svg {
   75% { transform: translateY(-8px) rotate(270deg); }
 }
 
+/* Force login button hover effect */
+button:hover.bg-gray-100 {
+  background-color: #facc15 !important;
+  color: white !important;
+}
+
 @keyframes bounceFloat {
   0%, 100% { transform: translateY(0px) scale(1); }
   25% { transform: translateY(-12px) scale(1.05); }
