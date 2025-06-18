@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -32,6 +34,27 @@
   --honmono-card: hsl(0, 0%, 100%);          /* 흰색 */
   --honmono-border: hsl(0, 0%, 93%);         /* 연한 그레이 */
   --honmono-hover: hsl(0, 0%, 95%);          /* 호버 배경 */
+}
+
+* {
+  font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+body {
+  font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
+  color: hsl(0, 0%, 33%);
+}
+
+.animation-delay-1000 {
+  animation-delay: 1s;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .dark {

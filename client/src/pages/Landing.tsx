@@ -172,24 +172,29 @@ export default function Landing() {
               </div>
 
               {/* Anime Grid */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
                 {[
-                  { title: "마법소녀 카피캣", isNew: true },
-                  { title: "빌런 입학하기", isNew: false },
-                  { title: "소드 아트 온라인", isNew: true },
-                  { title: "도쿄 리벤저스", isNew: false },
-                  { title: "블루 록 2기", isNew: false },
-                  { title: "하이큐!! 최종시즌", isNew: true },
+                  { title: "마법소녀 카피캣", isNew: true, image: "https://via.placeholder.com/160x220/3B82F6/FFFFFF?text=마법소녀" },
+                  { title: "빌런 입학하기", isNew: false, image: "https://via.placeholder.com/160x220/EF4444/FFFFFF?text=빌런" },
+                  { title: "소드 아트 온라인", isNew: true, image: "https://via.placeholder.com/160x220/10B981/FFFFFF?text=SAO" },
+                  { title: "도쿄 리벤저스", isNew: false, image: "https://via.placeholder.com/160x220/F59E0B/FFFFFF?text=도쿄" },
+                  { title: "블루 록 2기", isNew: false, image: "https://via.placeholder.com/160x220/8B5CF6/FFFFFF?text=블루락" },
+                  { title: "하이큐!! 최종시즌", isNew: true, image: "https://via.placeholder.com/160x220/EC4899/FFFFFF?text=하이큐" },
+                  { title: "체인소 맨", isNew: false, image: "https://via.placeholder.com/160x220/F97316/FFFFFF?text=체인소" },
+                  { title: "귀멸의 칼날", isNew: false, image: "https://via.placeholder.com/160x220/06B6D4/FFFFFF?text=귀멸" },
                 ].map((anime, index) => (
                   <div key={index} className="relative group cursor-pointer">
                     {anime.isNew && (
-                      <div className="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded z-10">신</div>
+                      <div className="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded z-10 font-medium">신</div>
                     )}
-                    <div className="aspect-[3/4] bg-gray-200 rounded-lg overflow-hidden mb-2 group-hover:shadow-lg transition-shadow">
-                      <div className="w-full h-full bg-gradient-to-br from-gray-300 to-gray-400 flex items-center justify-center">
-                        <span className="text-gray-600 text-xs text-center p-2">{anime.title}</span>
-                      </div>
+                    <div className="aspect-[3/4] bg-gray-200 rounded-lg overflow-hidden mb-2 group-hover:shadow-md transition-all duration-200 group-hover:scale-105">
+                      <img 
+                        src={anime.image} 
+                        alt={anime.title}
+                        className="w-full h-full object-cover"
+                      />
                     </div>
+                    <h3 className="text-xs font-medium text-gray-800 text-center line-clamp-2 px-1">{anime.title}</h3>
                   </div>
                 ))}
               </div>
@@ -203,23 +208,25 @@ export default function Landing() {
               </div>
 
               <div className="space-y-4">
-                <Card className="p-4 hover:shadow-md transition-shadow">
+                <Card className="p-4 hover:shadow-md transition-shadow cursor-pointer">
                   <div className="flex gap-4">
-                    <div className="w-20 h-28 bg-gray-200 rounded flex-shrink-0"></div>
+                    <div className="w-16 h-24 bg-gradient-to-br from-blue-400 to-blue-600 rounded flex-shrink-0 flex items-center justify-center">
+                      <span className="text-white text-xs font-medium text-center">하이큐</span>
+                    </div>
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
-                        <span className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">리뷰</span>
+                        <span className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded font-medium">리뷰</span>
                         <div className="flex items-center">
                           {[...Array(5)].map((_, i) => (
                             <Star key={i} size={12} className={`${i < 4 ? 'text-yellow-400 fill-current' : 'text-gray-300'}`} />
                           ))}
-                          <span className="text-sm text-gray-600 ml-1">4.5/5</span>
+                          <span className="text-sm text-gray-600 ml-1 font-medium">4.5/5</span>
                         </div>
                       </div>
                       <h3 className="font-semibold text-gray-800 mb-1">하이큐!! 최종시즌 1화 - 완벽한 마무리의 시작</h3>
-                      <p className="text-sm text-gray-600 mb-2">오랜 기다림 끝에 돌아온 하이큐의 마지막 여정. 첫 화부터 깊은 감동을 안겨준다...</p>
+                      <p className="text-sm text-gray-600 mb-2 line-clamp-2">오랜 기다림 끝에 돌아온 하이큐의 마지막 여정. 첫 화부터 깊은 감동을 안겨준다...</p>
                       <div className="flex justify-between items-center text-xs text-gray-500">
-                        <span>애니덕후</span>
+                        <span className="font-medium">애니덕후</span>
                         <div className="flex gap-3">
                           <span>24시간 전</span>
                           <span className="flex items-center gap-1">
@@ -236,23 +243,25 @@ export default function Landing() {
                   </div>
                 </Card>
 
-                <Card className="p-4 hover:shadow-md transition-shadow">
+                <Card className="p-4 hover:shadow-md transition-shadow cursor-pointer">
                   <div className="flex gap-4">
-                    <div className="w-20 h-28 bg-gray-200 rounded flex-shrink-0"></div>
+                    <div className="w-16 h-24 bg-gradient-to-br from-red-400 to-red-600 rounded flex-shrink-0 flex items-center justify-center">
+                      <span className="text-white text-xs font-medium text-center">건담</span>
+                    </div>
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
-                        <span className="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded">건담</span>
+                        <span className="bg-red-100 text-red-800 text-xs px-2 py-1 rounded font-medium">건담</span>
                         <div className="flex items-center">
                           {[...Array(5)].map((_, i) => (
                             <Star key={i} size={12} className={`${i < 4 ? 'text-yellow-400 fill-current' : 'text-gray-300'}`} />
                           ))}
-                          <span className="text-sm text-gray-600 ml-1">4.0/5</span>
+                          <span className="text-sm text-gray-600 ml-1 font-medium">4.0/5</span>
                         </div>
                       </div>
                       <h3 className="font-semibold text-gray-800 mb-1">RG 뉴건담 조립 후기 - 디테일의 완성</h3>
-                      <p className="text-sm text-gray-600 mb-2">RG 라인의 절정이라 불리는 뉴건담을 드디어 완성했습니다...</p>
+                      <p className="text-sm text-gray-600 mb-2 line-clamp-2">RG 라인의 절정이라 불리는 뉴건담을 드디어 완성했습니다...</p>
                       <div className="flex justify-between items-center text-xs text-gray-500">
-                        <span>건담스타</span>
+                        <span className="font-medium">건담스타</span>
                         <div className="flex gap-3">
                           <span>4시간 전</span>
                         </div>
