@@ -156,57 +156,60 @@ export default function Landing() {
       </div>
 
       <main className="max-w-6xl mx-auto px-4 py-6">
+        {/* 요일별 인기 애니메이션 - 전체 폭 */}
+        <section className="mb-6">
+          <div className="flex justify-between items-center mb-3">
+            <h2 className="text-lg font-bold text-gray-800 border-l-4 border-yellow-500 pl-3">요일별 인기 애니메이션</h2>
+            <a href="#" className="text-yellow-600 hover:text-yellow-700 text-sm">더보기</a>
+          </div>
+          
+          {/* Weekday Tabs */}
+          <div className="flex flex-wrap gap-2 mb-4">
+            {weekdays.map((day) => (
+              <button 
+                key={day}
+                className={`px-3 py-1 rounded-full text-sm transition-colors ${
+                  activeDay === day 
+                    ? 'bg-yellow-500 text-white font-medium' 
+                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                }`}
+                onClick={() => setActiveDay(day)}
+              >
+                {day}
+              </button>
+            ))}
+          </div>
+
+          {/* Anime Grid - 7개 애니메이션 */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-3 mb-6">
+            {[
+              { title: "마법소녀 카피캣", isNew: true, day: "월" },
+              { title: "빌런 입학하기", isNew: true, day: "화" },
+              { title: "소드 아트 온라인", isNew: false, day: "수" },
+              { title: "블루 록 2기", isNew: false, day: "목" },
+              { title: "하이큐!! 최종시즌", isNew: true, day: "금" },
+              { title: "체인소 맨 2부", isNew: false, day: "토" },
+              { title: "진격의 거인 완결편", isNew: true, day: "일" },
+            ].map((anime, index) => (
+              <div key={index} className="relative group cursor-pointer">
+                {anime.isNew && (
+                  <div className="absolute top-1 left-1 bg-red-500 text-white text-xs px-1 py-0.5 rounded z-10 font-medium">NEW</div>
+                )}
+                <div className="absolute top-1 right-1 bg-blue-500 text-white text-xs px-1 py-0.5 rounded z-10 font-medium">{anime.day}</div>
+                <div className="aspect-[3/4] rounded-lg overflow-hidden mb-2 group-hover:shadow-lg transition-all duration-200 group-hover:scale-105">
+                  <div className="w-full h-full bg-gray-300 flex items-center justify-center">
+                    <span className="text-gray-700 text-xs font-medium text-center px-1">{anime.title}</span>
+                  </div>
+                </div>
+                <h3 className="text-xs text-gray-800 font-medium text-center truncate">{anime.title}</h3>
+              </div>
+            ))}
+          </div>
+        </section>
+
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Main Content - 2/3 width */}
           <div className="lg:col-span-2">
-            {/* 요일별 인기 애니메이션 */}
-            <section className="mb-6">
-              <div className="flex justify-between items-center mb-3">
-                <h2 className="text-lg font-bold text-gray-800 border-l-4 border-yellow-500 pl-3">요일별 인기 애니메이션</h2>
-                <a href="#" className="text-yellow-600 hover:text-yellow-700 text-sm">더보기</a>
-              </div>
-              
-              {/* Weekday Tabs */}
-              <div className="flex flex-wrap gap-2 mb-4">
-                {weekdays.map((day) => (
-                  <button 
-                    key={day}
-                    className={`px-3 py-1 rounded-full text-sm transition-colors ${
-                      activeDay === day 
-                        ? 'bg-yellow-500 text-white font-medium' 
-                        : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                    }`}
-                    onClick={() => setActiveDay(day)}
-                  >
-                    {day}
-                  </button>
-                ))}
-              </div>
-
-              {/* Anime Grid - 반응형 그리드 */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
-                {[
-                  { title: "마법소녀 카피캣", isNew: true },
-                  { title: "빌런 입학하기", isNew: true },
-                  { title: "소드 아트 온라인", isNew: true },
-                  { title: "블루 록 2기", isNew: false },
-                  { title: "하이큐!! 최종시즌", isNew: true },
-                  { title: "체인소 맨 2부", isNew: false },
-                ].map((anime, index) => (
-                  <div key={index} className="relative group cursor-pointer">
-                    {anime.isNew && (
-                      <div className="absolute top-1 left-1 bg-red-500 text-white text-xs px-1 py-0.5 rounded z-10 font-medium">신</div>
-                    )}
-                    <div className="aspect-[3/4] rounded-lg overflow-hidden mb-2 group-hover:shadow-lg transition-all duration-200 group-hover:scale-105">
-                      <div className="w-full h-full bg-gray-300 flex items-center justify-center">
-                        <span className="text-gray-700 text-xs font-medium text-center px-1">{anime.title}</span>
-                      </div>
-                    </div>
-                    <h3 className="text-xs text-gray-800 font-medium text-center truncate">{anime.title}</h3>
-                  </div>
-                ))}
-              </div>
-            </section>
 
             {/* 2열 레이아웃 - 인기 게시글과 실시간 트렌드 */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
