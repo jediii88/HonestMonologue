@@ -106,13 +106,19 @@ export default function Header() {
             ) : (
               <>
                 <span 
-                  onMouseEnter={() => {
+                  onMouseEnter={(e) => {
                     console.log('마우스 진입!', isLoginHovered);
                     setIsLoginHovered(true);
+                    // 강제로 스타일 적용
+                    e.currentTarget.style.backgroundColor = 'rgb(252, 204, 21)';
+                    e.currentTarget.style.color = 'rgb(255, 255, 255)';
                   }}
-                  onMouseLeave={() => {
+                  onMouseLeave={(e) => {
                     console.log('마우스 벗어남!', isLoginHovered);
                     setIsLoginHovered(false);
+                    // 강제로 스타일 적용
+                    e.currentTarget.style.backgroundColor = 'rgb(243, 244, 246)';
+                    e.currentTarget.style.color = 'rgb(55, 65, 81)';
                   }}
                   onClick={handleLogin}
                   style={{
