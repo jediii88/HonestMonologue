@@ -415,7 +415,12 @@ export default function Landing() {
             {/* 실시간 트렌드 */}
             <Card className="mb-4 rounded-2xl">
               <CardContent className="p-4">
-                <h3 className="font-semibold text-gray-800 mb-3 border-l-4 border-yellow-500 pl-3">실시간 트렌드</h3>
+                <div className="flex justify-between items-center mb-3">
+                  <h3 className="font-semibold text-gray-800 border-l-4 border-yellow-500 pl-3">실시간 트렌드</h3>
+                  <button className="w-6 h-6 bg-yellow-500 hover:bg-yellow-600 text-white rounded-full flex items-center justify-center transition-colors">
+                    <Plus size={12} />
+                  </button>
+                </div>
                 <div className="space-y-2">
                   <div className="flex items-center gap-3 p-3 hover:bg-gray-50 rounded-xl transition-colors cursor-pointer">
                     <div className="w-7 h-7 bg-orange-500 rounded-full flex items-center justify-center text-white text-xs font-bold">1</div>
@@ -469,7 +474,12 @@ export default function Landing() {
             {/* 다가오는 행사 */}
             <Card className="mb-4 rounded-2xl">
               <CardContent className="p-4">
-                <h3 className="font-semibold text-gray-800 mb-3 border-l-4 border-yellow-500 pl-3">다가오는 행사</h3>
+                <div className="flex justify-between items-center mb-3">
+                  <h3 className="font-semibold text-gray-800 border-l-4 border-yellow-500 pl-3">다가오는 행사</h3>
+                  <button className="w-6 h-6 bg-yellow-500 hover:bg-yellow-600 text-white rounded-full flex items-center justify-center transition-colors">
+                    <Plus size={12} />
+                  </button>
+                </div>
                 <div className="space-y-3">
                   <div className="bg-gradient-to-r from-blue-50 to-blue-100 p-3 rounded-xl border-l-4 border-blue-400">
                     <h4 className="font-medium text-sm text-blue-800">코믹마켓 102</h4>
@@ -494,7 +504,12 @@ export default function Landing() {
             <Card className="rounded-2xl overflow-hidden">
               <CardContent className="p-0">
                 <div className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-white p-4">
-                  <h3 className="font-semibold mb-3">커뮤니티 현황</h3>
+                  <div className="flex justify-between items-center mb-3">
+                    <h3 className="font-semibold">커뮤니티 현황</h3>
+                    <button className="w-6 h-6 bg-white/20 hover:bg-white/30 text-white rounded-full flex items-center justify-center transition-colors">
+                      <Plus size={12} />
+                    </button>
+                  </div>
                   <div className="grid grid-cols-2 gap-3">
                     <div className="text-center">
                       <div className="text-xl font-bold">12,458</div>
