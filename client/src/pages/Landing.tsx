@@ -29,6 +29,7 @@ export default function Landing() {
   const [activeDay, setActiveDay] = useState("전체");
   const [displayText, setDisplayText] = useState("Honmono");
   const [isAnimating, setIsAnimating] = useState(false);
+  const [animationStyle, setAnimationStyle] = useState(1);
 
   const handleLogin = () => {
     window.location.href = "/api/login";
@@ -43,41 +44,105 @@ export default function Landing() {
 
   const weekdays = ["전체", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일", "일요일"];
 
-  // 타이핑 애니메이션 로직
+  // 다양한 타이핑 애니메이션 스타일
   useEffect(() => {
     const startText = "Honmono";
     const endText = "Honest Monologue";
     
-    const animateText = () => {
+    const animateStyle1 = () => {
+      // 기본 지우고 쓰기 스타일
       setIsAnimating(true);
       
-      // 지우는 단계
       for (let i = startText.length; i >= 0; i--) {
         setTimeout(() => {
           setDisplayText(startText.substring(0, i));
         }, (startText.length - i) * 100);
       }
       
-      // 타이핑 단계
       for (let i = 0; i <= endText.length; i++) {
         setTimeout(() => {
           setDisplayText(endText.substring(0, i));
           if (i === endText.length) {
             setTimeout(() => {
               setIsAnimating(false);
-              // 3초 후 다시 시작
-              setTimeout(animateText, 3000);
+              setTimeout(() => {
+                setAnimationStyle(prev => prev === 3 ? 1 : prev + 1);
+              }, 3000);
             }, 2000);
           }
         }, startText.length * 100 + 300 + i * 100);
       }
     };
 
-    // 2초 후 애니메이션 시작
-    const timer = setTimeout(animateText, 2000);
+    const animateStyle2 = () => {
+      // 글자별 페이드 스타일
+      setIsAnimating(true);
+      const chars = startText.split('');
+      
+      // 글자들을 하나씩 페이드 아웃
+      chars.forEach((_, index) => {
+        setTimeout(() => {
+          const newText = chars.map((char, i) => i <= index ? '' : char).join('');
+          setDisplayText(newText);
+        }, index * 150);
+      });
+      
+      // 새 글자들 타이핑
+      setTimeout(() => {
+        for (let i = 0; i <= endText.length; i++) {
+          setTimeout(() => {
+            setDisplayText(endText.substring(0, i));
+            if (i === endText.length) {
+              setTimeout(() => {
+                setIsAnimating(false);
+                setTimeout(() => {
+                  setAnimationStyle(prev => prev === 3 ? 1 : prev + 1);
+                }, 3000);
+              }, 2000);
+            }
+          }, i * 120);
+        }
+      }, chars.length * 150 + 500);
+    };
+
+    const animateStyle3 = () => {
+      // 랜덤 글자 변환 스타일
+      setIsAnimating(true);
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      let iterations = 0;
+      
+      const randomize = setInterval(() => {
+        setDisplayText(prev => 
+          endText.split('').map((char, index) => {
+            if (index < iterations) {
+              return endText[index];
+            }
+            return chars[Math.floor(Math.random() * chars.length)];
+          }).join('')
+        );
+        
+        if (iterations >= endText.length) {
+          clearInterval(randomize);
+          setDisplayText(endText);
+          setTimeout(() => {
+            setIsAnimating(false);
+            setTimeout(() => {
+              setAnimationStyle(prev => prev === 3 ? 1 : prev + 1);
+            }, 3000);
+          }, 2000);
+        }
+        
+        iterations += 1/3;
+      }, 100);
+    };
+
+    const animationFunctions = [animateStyle1, animateStyle2, animateStyle3];
+    const timer = setTimeout(() => {
+      animationFunctions[animationStyle - 1]();
+    }, 2000);
     
     return () => clearTimeout(timer);
-  }, []);
+  }, [animationStyle]);
 
   return (
     <div className="min-h-screen bg-gray-50" style={{ fontFamily: 'Noto Sans KR, sans-serif' }}>
@@ -216,6 +281,26 @@ export default function Landing() {
               {displayText}
               {isAnimating && <span className="animate-pulse ml-1 text-yellow-200">|</span>}
             </span>
+          </div>
+          
+          {/* 애니메이션 스타일 인디케이터 */}
+          <div className="mb-4 flex justify-center gap-2">
+            {[1, 2, 3].map((style) => (
+              <button
+                key={style}
+                onClick={() => setAnimationStyle(style)}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  animationStyle === style 
+                    ? 'bg-white shadow-lg scale-125' 
+                    : 'bg-white/40 hover:bg-white/60'
+                }`}
+                title={
+                  style === 1 ? '기본 타이핑' : 
+                  style === 2 ? '페이드 효과' : 
+                  '해킹 효과'
+                }
+              />
+            ))}
           </div>
           
           {/* Search Bar in Hero */}
