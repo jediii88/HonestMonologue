@@ -471,37 +471,8 @@ export default function Landing() {
               </CardContent>
             </Card>
 
-            {/* 다가오는 행사 */}
-            <Card className="mb-4 rounded-2xl">
-              <CardContent className="p-4">
-                <div className="flex justify-between items-center mb-3">
-                  <h3 className="font-semibold text-gray-800 border-l-4 border-yellow-500 pl-3">다가오는 행사</h3>
-                  <button className="w-6 h-6 bg-yellow-500 hover:bg-yellow-600 text-white rounded-full flex items-center justify-center transition-colors">
-                    <Plus size={12} />
-                  </button>
-                </div>
-                <div className="space-y-3">
-                  <div className="bg-gradient-to-r from-blue-50 to-blue-100 p-3 rounded-xl border-l-4 border-blue-400">
-                    <h4 className="font-medium text-sm text-blue-800">코믹마켓 102</h4>
-                    <p className="text-xs text-blue-600">2025년 8월 12-14일</p>
-                    <p className="text-xs text-blue-500">도쿄 빅사이트</p>
-                  </div>
-                  <div className="bg-gradient-to-r from-green-50 to-green-100 p-3 rounded-xl border-l-4 border-green-400">
-                    <h4 className="font-medium text-sm text-green-800">AnimeJapan 2025</h4>
-                    <p className="text-xs text-green-600">2025년 3월 23-26일</p>
-                    <p className="text-xs text-green-500">도쿄 빅사이트</p>
-                  </div>
-                  <div className="bg-gradient-to-r from-red-50 to-red-100 p-3 rounded-xl border-l-4 border-red-400">
-                    <h4 className="font-medium text-sm text-red-800">건프라 EXPO</h4>
-                    <p className="text-xs text-red-600">2025년 7월 15-17일</p>
-                    <p className="text-xs text-red-500">오다이바</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
             {/* 커뮤니티 현황 */}
-            <Card className="rounded-2xl overflow-hidden">
+            <Card className="mb-4 rounded-2xl overflow-hidden">
               <CardContent className="p-0">
                 <div className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-white p-4">
                   <div className="flex justify-between items-center mb-3">
@@ -527,6 +498,35 @@ export default function Landing() {
                       <div className="text-xl font-bold">156</div>
                       <div className="text-xs opacity-90">신규 리뷰</div>
                     </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* 다가오는 행사 */}
+            <Card className="rounded-2xl">
+              <CardContent className="p-4">
+                <div className="flex justify-between items-center mb-3">
+                  <h3 className="font-semibold text-gray-800 border-l-4 border-yellow-500 pl-3">다가오는 행사</h3>
+                  <button className="w-6 h-6 bg-yellow-500 hover:bg-yellow-600 text-white rounded-full flex items-center justify-center transition-colors">
+                    <Plus size={12} />
+                  </button>
+                </div>
+                <div className="space-y-3">
+                  <div className="bg-gradient-to-r from-blue-50 to-blue-100 p-3 rounded-xl border-l-4 border-blue-400">
+                    <h4 className="font-medium text-sm text-blue-800">코믹마켓 102</h4>
+                    <p className="text-xs text-blue-600">2025년 8월 12-14일</p>
+                    <p className="text-xs text-blue-500">도쿄 빅사이트</p>
+                  </div>
+                  <div className="bg-gradient-to-r from-green-50 to-green-100 p-3 rounded-xl border-l-4 border-green-400">
+                    <h4 className="font-medium text-sm text-green-800">AnimeJapan 2025</h4>
+                    <p className="text-xs text-green-600">2025년 3월 23-26일</p>
+                    <p className="text-xs text-green-500">도쿄 빅사이트</p>
+                  </div>
+                  <div className="bg-gradient-to-r from-red-50 to-red-100 p-3 rounded-xl border-l-4 border-red-400">
+                    <h4 className="font-medium text-sm text-red-800">건프라 EXPO</h4>
+                    <p className="text-xs text-red-600">2025년 7월 15-17일</p>
+                    <p className="text-xs text-red-500">오다이바</p>
                   </div>
                 </div>
               </CardContent>
