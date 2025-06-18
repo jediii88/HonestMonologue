@@ -5,7 +5,11 @@ import { setupAuth, isAuthenticated } from "./replitAuth";
 import { 
   insertAnimePostSchema, 
   insertTagSchema, 
-  insertReviewSchema 
+  insertReviewSchema,
+  insertForumSchema,
+  insertForumPostSchema,
+  insertForumReplySchema,
+  insertMessageSchema
 } from "@shared/schema";
 import { z } from "zod";
 

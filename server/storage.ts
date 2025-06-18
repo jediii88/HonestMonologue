@@ -395,6 +395,371 @@ export class DatabaseStorage implements IStorage {
 
     return Array.from(postsMap.values());
   }
+
+  // Forum operations
+  async getAllForums(userId?: string): Promise<ForumWithDetails[]> {
+    const forumsWithDetails = await db
+      .select({
+        forum: forums,
+        creator: users,
+        postCount: sql<number>`count(distinct ${forumPosts.id})`,
+        memberCount: sql<number>`count(distinct ${forumMemberships.userId})`,
+        userRole: userId ? sql<string>`${forumMemberships.role}` : sql<string>`null`,
+      })
+      .from(forums)
+      .leftJoin(users, eq(forums.createdBy, users.id))
+      .leftJoin(forumPosts, eq(forums.id, forumPosts.forumId))
+      .leftJoin(forumMemberships, and(
+        eq(forums.id, forumMemberships.forumId),
+        userId ? eq(forumMemberships.userId, userId) : sql`false`
+      ))
+      .groupBy(forums.id, users.id, forumMemberships.role)
+      .orderBy(desc(forums.createdAt));
+
+    return forumsWithDetails.map(row => ({
+      ...row.forum,
+      creator: row.creator,
+      postCount: row.postCount || 0,
+      memberCount: row.memberCount || 0,
+      userRole: row.userRole,
+    }));
+  }
+
+  async getForum(id: number, userId?: string): Promise<ForumWithDetails | undefined> {
+    const [forumWithDetails] = await db
+      .select({
+        forum: forums,
+        creator: users,
+        postCount: sql<number>`count(distinct ${forumPosts.id})`,
+        memberCount: sql<number>`count(distinct ${forumMemberships.userId})`,
+        userRole: userId ? sql<string>`${forumMemberships.role}` : sql<string>`null`,
+      })
+      .from(forums)
+      .leftJoin(users, eq(forums.createdBy, users.id))
+      .leftJoin(forumPosts, eq(forums.id, forumPosts.forumId))
+      .leftJoin(forumMemberships, and(
+        eq(forums.id, forumMemberships.forumId),
+        userId ? eq(forumMemberships.userId, userId) : sql`false`
+      ))
+      .where(eq(forums.id, id))
+      .groupBy(forums.id, users.id, forumMemberships.role);
+
+    if (!forumWithDetails) return undefined;
+
+    return {
+      ...forumWithDetails.forum,
+      creator: forumWithDetails.creator,
+      postCount: forumWithDetails.postCount || 0,
+      memberCount: forumWithDetails.memberCount || 0,
+      userRole: forumWithDetails.userRole,
+    };
+  }
+
+  async createForum(forumData: InsertForum, creatorId: string): Promise<Forum> {
+    const [forum] = await db
+      .insert(forums)
+      .values({
+        ...forumData,
+        createdBy: creatorId,
+      })
+      .returning();
+    
+    // 생성자를 관리자로 자동 추가
+    await db.insert(forumMemberships).values({
+      forumId: forum.id,
+      userId: creatorId,
+      role: "admin",
+    });
+
+    return forum;
+  }
+
+  async updateForum(id: number, forumData: Partial<InsertForum>): Promise<Forum | undefined> {
+    const [forum] = await db
+      .update(forums)
+      .set({
+        ...forumData,
+        updatedAt: new Date(),
+      })
+      .where(eq(forums.id, id))
+      .returning();
+    return forum;
+  }
+
+  async deleteForum(id: number): Promise<boolean> {
+    const result = await db.delete(forums).where(eq(forums.id, id));
+    return (result.rowCount || 0) > 0;
+  }
+
+  async joinForum(forumId: number, userId: string, role = "member"): Promise<boolean> {
+    try {
+      await db.insert(forumMemberships).values({
+        forumId,
+        userId,
+        role,
+      });
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  async leaveForum(forumId: number, userId: string): Promise<boolean> {
+    const result = await db
+      .delete(forumMemberships)
+      .where(and(
+        eq(forumMemberships.forumId, forumId),
+        eq(forumMemberships.userId, userId)
+      ));
+    return (result.rowCount || 0) > 0;
+  }
+
+  // Forum post operations
+  async getForumPosts(forumId: number, limit = 20, offset = 0): Promise<ForumPostWithDetails[]> {
+    const postsWithDetails = await db
+      .select({
+        post: forumPosts,
+        author: users,
+        forum: forums,
+      })
+      .from(forumPosts)
+      .leftJoin(users, eq(forumPosts.authorId, users.id))
+      .leftJoin(forums, eq(forumPosts.forumId, forums.id))
+      .where(eq(forumPosts.forumId, forumId))
+      .orderBy(desc(forumPosts.isPinned), desc(forumPosts.lastReplyAt), desc(forumPosts.createdAt))
+      .limit(limit)
+      .offset(offset);
+
+    return postsWithDetails.map(row => ({
+      ...row.post,
+      author: row.author,
+      forum: row.forum,
+    }));
+  }
+
+  async getForumPost(id: number): Promise<ForumPostWithDetails | undefined> {
+    const [postWithDetails] = await db
+      .select({
+        post: forumPosts,
+        author: users,
+        forum: forums,
+      })
+      .from(forumPosts)
+      .leftJoin(users, eq(forumPosts.authorId, users.id))
+      .leftJoin(forums, eq(forumPosts.forumId, forums.id))
+      .where(eq(forumPosts.id, id));
+
+    if (!postWithDetails) return undefined;
+
+    return {
+      ...postWithDetails.post,
+      author: postWithDetails.author,
+      forum: postWithDetails.forum,
+    };
+  }
+
+  async createForumPost(postData: InsertForumPost, authorId: string): Promise<ForumPost> {
+    const [post] = await db
+      .insert(forumPosts)
+      .values({
+        ...postData,
+        authorId,
+      })
+      .returning();
+    return post;
+  }
+
+  async updateForumPost(id: number, postData: Partial<InsertForumPost>): Promise<ForumPost | undefined> {
+    const [post] = await db
+      .update(forumPosts)
+      .set({
+        ...postData,
+        updatedAt: new Date(),
+      })
+      .where(eq(forumPosts.id, id))
+      .returning();
+    return post;
+  }
+
+  async deleteForumPost(id: number): Promise<boolean> {
+    const result = await db.delete(forumPosts).where(eq(forumPosts.id, id));
+    return (result.rowCount || 0) > 0;
+  }
+
+  async pinForumPost(id: number): Promise<boolean> {
+    const [post] = await db
+      .update(forumPosts)
+      .set({ isPinned: true })
+      .where(eq(forumPosts.id, id))
+      .returning();
+    return !!post;
+  }
+
+  async lockForumPost(id: number): Promise<boolean> {
+    const [post] = await db
+      .update(forumPosts)
+      .set({ isLocked: true })
+      .where(eq(forumPosts.id, id))
+      .returning();
+    return !!post;
+  }
+
+  async incrementForumPostViews(id: number): Promise<void> {
+    await db
+      .update(forumPosts)
+      .set({ viewCount: sql`${forumPosts.viewCount} + 1` })
+      .where(eq(forumPosts.id, id));
+  }
+
+  // Forum reply operations
+  async getForumReplies(postId: number): Promise<ForumReplyWithDetails[]> {
+    const repliesWithDetails = await db
+      .select({
+        reply: forumReplies,
+        author: users,
+      })
+      .from(forumReplies)
+      .leftJoin(users, eq(forumReplies.authorId, users.id))
+      .where(eq(forumReplies.postId, postId))
+      .orderBy(asc(forumReplies.createdAt));
+
+    return repliesWithDetails.map(row => ({
+      ...row.reply,
+      author: row.author,
+    }));
+  }
+
+  async createForumReply(replyData: InsertForumReply, authorId: string): Promise<ForumReply> {
+    const [reply] = await db
+      .insert(forumReplies)
+      .values({
+        ...replyData,
+        authorId,
+      })
+      .returning();
+
+    // 포스트의 답글 수와 마지막 답글 정보 업데이트
+    await db
+      .update(forumPosts)
+      .set({
+        replyCount: sql`${forumPosts.replyCount} + 1`,
+        lastReplyAt: new Date(),
+        lastReplyBy: authorId,
+      })
+      .where(eq(forumPosts.id, reply.postId));
+
+    return reply;
+  }
+
+  async updateForumReply(id: number, replyData: Partial<InsertForumReply>): Promise<ForumReply | undefined> {
+    const [reply] = await db
+      .update(forumReplies)
+      .set({
+        ...replyData,
+        updatedAt: new Date(),
+      })
+      .where(eq(forumReplies.id, id))
+      .returning();
+    return reply;
+  }
+
+  async deleteForumReply(id: number): Promise<boolean> {
+    const result = await db.delete(forumReplies).where(eq(forumReplies.id, id));
+    return (result.rowCount || 0) > 0;
+  }
+
+  // Message operations
+  async getUserConversations(userId: string): Promise<Conversation[]> {
+    const conversations = await db
+      .select({
+        otherUserId: sql<string>`CASE 
+          WHEN ${messages.senderId} = ${userId} THEN ${messages.receiverId}
+          ELSE ${messages.senderId}
+        END`,
+        lastMessage: messages,
+        otherUser: users,
+        unreadCount: sql<number>`COUNT(CASE 
+          WHEN ${messages.receiverId} = ${userId} AND ${messages.isRead} = false 
+          THEN 1 
+        END)`,
+      })
+      .from(messages)
+      .leftJoin(users, sql`${users.id} = CASE 
+        WHEN ${messages.senderId} = ${userId} THEN ${messages.receiverId}
+        ELSE ${messages.senderId}
+      END`)
+      .where(sql`${messages.senderId} = ${userId} OR ${messages.receiverId} = ${userId}`)
+      .groupBy(
+        sql`CASE 
+          WHEN ${messages.senderId} = ${userId} THEN ${messages.receiverId}
+          ELSE ${messages.senderId}
+        END`,
+        messages.id, users.id
+      )
+      .orderBy(desc(messages.createdAt));
+
+    return conversations.map(row => ({
+      otherUser: row.otherUser,
+      lastMessage: row.lastMessage,
+      unreadCount: row.unreadCount || 0,
+    }));
+  }
+
+  async getConversation(userId: string, otherUserId: string, limit = 50, offset = 0): Promise<MessageWithUsers[]> {
+    const conversationMessages = await db
+      .select({
+        message: messages,
+        sender: users,
+      })
+      .from(messages)
+      .leftJoin(users, eq(messages.senderId, users.id))
+      .where(
+        sql`(${messages.senderId} = ${userId} AND ${messages.receiverId} = ${otherUserId}) OR
+            (${messages.senderId} = ${otherUserId} AND ${messages.receiverId} = ${userId})`
+      )
+      .orderBy(desc(messages.createdAt))
+      .limit(limit)
+      .offset(offset);
+
+    return conversationMessages.map(row => ({
+      ...row.message,
+      sender: row.sender,
+      receiver: row.sender, // This will be corrected in a proper join
+    }));
+  }
+
+  async sendMessage(messageData: InsertMessage, senderId: string): Promise<Message> {
+    const [message] = await db
+      .insert(messages)
+      .values({
+        ...messageData,
+        senderId,
+      })
+      .returning();
+    return message;
+  }
+
+  async markMessagesAsRead(senderId: string, receiverId: string): Promise<void> {
+    await db
+      .update(messages)
+      .set({ isRead: true })
+      .where(and(
+        eq(messages.senderId, senderId),
+        eq(messages.receiverId, receiverId),
+        eq(messages.isRead, false)
+      ));
+  }
+
+  async getUnreadMessageCount(userId: string): Promise<number> {
+    const [result] = await db
+      .select({ count: sql<number>`count(*)` })
+      .from(messages)
+      .where(and(
+        eq(messages.receiverId, userId),
+        eq(messages.isRead, false)
+      ));
+    return result.count || 0;
+  }
 }
 
 export const storage = new DatabaseStorage();

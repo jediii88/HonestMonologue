@@ -70,10 +70,22 @@ export default function Header() {
             {isAuthenticated ? (
               <div className="flex items-center space-x-4">
                 <Button variant="outline" size="sm" asChild>
-                  <a href="/create">
+                  <Link href="/forums">
+                    <MessageCircle size={16} className="mr-1" />
+                    포럼
+                  </Link>
+                </Button>
+                <Button variant="outline" size="sm" asChild>
+                  <Link href="/messages">
+                    <Mail size={16} className="mr-1" />
+                    메시지
+                  </Link>
+                </Button>
+                <Button variant="outline" size="sm" asChild>
+                  <Link href="/create">
                     <Plus size={16} className="mr-1" />
                     작품 등록
-                  </a>
+                  </Link>
                 </Button>
                 
                 <DropdownMenu>
