@@ -192,10 +192,10 @@ export default function Landing() {
               { title: "진격의 거인 완결편", isNew: true, day: "일" },
             ].map((anime, index) => (
               <div key={index} className="relative group cursor-pointer">
+                <div className="absolute top-1 left-1 bg-yellow-500 text-white text-xs px-2 py-1 rounded-full z-10 font-medium">{anime.day}</div>
                 {anime.isNew && (
-                  <div className="absolute top-1 left-1 bg-red-500 text-white text-xs px-2 py-1 rounded-full z-10 font-medium">NEW</div>
+                  <div className="absolute top-1 right-1 bg-red-500 text-white text-xs px-2 py-1 rounded-full z-10 font-medium">NEW</div>
                 )}
-                <div className="absolute top-1 right-1 bg-yellow-500 text-white text-xs px-2 py-1 rounded-full z-10 font-medium">{anime.day}</div>
                 <div className="aspect-[3/4] rounded-lg overflow-hidden mb-2 group-hover:shadow-lg transition-all duration-200 group-hover:scale-105">
                   <div className="w-full h-full bg-gray-300 flex items-center justify-center">
                     <span className="text-gray-700 text-xs font-medium text-center px-1">{anime.title}</span>
