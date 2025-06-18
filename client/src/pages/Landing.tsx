@@ -27,7 +27,7 @@ import testImage from "@assets/image_1750233446528.png";
 export default function Landing() {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeDay, setActiveDay] = useState("전체");
-  const [displayText, setDisplayText] = useState("Honmono");
+  const [displayText, setDisplayText] = useState("Honest Monologue");
   const [isAnimating, setIsAnimating] = useState(false);
   const [animationStyle, setAnimationStyle] = useState(3);
 
