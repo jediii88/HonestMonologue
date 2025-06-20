@@ -26,7 +26,16 @@ export const sessions = pgTable(
   (table) => [index("IDX_session_expire").on(table.expire)],
 );
 
-// User storage table (mandatory for Replit Auth)
+// --- 칭호 시스템을 위한 테이블 (신규) ---
+export const titles = pgTable("titles", {
+  id: serial("id").primaryKey(),
+  name: varchar("name", { length: 50 }).notNull().unique(), // 예: "기록자", "현자"
+  description: text("description").notNull(), // 예: "정보성 게시물을 10개 이상 작성"
+  category: varchar("category", { length: 20 }).notNull(), // 예: "직업", "직위", "위업"
+  icon: varchar("icon", { length: 50 }), // 칭호를 나타내는 아이콘 (선택사항)
+});
+
+// User storage table - representativeTitleId 추가
 export const users = pgTable("users", {
   id: varchar("id").primaryKey().notNull(),
   email: varchar("email").unique(),
@@ -34,9 +43,21 @@ export const users = pgTable("users", {
   lastName: varchar("last_name"),
   profileImageUrl: varchar("profile_image_url"),
   isAdmin: boolean("is_admin").default(false),
+  representativeTitleId: integer("representative_title_id").references(() => titles.id), // 대표 칭호
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
 });
+
+// User-Title junction table (NEW)
+export const userTitles = pgTable(
+  "user_titles",
+  {
+    userId: varchar("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
+    titleId: integer("title_id").notNull().references(() => titles.id, { onDelete: "cascade" }),
+    earnedAt: timestamp("earned_at").defaultNow(),
+  },
+  (table) => [primaryKey({ columns: [table.userId, table.titleId] })]
+);
 
 // Tags table
 export const tags = pgTable("tags", {
@@ -53,9 +74,9 @@ export const animePosts = pgTable("anime_posts", {
   description: text("description").notNull(),
   imageUrl: varchar("image_url", { length: 500 }),
   year: integer("year"),
-  type: varchar("type", { length: 20 }).notNull(), // TV, Movie, OVA, etc.
+  type: varchar("type", { length: 20 }).notNull(),
   studio: varchar("studio", { length: 100 }),
-  status: varchar("status", { length: 20 }).default("pending"), // pending, approved, rejected
+  status: varchar("status", { length: 20 }).default("pending"),
   authorId: varchar("author_id").notNull().references(() => users.id),
   approvedBy: varchar("approved_by").references(() => users.id),
   viewCount: integer("view_count").default(0),
@@ -78,7 +99,7 @@ export const reviews = pgTable("reviews", {
   id: serial("id").primaryKey(),
   animePostId: integer("anime_post_id").notNull().references(() => animePosts.id, { onDelete: "cascade" }),
   authorId: varchar("author_id").notNull().references(() => users.id),
-  rating: decimal("rating", { precision: 2, scale: 1 }).notNull(),
+  rating: decimal("rating", { precision: 2, scale: 1 }).notNull(), // 작품성 별점
   title: varchar("title", { length: 255 }),
   content: text("content").notNull(),
   createdAt: timestamp("created_at").defaultNow(),
@@ -90,6 +111,17 @@ export const favorites = pgTable(
   "favorites",
   {
     userId: varchar("user_id").notNull().references(() => users.id),
+    animePostId: integer("anime_post_id").notNull().references(() => animePosts.id, { onDelete: "cascade" }),
+    createdAt: timestamp("created_at").defaultNow(),
+  },
+  (table) => [primaryKey({ columns: [table.userId, table.animePostId] })]
+);
+
+// '혼' 투표 테이블 (신규)
+export const honVotes = pgTable(
+  "hon_votes",
+  {
+    userId: varchar("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
     animePostId: integer("anime_post_id").notNull().references(() => animePosts.id, { onDelete: "cascade" }),
     createdAt: timestamp("created_at").defaultNow(),
   },
@@ -158,8 +190,8 @@ export const forumMemberships = pgTable(
   (table) => [primaryKey({ columns: [table.forumId, table.userId] })]
 );
 
-// Relations
-export const usersRelations = relations(users, ({ many }) => ({
+// --- Relations (관계 설정) - 신규 관계 추가 ---
+export const usersRelations = relations(users, ({ one, many }) => ({
   animePosts: many(animePosts, { relationName: "author" }),
   approvedPosts: many(animePosts, { relationName: "approver" }),
   reviews: many(reviews),
@@ -170,6 +202,27 @@ export const usersRelations = relations(users, ({ many }) => ({
   sentMessages: many(messages, { relationName: "sentMessages" }),
   receivedMessages: many(messages, { relationName: "receivedMessages" }),
   forumMemberships: many(forumMemberships),
+  honVotes: many(honVotes),
+  titles: many(userTitles),
+  representativeTitle: one(titles, {
+    fields: [users.representativeTitleId],
+    references: [titles.id],
+  }),
+}));
+
+export const titlesRelations = relations(titles, ({ many }) => ({
+  users: many(userTitles),
+}));
+
+export const userTitlesRelations = relations(userTitles, ({ one }) => ({
+  user: one(users, {
+    fields: [userTitles.userId],
+    references: [users.id],
+  }),
+  title: one(titles, {
+    fields: [userTitles.titleId],
+    references: [titles.id],
+  }),
 }));
 
 export const animePostsRelations = relations(animePosts, ({ one, many }) => ({
@@ -186,6 +239,18 @@ export const animePostsRelations = relations(animePosts, ({ one, many }) => ({
   tags: many(animePostTags),
   reviews: many(reviews),
   favorites: many(favorites),
+  honVotes: many(honVotes),
+}));
+
+export const honVotesRelations = relations(honVotes, ({ one }) => ({
+  user: one(users, {
+    fields: [honVotes.userId],
+    references: [users.id],
+  }),
+  animePost: one(animePosts, {
+    fields: [honVotes.animePostId],
+    references: [animePosts.id],
+  }),
 }));
 
 export const tagsRelations = relations(tags, ({ many }) => ({
@@ -225,7 +290,6 @@ export const favoritesRelations = relations(favorites, ({ one }) => ({
   }),
 }));
 
-// Forum relations
 export const forumsRelations = relations(forums, ({ one, many }) => ({
   creator: one(users, {
     fields: [forums.createdBy],
@@ -291,7 +355,8 @@ export const forumMembershipsRelations = relations(forumMemberships, ({ one }) =
   }),
 }));
 
-// Insert schemas
+
+// --- Insert schemas (Zod) ---
 export const insertUserSchema = createInsertSchema(users).omit({
   createdAt: true,
   updatedAt: true,
@@ -319,7 +384,6 @@ export const insertReviewSchema = createInsertSchema(reviews).omit({
   updatedAt: true,
 });
 
-// Forum schemas
 export const insertForumSchema = createInsertSchema(forums).omit({
   id: true,
   createdBy: true,
@@ -350,7 +414,7 @@ export const insertMessageSchema = createInsertSchema(messages).omit({
   createdAt: true,
 });
 
-// Types
+// --- Types ---
 export type UpsertUser = typeof users.$inferInsert;
 export type User = typeof users.$inferSelect;
 export type AnimePost = typeof animePosts.$inferSelect;
@@ -360,8 +424,9 @@ export type InsertTag = z.infer<typeof insertTagSchema>;
 export type Review = typeof reviews.$inferSelect;
 export type InsertReview = z.infer<typeof insertReviewSchema>;
 export type Favorite = typeof favorites.$inferSelect;
-
-// Forum types
+export type HonVote = typeof honVotes.$inferSelect;
+export type Title = typeof titles.$inferSelect;
+export type UserTitle = typeof userTitles.$inferSelect;
 export type Forum = typeof forums.$inferSelect;
 export type InsertForum = z.infer<typeof insertForumSchema>;
 export type ForumPost = typeof forumPosts.$inferSelect;
@@ -381,6 +446,7 @@ export type AnimePostWithDetails = AnimePost & {
   averageRating: number;
   reviewCount: number;
   isFavorited?: boolean;
+  honVoteCount?: number; 
 };
 
 export type ReviewWithAuthor = Review & {
