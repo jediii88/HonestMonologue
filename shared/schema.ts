@@ -110,7 +110,7 @@ export const reviews = pgTable("reviews", {
 export const favorites = pgTable(
   "favorites",
   {
-    userId: varchar("user_id").notNull().references(() => users.id),
+    userId: varchar("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
     animePostId: integer("anime_post_id").notNull().references(() => animePosts.id, { onDelete: "cascade" }),
     createdAt: timestamp("created_at").defaultNow(),
   },
@@ -184,7 +184,7 @@ export const forumMemberships = pgTable(
   {
     forumId: integer("forum_id").notNull().references(() => forums.id, { onDelete: "cascade" }),
     userId: varchar("user_id").notNull().references(() => users.id),
-    role: varchar("role", { length: 20 }).default("member"), // member, moderator, admin
+    role: varchar("role", { length: 20 }).default("member"),
     joinedAt: timestamp("joined_at").defaultNow(),
   },
   (table) => [primaryKey({ columns: [table.forumId, table.userId] })]
@@ -354,7 +354,6 @@ export const forumMembershipsRelations = relations(forumMemberships, ({ one }) =
     references: [users.id],
   }),
 }));
-
 
 // --- Insert schemas (Zod) ---
 export const insertUserSchema = createInsertSchema(users).omit({
