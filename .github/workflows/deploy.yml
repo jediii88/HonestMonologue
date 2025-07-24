@@ -29,7 +29,7 @@ jobs:
       run: npm ci
       
     - name: Build for GitHub Pages
-      run: NODE_ENV=production npx vite build
+      run: NODE_ENV=production npx vite build --base=/HonestMonologue/
       env:
         VITE_UNDER_CONSTRUCTION: ${{ secrets.VITE_UNDER_CONSTRUCTION }}
         
