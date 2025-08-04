@@ -3,8 +3,7 @@ import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { AuthProvider, useAuth } from "@/hooks/useAuth";
-import { Loader2 } from "lucide-react";
+import { useAuth } from "@/hooks/useAuth";
 import NotFound from "@/pages/not-found";
 import Landing from "@/pages/Landing";
 import Home from "@/pages/Home";
@@ -13,27 +12,43 @@ import CreateAnime from "@/pages/CreateAnime";
 import AdminPanel from "@/pages/AdminPanel";
 import Forums from "@/pages/Forums";
 import Messages from "@/pages/Messages";
-import AuthPage from "@/pages/AuthPage";
-import UnderConstruction from "@/pages/UnderConstruction";
 
-// 공사중 모드 활성화 여부 (기본값: true, 환경변수로 비활성화 가능)
-const UNDER_CONSTRUCTION = import.meta.env.VITE_UNDER_CONSTRUCTION !== 'false';
-// 관리자 비밀 접속 여부 확인
+// 공사중 페이지 컴포넌트
+function UnderConstruction() {
+  const handleLogoClick = () => {
+    const code = prompt("관리자 코드를 입력하세요:");
+    if (code === "혼모노2025") {
+      sessionStorage.setItem("admin_access", "true");
+      window.location.reload();
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 flex items-center justify-center p-4">
+      <div className="max-w-2xl mx-auto text-center space-y-8">
+        <div onClick={handleLogoClick} className="cursor-pointer">
+          <h1 className="text-5xl font-bold text-purple-600 mb-4">혼모노</h1>
+          <p className="text-xl text-gray-600">HONMONO</p>
+          <p className="text-sm text-gray-500">진정한 애니메이션 커뮤니티</p>
+        </div>
+        <div className="bg-white rounded-3xl p-8 shadow-xl">
+          <h2 className="text-3xl font-bold text-gray-800 mb-4">🚧 페이지를 찾을 수 없습니다</h2>
+          <p className="text-lg text-gray-600">잠시만 기다려주세요 다시 준비중입니다.</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// 공사중 모드 (기본값: true)
+const UNDER_CONSTRUCTION = true;
 const hasAdminAccess = sessionStorage.getItem("admin_access") === "true";
 
 function Router() {
-  const { user, isAuthenticated, isLoading } = useAuth();
+  const { isAuthenticated, isLoading } = useAuth();
 
-  if (isLoading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <Loader2 className="h-8 w-8 animate-spin text-border" />
-      </div>
-    );
-  }
-
-  // 공사중 모드일 때는 관리자 접속이나 로그인된 사용자가 아닌 경우에만 공사중 페이지 표시
-  if (UNDER_CONSTRUCTION && !hasAdminAccess && !isAuthenticated) {
+  // 공사중 모드일 때는 관리자 접속이 아닌 경우 공사중 페이지 표시
+  if (UNDER_CONSTRUCTION && !hasAdminAccess) {
     return (
       <Switch>
         <Route path="/" component={UnderConstruction} />
@@ -44,14 +59,16 @@ function Router() {
 
   return (
     <Switch>
-      <Route path="/auth" component={AuthPage} />
       <Route path="/admin" component={AdminPanel} />
       <Route path="/anime/:id" component={AnimeDetail} />
       <Route path="/create" component={CreateAnime} />
       <Route path="/forums" component={Forums} />
       <Route path="/messages" component={Messages} />
-      <Route path="/home" component={Home} />
-      <Route path="/" component={Landing} />
+      {isLoading || !isAuthenticated ? (
+        <Route path="/" component={Landing} />
+      ) : (
+        <Route path="/" component={Home} />
+      )}
       <Route component={NotFound} />
     </Switch>
   );
@@ -60,12 +77,10 @@ function Router() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <AuthProvider>
-        <TooltipProvider>
-          <Toaster />
-          <Router />
-        </TooltipProvider>
-      </AuthProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Router />
+      </TooltipProvider>
     </QueryClientProvider>
   );
 }
