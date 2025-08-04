@@ -13,34 +13,7 @@ import CreateAnime from "@/pages/CreateAnime";
 import AdminPanel from "@/pages/AdminPanel";
 import Forums from "@/pages/Forums";
 import Messages from "@/pages/Messages";
-
-// 공사중 페이지 컴포넌트
-function UnderConstruction() {
-  const handleLogoClick = () => {
-    const code = prompt("관리자 코드를 입력하세요:");
-    if (code === "혼모노2025") {
-      sessionStorage.setItem("admin_access", "true");
-      window.location.reload();
-    }
-  };
-
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 flex items-center justify-center p-4">
-      <div className="max-w-2xl mx-auto text-center space-y-8">
-        <div onClick={handleLogoClick} className="cursor-pointer">
-          <h1 className="text-5xl font-bold text-purple-600 mb-4">혼모노</h1>
-          <p className="text-xl text-gray-600">HONMONO</p>
-          <p className="text-sm text-gray-500">진정한 애니메이션 커뮤니티</p>
-        </div>
-        <div className="bg-white rounded-3xl p-8 shadow-xl">
-          <h2 className="text-3xl font-bold text-gray-800 mb-4">🚧 페이지를 준비중입니다</h2>
-          <p className="text-lg text-gray-600">2025년 8월 공식 출시 예정입니다.</p>
-          <p className="text-sm text-gray-500 mt-4">honmono.co.kr</p>
-        </div>
-      </div>
-    </div>
-  );
-}
+import UnderConstruction from "@/pages/UnderConstruction";
 
 // 공사중 모드 (GitHub Pages에서는 항상 활성화)
 const UNDER_CONSTRUCTION = true;
