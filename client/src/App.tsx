@@ -3,7 +3,8 @@ import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { useAuth } from "@/hooks/useAuth";
+import { AuthProvider, useAuth } from "@/hooks/useAuth";
+import { Loader2 } from "lucide-react";
 import NotFound from "@/pages/not-found";
 import Landing from "@/pages/Landing";
 import Home from "@/pages/Home";
@@ -32,28 +33,56 @@ function UnderConstruction() {
           <p className="text-sm text-gray-500">진정한 애니메이션 커뮤니티</p>
         </div>
         <div className="bg-white rounded-3xl p-8 shadow-xl">
-          <h2 className="text-3xl font-bold text-gray-800 mb-4">🚧 페이지를 찾을 수 없습니다</h2>
-          <p className="text-lg text-gray-600">잠시만 기다려주세요 다시 준비중입니다.</p>
+          <h2 className="text-3xl font-bold text-gray-800 mb-4">🚧 페이지를 준비중입니다</h2>
+          <p className="text-lg text-gray-600">2025년 8월 공식 출시 예정입니다.</p>
+          <p className="text-sm text-gray-500 mt-4">honmono.co.kr</p>
         </div>
       </div>
     </div>
   );
 }
 
-// 공사중 모드 (기본값: true)
+// 공사중 모드 (GitHub Pages에서는 항상 활성화)
 const UNDER_CONSTRUCTION = true;
 const hasAdminAccess = sessionStorage.getItem("admin_access") === "true";
 
 function Router() {
-  const { isAuthenticated, isLoading } = useAuth();
+  // GitHub Pages 환경 감지
+  const isGitHubPages = window.location.hostname.includes('github.io');
+  
+  // GitHub Pages에서는 인증 시스템 건너뛰기
+  if (isGitHubPages) {
+    // 공사중 모드일 때는 관리자 접속이 아닌 경우 공사중 페이지 표시
+    if (UNDER_CONSTRUCTION && !hasAdminAccess) {
+      return (
+        <Switch>
+          <Route path="/" component={UnderConstruction} />
+          <Route component={UnderConstruction} />
+        </Switch>
+      );
+    }
 
-  // 공사중 모드일 때는 관리자 접속이 아닌 경우 공사중 페이지 표시
-  if (UNDER_CONSTRUCTION && !hasAdminAccess) {
     return (
       <Switch>
-        <Route path="/" component={UnderConstruction} />
-        <Route component={UnderConstruction} />
+        <Route path="/admin" component={AdminPanel} />
+        <Route path="/anime/:id" component={AnimeDetail} />
+        <Route path="/create" component={CreateAnime} />
+        <Route path="/forums" component={Forums} />
+        <Route path="/messages" component={Messages} />
+        <Route path="/" component={Landing} />
+        <Route component={NotFound} />
       </Switch>
+    );
+  }
+
+  // 로컬 개발 환경에서는 인증 시스템 사용
+  const { isAuthenticated, isLoading } = useAuth();
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <Loader2 className="h-8 w-8 animate-spin text-border" />
+      </div>
     );
   }
 
@@ -77,10 +106,12 @@ function Router() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Router />
-      </TooltipProvider>
+      <AuthProvider>
+        <TooltipProvider>
+          <Toaster />
+          <Router />
+        </TooltipProvider>
+      </AuthProvider>
     </QueryClientProvider>
   );
 }
