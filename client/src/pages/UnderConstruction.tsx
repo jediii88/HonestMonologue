@@ -11,16 +11,16 @@ export default function UnderConstruction() {
   const [showSecretInput, setShowSecretInput] = useState(false);
   const [showAdminView, setShowAdminView] = useState(false);
 
-  const handleSecretAccess = () => {
-    if (secretCode.trim() === "혼모노2025") {
-      sessionStorage.setItem("admin_access", "true");
-      setShowAdminView(true);
-      setShowSecretInput(false);
-    } else {
-      alert("잘못된 코드입니다.");
-      setSecretCode("");
-    }
-  };
+const handleSecretAccess = () => {
+  if (secretCode.trim() === "혼모노2025") {
+    sessionStorage.setItem("admin_access", "true");
+    // 페이지 새로고침하여 완전한 사이트 로드
+    window.location.reload();
+  } else {
+    alert("잘못된 코드입니다.");
+    setSecretCode("");
+  }
+};
 
   const handleLogoClick = () => {
     setShowSecretInput(!showSecretInput);
