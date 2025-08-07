@@ -9,11 +9,13 @@ export default function UnderConstruction() {
   const [, setLocation] = useLocation();
   const [secretCode, setSecretCode] = useState("");
   const [showSecretInput, setShowSecretInput] = useState(false);
+  const [showAdminView, setShowAdminView] = useState(false);
 
   const handleSecretAccess = () => {
     if (secretCode.trim() === "혼모노2025") {
       sessionStorage.setItem("admin_access", "true");
-      window.location.reload();
+      setShowAdminView(true);
+      setShowSecretInput(false);
     } else {
       alert("잘못된 코드입니다.");
       setSecretCode("");
@@ -23,6 +25,101 @@ export default function UnderConstruction() {
   const handleLogoClick = () => {
     setShowSecretInput(!showSecretInput);
   };
+
+  // 관리자 뷰
+  if (showAdminView) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 p-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="bg-white/90 dark:bg-gray-800/90 rounded-3xl p-8 shadow-xl">
+            <div className="flex items-center justify-between mb-8">
+              <div>
+                <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+                  혼모노 관리자 페이지
+                </h1>
+                <p className="text-gray-600 dark:text-gray-300 mt-2">
+                  환영합니다, 관리자님
+                </p>
+              </div>
+              <Button 
+                onClick={() => {
+                  sessionStorage.removeItem("admin_access");
+                  setShowAdminView(false);
+                }}
+                className="rounded-xl"
+              >
+                로그아웃
+              </Button>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <Card className="rounded-3xl border-0 shadow-lg bg-gradient-to-br from-purple-500 to-purple-600">
+                <CardContent className="p-6 text-white">
+                  <h3 className="text-xl font-semibold mb-2">개발 현황</h3>
+                  <p className="opacity-90">전체 사이트 90% 완성</p>
+                  <p className="opacity-90 mt-2">2025년 8월 정식 오픈 예정</p>
+                </CardContent>
+              </Card>
+
+              <Card className="rounded-3xl border-0 shadow-lg bg-gradient-to-br from-blue-500 to-blue-600">
+                <CardContent className="p-6 text-white">
+                  <h3 className="text-xl font-semibold mb-2">주요 기능</h3>
+                  <ul className="space-y-1 opacity-90">
+                    <li>• 애니메이션 데이터베이스</li>
+                    <li>• 커뮤니티 포럼</li>
+                    <li>• 칭호 시스템</li>
+                    <li>• 이중 평가 시스템</li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              <Card className="rounded-3xl border-0 shadow-lg bg-gradient-to-br from-green-500 to-green-600">
+                <CardContent className="p-6 text-white">
+                  <h3 className="text-xl font-semibold mb-2">데이터베이스</h3>
+                  <p className="opacity-90">27개 테이블 구축 완료</p>
+                  <p className="opacity-90 mt-2">PostgreSQL + Drizzle ORM</p>
+                </CardContent>
+              </Card>
+
+              <Card className="rounded-3xl border-0 shadow-lg bg-gradient-to-br from-orange-500 to-orange-600">
+                <CardContent className="p-6 text-white">
+                  <h3 className="text-xl font-semibold mb-2">기술 스택</h3>
+                  <p className="opacity-90">React + TypeScript</p>
+                  <p className="opacity-90">Express + Node.js</p>
+                  <p className="opacity-90 mt-2">Tailwind CSS</p>
+                </CardContent>
+              </Card>
+
+              <Card className="rounded-3xl border-0 shadow-lg bg-gradient-to-br from-pink-500 to-pink-600">
+                <CardContent className="p-6 text-white">
+                  <h3 className="text-xl font-semibold mb-2">도메인</h3>
+                  <p className="opacity-90">honmono.co.kr</p>
+                  <p className="opacity-90 mt-2">준비 완료</p>
+                </CardContent>
+              </Card>
+
+              <Card className="rounded-3xl border-0 shadow-lg bg-gradient-to-br from-indigo-500 to-indigo-600">
+                <CardContent className="p-6 text-white">
+                  <h3 className="text-xl font-semibold mb-2">문의</h3>
+                  <p className="opacity-90">admin@honmono.co.kr</p>
+                  <p className="opacity-90 mt-2">개발팀 연락처</p>
+                </CardContent>
+              </Card>
+            </div>
+
+            <div className="mt-8 p-6 bg-gray-100 dark:bg-gray-700 rounded-3xl">
+              <h3 className="text-lg font-semibold mb-3">개발 노트</h3>
+              <p className="text-gray-700 dark:text-gray-300">
+                혼모노는 진정한 애니메이션 애호가들을 위한 종합 커뮤니티 플랫폼입니다.
+                현재 핵심 기능 개발이 완료되었으며, 사용자 테스트 및 최적화 작업을 진행 중입니다.
+                GitHub Pages를 통한 프리뷰 배포가 완료되었으며, 정식 서비스는 2025년 8월에 시작됩니다.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center p-4">
