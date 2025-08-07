@@ -1,4 +1,3 @@
-import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Home } from "lucide-react";
 
@@ -13,12 +12,10 @@ export default function NotFound() {
         <p className="text-gray-600 dark:text-gray-300">
           요청하신 페이지가 존재하지 않거나 이동되었을 수 있습니다.
         </p>
-        <Link href="/">
-          <Button className="rounded-xl bg-gradient-to-r from-purple-600 to-blue-600">
-            <Home className="w-4 h-4 mr-2" />
-            홈으로 돌아가기
-          </Button>
-        </Link>
+        <Button className="rounded-xl bg-gradient-to-r from-purple-600 to-blue-600">
+          <Home className="w-4 h-4 mr-2" />
+          홈으로 돌아가기
+        </Button>
       </div>
     </div>
   );
